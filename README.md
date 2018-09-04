@@ -2,3 +2,5 @@
 
 Kasper = CodeJesus
 Peter = Janitor
+
+VIKTOR = CEO
