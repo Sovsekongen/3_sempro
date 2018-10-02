@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jdbcsoftwaregui.FXMLDocumentController">
-    <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
-    </children>
+<AnchorPane id="AnchorPane" prefHeight="675.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jdbcsoftwaregui.FXMLDocumentController">
+   <children>
+      <TabPane layoutX="0.0" layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="1000.0" tabMinWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab fx:id="tab" styleClass=".tab" text="Table 1">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="250.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="191.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAB1" wrappingWidth="166.13671875" />
+                        <TableView fx:id="table" layoutX="14.0" layoutY="14.0" prefHeight="336.0" prefWidth="400.0">
+                          <columns>
+                            <TableColumn id="throwNr" fx:id="throwNumTab" prefWidth="100.0" text="Throw Nr." />
+                            <TableColumn fx:id="timestampTab" prefWidth="100.0" text="Timestamp" />
+                              <TableColumn fx:id="posXTab" prefWidth="100.0" text="Pos X" />
+                              <TableColumn fx:id="posYTab" prefWidth="100.0" text="Pos Y" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Table 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="111.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAB 2" wrappingWidth="338.662109375" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Table 3">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab fx:id="tab4" text="Table 4">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>

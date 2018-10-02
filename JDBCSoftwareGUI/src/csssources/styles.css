@@ -1,0 +1,5 @@
+.tab{
+    -fx-tab-min-width: 250px;
+    -fx-tab-max-width: 250px;
+    /*-fx-background-color: #0f0f0f;*/
+}

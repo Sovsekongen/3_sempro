@@ -12,6 +12,11 @@ public class JDBC
     private String url = "jdbc:mysql://localhost:3306/bib?useSSL=false&serverTimezone=EST";
     private String usr;
     private String pwd;
+    
+    private String date;
+    private int posX;
+    private int posY;
+    private int throwNr;
 
     public JDBC(String usr, String pwd)
     {
@@ -31,8 +36,9 @@ public class JDBC
         }
     }
 
-    public void selectQuery(String query)
+    public TableVal[] selectQuery(String query)
     {
+        TableVal[] vals = null;
         try
         {
             stmt = con.createStatement();
@@ -41,6 +47,7 @@ public class JDBC
             ResultSetMetaData rsmd = rs.getMetaData();
 
             int columns = rsmd.getColumnCount();
+            vals = new TableVal[columns];
             
             while (rs.next())
             {
@@ -51,9 +58,17 @@ public class JDBC
                         System.out.print("; ");
                     }
                     
+                    date = rs.getString("tDate");
+                    posX = rs.getInt("posX");
+                    posY = rs.getInt("posY");
+                    throwNr = rs.getInt("throwNr");
+                    
+                    TableVal tab = new TableVal(date, posX, posY, throwNr);
+                    
                     String columnName = rs.getString(i);
                     System.out.print(rsmd.getColumnName(i) + ": " + columnName);
                     
+                    vals[i] = tab;
                 }
                 System.out.println(" ");
             }
@@ -64,6 +79,8 @@ public class JDBC
             System.out.println("SQLState: " + e.getSQLState());
             System.out.println("VendorError: " + e.getErrorCode());
         }
+        
+        return vals;
     }
 
     public void insertPickupPos(String date, int posx, int posy)
