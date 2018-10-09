@@ -1,5 +1,34 @@
 .tab{
     -fx-tab-min-width: 250px;
     -fx-tab-max-width: 250px;
-    /*-fx-background-color: #0f0f0f;*/
+    /*-fx-background-color: #FF3C9F;
+    -fx-text-base-color: #AEFF6C;
+    -fx-font-weight: bold;*/
+}
+
+.chart{
+    
+}
+
+.chart-content{
+    -fx-padding: 20px;
+    /*-fx-background-fills: #ffffff;
+    -fx-background-image: url("kaj_log.PNG");*/
+    
+    
+}
+
+.chart-vertical-grid-lines{
+    -fx-stroke: transparent;
+}
+
+.chart-horizontal-grid-lines{
+    -fx-stroke: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+    /*-fx-background-image: url("kaj_log.PNG");
+   
+   -fx-border-color: #000000;*/
 }

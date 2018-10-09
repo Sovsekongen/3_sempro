@@ -25,7 +25,7 @@ public class JDBC
         
         try
         {
-            con = DriverManager.getConnection(url, usr, pwd);
+            con = DriverManager.getConnection(url, this.usr, this.pwd);
 
         } 
         catch (SQLException e)
@@ -36,9 +36,9 @@ public class JDBC
         }
     }
 
-    public TableVal[] selectQuery(String query)
+    public PickUpVal[] selectQuery(String query)
     {
-        TableVal[] vals = null;
+        PickUpVal[] vals = null;
         try
         {
             stmt = con.createStatement();
@@ -47,31 +47,27 @@ public class JDBC
             ResultSetMetaData rsmd = rs.getMetaData();
 
             int columns = rsmd.getColumnCount();
-            vals = new TableVal[columns];
+            int numOfRows = 0;
             
-            while (rs.next())
+            while(rs.next())
             {
-                for(int i = 1; i < columns; i++)
-                {
-                    if(i > 1)
-                    {
-                        System.out.print("; ");
-                    }
-                    
-                    date = rs.getString("tDate");
-                    posX = rs.getInt("posX");
-                    posY = rs.getInt("posY");
-                    throwNr = rs.getInt("throwNr");
-                    
-                    TableVal tab = new TableVal(date, posX, posY, throwNr);
-                    
-                    String columnName = rs.getString(i);
-                    System.out.print(rsmd.getColumnName(i) + ": " + columnName);
-                    
-                    vals[i] = tab;
-                }
-                System.out.println(" ");
+                numOfRows++;
             }
+            
+            rs.beforeFirst();
+
+            vals = new PickUpVal[numOfRows];
+            
+            for(int i = 0; rs.next(); i++)
+            {
+                date = rs.getString("tDate");
+                posX = rs.getInt("posX");
+                posY = rs.getInt("posY");
+                throwNr = rs.getInt("throwNr");
+
+                vals[i] = new PickUpVal(throwNr, date, posX, posY);
+            }
+                
         } 
         catch (SQLException e)
         {
@@ -80,21 +76,21 @@ public class JDBC
             System.out.println("VendorError: " + e.getErrorCode());
         }
         
-        return vals;
+        return vals.clone();
     }
 
-    public void insertPickupPos(String date, int posx, int posy)
+    public void insertPickupPos(String date, int posX, int posY)
     {
         try
         {
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
             ResultSet.CONCUR_UPDATABLE);
-            rs = stmt.executeQuery("SELECT * FROM book;");     
+            rs = stmt.executeQuery("SELECT * FROM UR5;");     
             
             rs.moveToInsertRow();
-            rs.updateString("", date);
-            rs.updateInt("", posx);
-            rs.updateInt("", posy);
+            rs.updateString("tDate", date);
+            rs.updateInt("posX", posX);
+            rs.updateInt("posY", posY);
             
             rs.insertRow();
             rs.beforeFirst();
@@ -122,6 +118,4 @@ public class JDBC
             }
         }
     }
-    
-    
 }
