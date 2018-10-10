@@ -10,23 +10,31 @@ class Localizer{
 public:
   Localizer(ros::NodeHandle nh)
   {
+    //subscriber object
     ar_sub = nh.subscribe<fake_ar_publisher::ARMarker>("ar_pose_marker", 1, &Localizer::visionCallback, this);
-    //create service server object
+    //                      topic type/return type       topic name           run this on sub
+
+    //create service server object - the publisher
     server_ = nh.advertiseService("localize_part", &Localizer::localizePart, this);
+    //                              service name       run this on call
 
   }
 
   void visionCallback(const fake_ar_publisher::ARMarkerConstPtr& msg){
     last_msg = msg;
-    //ROS_INFO_STREAM(last_msg -> pose.pose);
+//    ROS_INFO_STREAM(last_msg -> pose.pose);
   }
 
   //callback service
   bool localizePart(kappers_pakke::LocalizePart::Request &req, kappers_pakke::LocalizePart::Response &res){
     fake_ar_publisher::ARMarkerConstPtr p = last_msg;
-    if (!p)
+    ROS_INFO("pointer p updated");
+    if (!p){
+      ROS_ERROR("VISION_NODE - No pose received!");
       return false;
+    }
 
+    ROS_INFO("VISION_NODE - pose received");
     tf::Transform cam_to_target;
     tf::poseMsgToTF(p->pose.pose, cam_to_target);
     //tf listener object

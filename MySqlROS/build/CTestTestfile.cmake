@@ -6,3 +6,4 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
 subdirs(rosjava_catkin_package_a)
+subdirs(beginner_tutorials)
