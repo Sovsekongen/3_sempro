@@ -9,9 +9,11 @@ public class TimeVal
     private int imagePTime;
     private int throwTime;
     private int totalTime;
+    private int throwNr;
 
-    public TimeVal(int pickUpTime, int imagePTime, int throwTime, int totalTime)
+    public TimeVal(int throwNr, int pickUpTime, int imagePTime, int throwTime, int totalTime)
     {
+        this.throwNr = throwNr;
         this.pickUpTime = pickUpTime;
         this.imagePTime = imagePTime;
         this.throwTime = throwTime;
@@ -56,6 +58,16 @@ public class TimeVal
     public void setTotalTime(int totalTime)
     {
         this.totalTime = totalTime;
+    }
+
+    public int getThrowNr()
+    {
+        return throwNr;
+    }
+
+    public void setThrowNr(int throwNr)
+    {
+        this.throwNr = throwNr;
     }
     
     
