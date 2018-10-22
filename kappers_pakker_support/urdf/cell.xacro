@@ -38,4 +38,11 @@
         <child link="base_link"/>
         <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
+
+    <!-- Connect tool0_controller to base using floating joint -->
+    <joint name="base-tool0_controller_floating_joint" type="floating">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="base"/>
+      <child link="tool0"/>
+    </joint>
 </robot>

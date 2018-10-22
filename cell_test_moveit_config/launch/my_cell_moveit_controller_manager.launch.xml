@@ -1,0 +1,15 @@
+<!--<launch>
+    <rosparam file="$(find cell_test_moveit_config)/config/controllers.yaml"/>
+
+    <arg name="moveit_controller_manager"
+       default="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
+    <param name="moveit_controller_manager"
+         value="$(arg moveit_controller_manager)"/>
+</launch>-->
+
+<launch>
+  <rosparam file="$(find ur5_moveit_config)/config/controllers.yaml"/>
+  <param name="use_controller_manager" value="false"/>
+  <param name="trajectory_execution/execution_duration_monitoring" value="false"/>
+  <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
+</launch>
