@@ -2,7 +2,6 @@ package jdbcCon;
 
 public class ObjectVal 
 {
-
     private double radius;
     private String colour;
     private String shape;

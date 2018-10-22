@@ -4,7 +4,6 @@ import java.sql.*;
 
 public class JDBC
 {
-
     private Statement stmt = null;
     private ResultSet rs = null;
     private Connection con = null;

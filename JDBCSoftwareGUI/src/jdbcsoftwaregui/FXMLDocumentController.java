@@ -2,6 +2,7 @@ package jdbcsoftwaregui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +12,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -65,19 +67,27 @@ public class FXMLDocumentController implements Initializable
     @FXML private NumberAxis xAxisTab4;
     @FXML private NumberAxis yAxisTab4;
     @FXML private Button updateTimeBut;
-    @FXML private GridPane avgMinMaxPane;
+    
+    @FXML private TableView minMaxTable;
+    @FXML private TableColumn seriesColumn;
+    @FXML private TableColumn minColumn;
+    @FXML private TableColumn maxColumn;
+    @FXML private TableColumn avgColumn;
     
     private PickUpVal[] pickUpVals;
     private ResultVal[] resultVals;
     private TimeVal[] timeVals;
     private ObjectVal[] objectVals;
     
-    private static int gridHeight;
-    
     XYChart.Series seriesImageP = new XYChart.Series();
     XYChart.Series seriesPickUp = new XYChart.Series();
     XYChart.Series seriesThrow = new XYChart.Series();
     XYChart.Series seriesTotal = new XYChart.Series();
+    
+    private AtomicBoolean imagePCheck = new AtomicBoolean(false);
+    private AtomicBoolean pickUpCheck = new AtomicBoolean(false);
+    private AtomicBoolean throwCheck = new AtomicBoolean(false);
+    private AtomicBoolean totalCheck = new AtomicBoolean(false);
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -85,7 +95,8 @@ public class FXMLDocumentController implements Initializable
         String query = "SELECT * FROM UR5;";
         JDBC con = new JDBC("root", "doyouloveit123");
         
-        //pickUpVals = con.selectQuery(query);
+        minMaxTable.setPlaceholder(new Label(""));
+        
         pickUpVals = con.getPickUpArray();
         resultVals = con.getResultArray();
         objectVals = con.getObjectArray();
@@ -98,12 +109,12 @@ public class FXMLDocumentController implements Initializable
         updateResultTab();
         updateTimeTab();
         
-        updateLineChartData();
-        
         addSeriesListener(imagePBox.selectedProperty(), seriesImageP);
         addSeriesListener(pickUpBox.selectedProperty(), seriesPickUp);
         addSeriesListener(throwBox.selectedProperty(), seriesThrow);
         addSeriesListener(totalBox.selectedProperty(), seriesTotal);
+        
+        updateLineChartData();
         
         updateBut.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -229,18 +240,39 @@ public class FXMLDocumentController implements Initializable
     }
     
     private void addSeriesListener(BooleanProperty selected, final XYChart.Series series) 
-    {   
+    {
+        MinMaxMessage m = new MinMaxMessage(series);
         selected.addListener((observable, wasSelected, isSelected) -> 
         {
             if (isSelected) 
             {
+               addToTable(m);
                timeGraph.getData().add(series);
             } 
             else 
             {
+                removeFromTable(m);
                 timeGraph.getData().remove(series);
-                
             }
         });
+    }
+    
+    private void addToTable(MinMaxMessage series)
+    {
+        series.calcMinMaxAvg();
+               
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        minColumn.setCellValueFactory(new PropertyValueFactory<>("min"));
+        maxColumn.setCellValueFactory(new PropertyValueFactory<>("max"));
+        avgColumn.setCellValueFactory(new PropertyValueFactory<>("avg"));
+        
+        minMaxTable.getItems().add(series);
+    }
+    
+    private void removeFromTable(MinMaxMessage series)
+    {
+        //series.calcMinMaxAvg();
+        
+        minMaxTable.getItems().remove(series);
     }
 }

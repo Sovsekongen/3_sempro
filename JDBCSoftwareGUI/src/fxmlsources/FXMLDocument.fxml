@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
@@ -9,15 +10,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="675.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jdbcsoftwaregui.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jdbcsoftwaregui.FXMLDocumentController">
    <children>
-      <TabPane layoutX="0.0" layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="1000.0" tabMinWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane layoutX="0.0" layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="1000.0" tabMinWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab fx:id="tab" styleClass=".tab" text="Pickup Tab">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="250.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="191.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DAB1" wrappingWidth="166.13671875" />
                         <TableView id="table" fx:id="pickUpTable" layoutX="14.0" layoutY="14.0" prefHeight="608.0" prefWidth="470.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                           <columns>
                             <TableColumn id="throwNumTab" fx:id="throwNumTab" prefWidth="100.0" text="Throw Nr." />
@@ -27,7 +27,7 @@
                           </columns>
                         </TableView>
                         <Button fx:id="updateBut" layoutX="989.0" layoutY="527.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                        <ScatterChart fx:id="chartTab1" layoutX="534.0" layoutY="14.0" scaleZ="0.0" title="Pickup Location">
+                        <ScatterChart fx:id="chartTab1" layoutX="534.0" layoutY="14.0" prefHeight="500.0" prefWidth="793.0" scaleZ="0.0" title="Pickup Location" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="14.0">
                           <xAxis>
                             <NumberAxis side="BOTTOM" fx:id="xAxisTab1" />
                           </xAxis>
@@ -52,8 +52,8 @@
                            </columns>
                         </TableView>
                         <Button fx:id="updateObjectBut" layoutX="983.0" layoutY="526.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                        <Pane fx:id="imagePaneObject" layoutX="428.0" layoutY="14.0" prefHeight="320.0" prefWidth="650.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                        <Circle fx:id="objectCircle" fill="DODGERBLUE" layoutX="590.0" layoutY="481.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Pane fx:id="imagePaneObject" layoutX="428.0" layoutY="14.0" prefHeight="520.0" prefWidth="928.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                        <Circle fx:id="objectCircle" fill="DODGERBLUE" layoutX="895.0" layoutY="634.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
                      </children>
                   </AnchorPane>
             </content>
@@ -62,7 +62,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView id="table" fx:id="resultTable" prefHeight="608.0" prefWidth="400.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                        <TableView id="table" fx:id="resultTable" prefHeight="608.0" prefWidth="400.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <columns>
                               <TableColumn id="throwNumTab" fx:id="throwNumTab3" prefWidth="133.0" text="Throw Nr." />
                               <TableColumn id="timestampTab" fx:id="pointsTab" prefWidth="133.0" text="Points" />
@@ -77,7 +77,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView id="table" fx:id="timeTable" prefHeight="608.0" prefWidth="500.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                        <TableView id="table" fx:id="timeTable" prefHeight="608.0" prefWidth="500.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <columns>
                               <TableColumn id="throwNumTab" fx:id="throwNumTab4" prefWidth="91.0" text="Throw Nr." />
                               <TableColumn id="timestampTab" fx:id="imagePTimeTab" prefWidth="109.0" text="Image P. Time" />
@@ -87,7 +87,7 @@
                            </columns>
                         </TableView>
                         <Button fx:id="updateTimeBut" layoutX="989.0" layoutY="532.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                        <LineChart fx:id="timeGraph" layoutX="534.0" layoutY="35.0" prefWidth="520.0">
+                        <LineChart fx:id="timeGraph" layoutX="647.0" layoutY="35.0" prefHeight="400.0" prefWidth="686.0" AnchorPane.leftAnchor="647.0" AnchorPane.rightAnchor="40.0">
                           <xAxis>
                             <NumberAxis side="BOTTOM" fx:id="xAxisTab4" />
                           </xAxis>
@@ -95,14 +95,23 @@
                             <NumberAxis fx:id="yAxisTab4" side="LEFT" />
                           </yAxis>
                         </LineChart>
-                        <HBox layoutX="547.0" layoutY="14.0" prefHeight="28.0" prefWidth="520.0">
+                        <HBox layoutX="547.0" layoutY="14.0" prefHeight="28.0" prefWidth="520.0" />
+                        <VBox layoutX="547.0" layoutY="57.0" prefHeight="351.0" prefWidth="152.0">
                            <children>
-                              <CheckBox fx:id="imagePBox" mnemonicParsing="false" prefWidth="130.0" text="Image P. Time" />
-                              <CheckBox fx:id="pickUpBox" mnemonicParsing="false" prefWidth="130.0" text="Pickup Time" />
-                              <CheckBox fx:id="throwBox" mnemonicParsing="false" prefWidth="130.0" text="Throw Time" />
-                              <CheckBox fx:id="totalBox" mnemonicParsing="false" prefWidth="130.0" text="Total Time" />
+                              <CheckBox fx:id="imagePBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Image P. Time" />
+                              <CheckBox fx:id="pickUpBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Pickup Time" />
+                              <CheckBox fx:id="throwBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Throw Time" />
+                              <CheckBox fx:id="totalBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Total Time" />
                            </children>
-                        </HBox>
+                        </VBox>
+                        <TableView fx:id="minMaxTable" layoutX="796.0" layoutY="471.0" prefHeight="223.0" prefWidth="440.0" styleClass="tableClass">
+                          <columns>
+                            <TableColumn fx:id="seriesColumn" prefWidth="125.0" styleClass="tableClass" text="Name" />
+                            <TableColumn fx:id="minColumn" prefWidth="105.0" styleClass="tableClass" text="Min" />
+                              <TableColumn fx:id="avgColumn" prefWidth="105.0" styleClass="tableClass" text="Avg" />
+                              <TableColumn fx:id="maxColumn" prefWidth="102.0" styleClass="tableClass" text="Max" />
+                          </columns>
+                        </TableView>
                      </children></AnchorPane>
               </content>
             </Tab>
