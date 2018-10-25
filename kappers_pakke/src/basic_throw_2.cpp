@@ -105,4 +105,6 @@ int main(int argc, char **argv)
     move_group.execute(my_plan);
     ROS_INFO("Executing plan");
   }
+
+  std::system("echo I did something!");
 }

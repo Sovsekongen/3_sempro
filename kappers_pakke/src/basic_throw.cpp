@@ -83,14 +83,14 @@ public:
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "basic_throw");
-  ros::AsyncSpinner a_spin(1); //moveit loop
-  a_spin.start();
+//  ros::AsyncSpinner a_spin(1); //moveit loop
+//  a_spin.start();
 
   ros::NodeHandle nh;
   ros::NodeHandle pvt_nh("~");
 
   std::string base_frame;
-  pvt_nh.param<std::string>("base_frame", base_frame, "world");
+//  pvt_nh.param<std::string>("base_frame", base_frame, "world");
 
   std::vector<geometry_msgs::Pose> poses;
   //Create poses:
@@ -110,13 +110,16 @@ int main(int argc, char **argv)
   poses.push_back(target3);
 
   ROS_INFO("Basic_throw node started");
-  ROS_INFO_STREAM("Ref Frame: " << base_frame);
+//  ROS_INFO_STREAM("Ref Frame: " << base_frame);
 
-  Planner plan(nh);
-  ros::Duration(.5).sleep();
+//  Planner plan(nh);
+//  ros::Duration(.5).sleep();
 
-  plan.do_throw(base_frame, poses);
-  ROS_INFO("throw complete");
+//  plan.do_throw(base_frame, poses);
+//  ROS_INFO("throw complete");
 
-  ros::waitForShutdown(); //with async_spinner
+  std::system("echo I did something!");
+
+//  ros::waitForShutdown(); //with async_spinner
+  ros::spin();
 }

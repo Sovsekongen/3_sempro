@@ -86,5 +86,7 @@ int main(int argc, char **argv)
 
   //keep looping
 //  ros::spin();
+
+
   ros::waitForShutdown(); //used by async spinner - for moveit!
 }
