@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.chart.*?>
@@ -10,111 +11,171 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jdbcsoftwaregui.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jdbcsoftwaregui.FXMLDocumentController">
    <children>
-      <TabPane layoutX="0.0" layoutY="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="1000.0" tabMinWidth="320.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="1000.0" tabMinWidth="640">
         <tabs>
-          <Tab fx:id="tab" styleClass=".tab" text="Pickup Tab">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="250.0" prefWidth="200.0">
-                     <children>
-                        <TableView id="table" fx:id="pickUpTable" layoutX="14.0" layoutY="14.0" prefHeight="608.0" prefWidth="470.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
-                          <columns>
-                            <TableColumn id="throwNumTab" fx:id="throwNumTab" prefWidth="100.0" text="Throw Nr." />
-                            <TableColumn id="timestampTab" fx:id="timestampTab" prefWidth="168.0" text="Timestamp" />
-                            <TableColumn id="posYTab" fx:id="posXTab" prefWidth="100.0" text="Pos X" />
-                            <TableColumn id="posXTab" fx:id="posYTab" prefWidth="100.0" text="Pos Y" />
-                          </columns>
-                        </TableView>
-                        <Button fx:id="updateBut" layoutX="989.0" layoutY="527.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                        <ScatterChart fx:id="chartTab1" layoutX="534.0" layoutY="14.0" prefHeight="500.0" prefWidth="793.0" scaleZ="0.0" title="Pickup Location" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="14.0">
-                          <xAxis>
-                            <NumberAxis side="BOTTOM" fx:id="xAxisTab1" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis fx:id="yAxisTab1" side="LEFT" />
-                          </yAxis>
-                        </ScatterChart>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Objcet Tab">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView id="table" fx:id="objectTable" layoutX="14.0" layoutY="17.0" prefHeight="608.0" prefWidth="400.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
-                           <columns>
-                              <TableColumn id="throwNumTab" fx:id="throwNumTab2" prefWidth="100.0" text="Throw Nr." />
-                              <TableColumn id="timestampTab" fx:id="radiusTab" prefWidth="100.0" text="Radius" />
-                              <TableColumn id="posYTab" fx:id="colourTab" prefWidth="100.0" text="Colour" />
-                              <TableColumn id="posXTab" fx:id="shapeTab" prefWidth="100.0" text="Shape" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="updateObjectBut" layoutX="983.0" layoutY="526.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                        <Pane fx:id="imagePaneObject" layoutX="428.0" layoutY="14.0" prefHeight="520.0" prefWidth="928.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                        <Circle fx:id="objectCircle" fill="DODGERBLUE" layoutX="895.0" layoutY="634.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="Result Tab">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView id="table" fx:id="resultTable" prefHeight="608.0" prefWidth="400.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
-                           <columns>
-                              <TableColumn id="throwNumTab" fx:id="throwNumTab3" prefWidth="133.0" text="Throw Nr." />
-                              <TableColumn id="timestampTab" fx:id="pointsTab" prefWidth="133.0" text="Points" />
-                              <TableColumn id="posYTab" fx:id="distanceFromOTab" prefWidth="133.0" text="Distance From O" />
-                           </columns>
-                        </TableView>
-                        <Button fx:id="updateResultBut" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                     </children></AnchorPane>
-              </content>
+          <Tab text="Individual Tab">
+               <content>
+                  <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="1000.0" tabMinWidth="420">
+                    <tabs>
+                      <Tab fx:id="tab" styleClass=".tab" text="Pickup Tab">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="718.0" prefWidth="1341.0">
+                                 <children>
+                                    <TableView id="table" fx:id="pickUpTable" layoutX="14.0" layoutY="14.0" prefHeight="608.0" prefWidth="470.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                      <columns>
+                                        <TableColumn id="throwNumTab" fx:id="throwNumTab" prefWidth="100.0" text="Throw Nr." />
+                                        <TableColumn id="timestampTab" fx:id="timestampTab" prefWidth="168.0" text="Timestamp" />
+                                        <TableColumn id="posYTab" fx:id="posXTab" prefWidth="100.0" text="Pos X" />
+                                        <TableColumn id="posXTab" fx:id="posYTab" prefWidth="100.0" text="Pos Y" />
+                                      </columns>
+                                    </TableView>
+                                    <Button fx:id="updateBut" layoutX="989.0" layoutY="527.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                    <ScatterChart fx:id="chartTab1" layoutX="534.0" layoutY="14.0" prefHeight="500.0" prefWidth="793.0" scaleZ="0.0" title="Pickup Location" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="14.0">
+                                      <xAxis>
+                                        <NumberAxis side="BOTTOM" fx:id="xAxisTab1" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis fx:id="yAxisTab1" side="LEFT" />
+                                      </yAxis>
+                                    </ScatterChart>
+                                    <Button fx:id="deleteButton" layoutX="1171.0" layoutY="661.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="DELETE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Objcet Tab">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView id="table" fx:id="objectTable" layoutX="14.0" layoutY="17.0" prefHeight="608.0" prefWidth="400.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                       <columns>
+                                          <TableColumn id="throwNumTab" fx:id="throwNumTab2" prefWidth="100.0" text="Throw Nr." />
+                                          <TableColumn id="timestampTab" fx:id="radiusTab" prefWidth="100.0" text="Radius" />
+                                          <TableColumn id="posYTab" fx:id="colourTab" prefWidth="100.0" text="Colour" />
+                                          <TableColumn id="posXTab" fx:id="shapeTab" prefWidth="100.0" text="Shape" />
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="updateBut1" layoutX="983.0" layoutY="526.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                    <ImageView fx:id="objectImageView" fitHeight="638.0" fitWidth="900.0" layoutX="427.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                                    <Button fx:id="deleteButton1" layoutX="1175.0" layoutY="661.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="DELETE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Time Tab">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView id="table" fx:id="timeTable" prefHeight="608.0" prefWidth="500.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                       <columns>
+                                          <TableColumn id="throwNumTab" fx:id="throwNumTab4" prefWidth="91.0" text="Throw Nr." />
+                                          <TableColumn id="timestampTab" fx:id="imagePTimeTab" prefWidth="109.0" text="Image P. Time" />
+                                          <TableColumn id="posYTab" fx:id="pickUpTimeTab" prefWidth="100.0" text="Pickup Time" />
+                                          <TableColumn id="posXTab" fx:id="throwTimeTab" prefWidth="100.0" text="Throw Time" />
+                                          <TableColumn fx:id="totalTimeTab" prefWidth="100.0" text="Total Time" />
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="updateBut3" layoutX="989.0" layoutY="532.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                    <LineChart fx:id="timeGraph" layoutX="647.0" layoutY="35.0" prefHeight="400.0" prefWidth="686.0" AnchorPane.leftAnchor="647.0" AnchorPane.rightAnchor="40.0">
+                                      <xAxis>
+                                        <NumberAxis side="BOTTOM" fx:id="xAxisTab4" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis fx:id="yAxisTab4" side="LEFT" />
+                                      </yAxis>
+                                    </LineChart>
+                                    <HBox layoutX="547.0" layoutY="14.0" prefHeight="28.0" prefWidth="520.0" />
+                                    <VBox layoutX="547.0" layoutY="57.0" prefHeight="351.0" prefWidth="152.0">
+                                       <children>
+                                          <CheckBox fx:id="imagePBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Image P. Time" />
+                                          <CheckBox fx:id="pickUpBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Pickup Time" />
+                                          <CheckBox fx:id="throwBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Throw Time" />
+                                          <CheckBox fx:id="totalBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Total Time" />
+                                       </children>
+                                    </VBox>
+                                    <TableView fx:id="minMaxTable" layoutX="699.0" layoutY="462.0" prefHeight="223.0" prefWidth="440.0" styleClass="tableClass">
+                                      <columns>
+                                        <TableColumn fx:id="seriesColumn" prefWidth="125.0" styleClass="tableClass" text="Name" />
+                                        <TableColumn fx:id="minColumn" prefWidth="105.0" styleClass="tableClass" text="Min" />
+                                          <TableColumn fx:id="avgColumn" prefWidth="105.0" styleClass="tableClass" text="Avg" />
+                                          <TableColumn fx:id="maxColumn" prefWidth="102.0" styleClass="tableClass" text="Max" />
+                                      </columns>
+                                    </TableView>
+                                    <Button fx:id="deleteButton3" layoutX="1175.0" layoutY="661.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="DELETE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </content>
             </Tab>
-            <Tab text="Time Tab">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <Tab text="Single Tab">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TableView id="table" fx:id="timeTable" prefHeight="608.0" prefWidth="500.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                        <TableView fx:id="sTableView" prefHeight="153.0" prefWidth="1313.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                            <columns>
-                              <TableColumn id="throwNumTab" fx:id="throwNumTab4" prefWidth="91.0" text="Throw Nr." />
-                              <TableColumn id="timestampTab" fx:id="imagePTimeTab" prefWidth="109.0" text="Image P. Time" />
-                              <TableColumn id="posYTab" fx:id="pickUpTimeTab" prefWidth="100.0" text="Pickup Time" />
-                              <TableColumn id="posXTab" fx:id="throwTimeTab" prefWidth="100.0" text="Throw Time" />
-                              <TableColumn fx:id="totalTimeTab" prefWidth="100.0" text="Total Time" />
+                              <TableColumn id="throwNumTab" fx:id="sThrowNum" prefWidth="100.0" text="Throw Nr." />
+                              <TableColumn id="timestampTab" fx:id="sTimestamp" prefWidth="168.0" text="Timestamp" />
+                              <TableColumn id="posXTab" fx:id="sPosY" prefWidth="69.0" text="Pos Y" />
+                              <TableColumn id="posYTab" fx:id="sPosX" prefWidth="68.0" text="Pos X" />
+                              <TableColumn fx:id="sPickedUp" prefWidth="98.0" text="Picked Up" />
+                              <TableColumn fx:id="sHitTarget" prefWidth="89.0" text="Hit Target" />
+                              <TableColumn id="posXTab" fx:id="sShape" prefWidth="92.0" text="Shape" />
+                              <TableColumn id="posYTab" fx:id="sColour" prefWidth="76.0" text="Colour" />
+                              <TableColumn id="timestampTab" fx:id="sRadius" prefWidth="56.0" text="Radius" />
+                              <TableColumn id="posYTab" fx:id="sPickUpTime" prefWidth="117.0" text="Pickup Time" />
+                              <TableColumn id="timestampTab" fx:id="sImagePTime" prefWidth="137.0" text="Image P. Time" />
+                              <TableColumn id="posXTab" fx:id="sThrowTime" minWidth="0.0" prefWidth="94.0" text="Throw Time" />
+                              <TableColumn fx:id="sTotalTime" prefWidth="145.0" text="Total Time" />
                            </columns>
                         </TableView>
-                        <Button fx:id="updateTimeBut" layoutX="989.0" layoutY="532.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="UPDATE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                        <LineChart fx:id="timeGraph" layoutX="647.0" layoutY="35.0" prefHeight="400.0" prefWidth="686.0" AnchorPane.leftAnchor="647.0" AnchorPane.rightAnchor="40.0">
+                        <TextField fx:id="sChooseBox" alignment="CENTER" layoutX="744.0" layoutY="242.0" prefHeight="30.0" prefWidth="208.0" AnchorPane.rightAnchor="389.0" AnchorPane.topAnchor="250.0" />
+                        <Button fx:id="sSelect" layoutX="744.0" layoutY="287.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="208.0" text="Select" AnchorPane.rightAnchor="389.0" AnchorPane.topAnchor="290.0" />
+                        <LineChart fx:id="sGraph" layoutX="755.0" layoutY="349.0" prefHeight="400.0" prefWidth="650.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
                           <xAxis>
-                            <NumberAxis side="BOTTOM" fx:id="xAxisTab4" />
+                            <NumberAxis fx:id="sXAxis" side="BOTTOM" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis fx:id="yAxisTab4" side="LEFT" />
+                            <NumberAxis fx:id="sYAxis" side="LEFT" />
                           </yAxis>
                         </LineChart>
-                        <HBox layoutX="547.0" layoutY="14.0" prefHeight="28.0" prefWidth="520.0" />
-                        <VBox layoutX="547.0" layoutY="57.0" prefHeight="351.0" prefWidth="152.0">
-                           <children>
-                              <CheckBox fx:id="imagePBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Image P. Time" />
-                              <CheckBox fx:id="pickUpBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Pickup Time" />
-                              <CheckBox fx:id="throwBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Throw Time" />
-                              <CheckBox fx:id="totalBox" mnemonicParsing="false" prefHeight="80.0" prefWidth="130.0" text="Total Time" />
-                           </children>
-                        </VBox>
-                        <TableView fx:id="minMaxTable" layoutX="796.0" layoutY="471.0" prefHeight="223.0" prefWidth="440.0" styleClass="tableClass">
-                          <columns>
-                            <TableColumn fx:id="seriesColumn" prefWidth="125.0" styleClass="tableClass" text="Name" />
-                            <TableColumn fx:id="minColumn" prefWidth="105.0" styleClass="tableClass" text="Min" />
-                              <TableColumn fx:id="avgColumn" prefWidth="105.0" styleClass="tableClass" text="Avg" />
-                              <TableColumn fx:id="maxColumn" prefWidth="102.0" styleClass="tableClass" text="Max" />
-                          </columns>
+                        <Text layoutX="744.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Throw Nr." wrappingWidth="206.6708984375" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="210.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font></Text>
+                        <TableView fx:id="sTimeView" layoutX="14.0" layoutY="197.0" prefHeight="140.0" prefWidth="440.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="200.0">
+                           <columns>
+                              <TableColumn fx:id="sName" prefWidth="125.0" styleClass="tableClass" text="Name" />
+                              <TableColumn fx:id="sMin" prefWidth="105.0" styleClass="tableClass" text="Min" />
+                              <TableColumn fx:id="sAvg" prefWidth="105.0" styleClass="tableClass" text="Avg" />
+                              <TableColumn fx:id="sMax" prefWidth="102.0" styleClass="tableClass" text="Max" />
+                           </columns>
                         </TableView>
-                     </children></AnchorPane>
-              </content>
-            </Tab>
+                        <Text layoutX="743.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hit Target" textAlignment="CENTER" wrappingWidth="208.0" AnchorPane.topAnchor="590.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font></Text>
+                        <Button fx:id="sTargetTrue" layoutX="746.0" layoutY="625.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="True" AnchorPane.bottomAnchor="42.0" />
+                        <Button fx:id="sTargetFalse" layoutX="866.0" layoutY="625.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="False" AnchorPane.bottomAnchor="42.0" />
+                        <Button fx:id="sPickFalse" layoutX="866.0" layoutY="494.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="False" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="490.0" />
+                        <Button fx:id="sPickTrue" layoutX="746.0" layoutY="494.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="True" AnchorPane.rightAnchor="505.0" AnchorPane.topAnchor="490.0" />
+                        <Text layoutX="744.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Picked Up Object" textAlignment="CENTER" wrappingWidth="208.0" AnchorPane.topAnchor="450.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font></Text>
+                        <Text layoutX="14.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numerical Time Comparsion" wrappingWidth="191.6708984375" AnchorPane.topAnchor="171.0" />
+                        <CheckBox fx:id="sImagePTimeBox" layoutX="465.0" layoutY="197.0" mnemonicParsing="false" text="Image P. Time" />
+                        <CheckBox fx:id="sPickupTimeBox" layoutX="465.0" layoutY="227.0" mnemonicParsing="false" text="Pickup Time" />
+                        <CheckBox fx:id="sThrowTimeBox" layoutX="465.0" layoutY="257.0" mnemonicParsing="false" text="Throw Time" />
+                        <CheckBox fx:id="sTotalTimeBox" layoutX="465.0" layoutY="287.0" mnemonicParsing="false" text="Total Time" />
+                        <ChoiceBox layoutX="488.0" layoutY="308.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.topAnchor="310.0" />
+                     </children>
+                  </AnchorPane>
+               </content></Tab>
         </tabs>
       </TabPane>
    </children>

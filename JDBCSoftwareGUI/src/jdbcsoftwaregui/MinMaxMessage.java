@@ -1,21 +1,15 @@
 package jdbcsoftwaregui;
 
 import java.util.ArrayList;
-import java.util.List;
-import javafx.collections.ObservableList;
+import java.util.Scanner;
+import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 
 public class MinMaxMessage 
 {
-
     private double min, max, avg;
     private String name;
     Series series;
-    
-    public MinMaxMessage()
-    {
-        
-    }
     
     public MinMaxMessage(Series series)
     {
@@ -26,20 +20,25 @@ public class MinMaxMessage
         this.name = series.getName();
     }
     
-    public void calcMinMaxAvg()
+    public void calcDifMinMaxAvg(Series s, int num1, int num2)
+    {
+        calcMinMaxAvg(calcDifSeries(s, num1, num2));
+    }
+    
+    public void calcMinMaxAvg(Series s)
     {
         double num = 0, sum = 0;
-        this.name = series.getName();
-        ObservableList newList = series.getData();
-        ArrayList list = new ArrayList(newList);
+        this.name = s.getName();
+        ArrayList list = new ArrayList(s.getData());
         
-        ArrayList<Double> listValues = new ArrayList<Double>();
+        ArrayList<Double> listValues = new ArrayList<>();
         String val = "";
-        String length = "";
+        String length;
         
-        for(int i = 0; i < newList.size(); i++)
+        for(int i = 0; i < list.size(); i++)
         {
             length = list.get(i).toString();
+            System.out.println(list.get(i));
             if(length.length() == 16)
             {
                 val = list.get(i).toString().substring(7, 10);
@@ -52,7 +51,6 @@ public class MinMaxMessage
             {
                 val = list.get(i).toString().substring(7, 9);
             }
-            
             listValues.add(Double.parseDouble(val));
         }
         
@@ -73,6 +71,31 @@ public class MinMaxMessage
             sum += num;
         }
         avg = sum / listValues.size();
+    }
+    
+    public Series calcDifSeries(Series s1, int num1, int num2)
+    {
+        double listVal, orgListVal;
+        Scanner s;
+        Series res = new Series();
+        
+        ArrayList list = new ArrayList(s1.getData());
+        ArrayList orgList = new ArrayList(series.getData());
+
+        for(int i = num1, j = 0; i < num2; i++, j++)
+        {
+            s = new Scanner(list.get(i).toString()).useDelimiter(",");
+            s.next();
+            listVal = s.nextDouble();
+            
+            s = new Scanner(orgList.get(i).toString()).useDelimiter(",");
+            s.next();
+            orgListVal = s.nextDouble();
+            
+            res.getData().add(new XYChart.Data(j, (orgListVal - listVal)));
+        }
+        
+        return res;
     }
 
     public double getMin()

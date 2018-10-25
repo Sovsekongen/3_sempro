@@ -5,16 +5,44 @@ public class ObjectVal
     private double radius;
     private String colour;
     private String shape;
+    private String pic;
     private int throwNr;
+    private boolean hitTarget;
+    private boolean pickTarget;
 
-    public ObjectVal(int throwNr, double radius, String colour, String shape)
+    public ObjectVal(int throwNr, double radius, String colour, String shape, String pic, boolean hitTarget, boolean pickTarget)
     {
         this.throwNr = throwNr;
         this.radius = radius;
         this.colour = colour;
         this.shape = shape;
+        this.pic = pic;
+        this.hitTarget = hitTarget;
+        this.pickTarget = pickTarget;
     }
 
+    public boolean isHitTarget()
+    {
+        return hitTarget;
+    }
+
+    public void setHitTarget(boolean hitTarget)
+    {
+        this.hitTarget = hitTarget;
+    }
+
+    public boolean isPickTarget()
+    {
+        return pickTarget;
+    }
+
+    public void setPickTarget(boolean pickTarget)
+    {
+        this.pickTarget = pickTarget;
+    }
+
+    
+    
     public double getRadius()
     {
         return radius;
@@ -54,4 +82,16 @@ public class ObjectVal
     {
         this.throwNr = throwNr;
     }
+
+    public String getPic()
+    {
+        return pic;
+    }
+
+    public void setPic(String pic)
+    {
+        this.pic = pic;
+    }
+    
+    
 }
