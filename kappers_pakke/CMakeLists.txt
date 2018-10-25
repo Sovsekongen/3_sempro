@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   moveit_ros_planning_interface
   moveit_ros_visualization
+  moveit_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -74,6 +75,7 @@ find_package(catkin REQUIRED COMPONENTS
  generate_messages(
    DEPENDENCIES
    geometry_msgs
+   moveit_msgs
  )
 
 ################################################
@@ -116,6 +118,7 @@ catkin_package(
   tf
   moveit_ros_planning_interface
   moveit_ros_visualization
+  moveit_msgs
 #  DEPENDS system_lib
 )
 
@@ -145,7 +148,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(vision_node src/vision_node.cpp)
 add_executable(kaspers_node src/kaspers_node.cpp)
-add_executable(basic_throw src/basic_throw.cpp)
+#add_executable(basic_throw src/basic_throw.cpp)
 add_executable(basic_throw_2 src/basic_throw_2.cpp)
 
 ## Rename C++ executable without prefix
@@ -158,13 +161,13 @@ add_executable(basic_throw_2 src/basic_throw_2.cpp)
 ## same as for the library above
 add_dependencies(vision_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(kaspers_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(basic_throw ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(basic_throw ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(basic_throw_2 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(vision_node ${catkin_LIBRARIES})
 target_link_libraries(kaspers_node ${catkin_LIBRARIES})
-target_link_libraries(basic_throw ${catkin_LIBRARIES})
+#target_link_libraries(basic_throw ${catkin_LIBRARIES})
 target_link_libraries(basic_throw_2 ${catkin_LIBRARIES})
 
 #############

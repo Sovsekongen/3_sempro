@@ -1,3 +1,5 @@
+/* DO NOT USE */
+
 #include <ros/ros.h>
 #include <string>
 #include <moveit/move_group_interface/move_group_interface.h>

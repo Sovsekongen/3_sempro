@@ -41,7 +41,7 @@ int main(int argc, char **argv)
   // to actually move the robot.
   moveit::planning_interface::MoveGroupInterface::Plan my_plan;
   bool success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-  ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
+//  ROS_INFO_NAMED("tutorial", "Visualizing plan 1 (pose goal) %s", success ? "" : "FAILED");
 //  move_group.execute(my_plan);
 //  ROS_INFO("Execution done!");
 
@@ -60,7 +60,49 @@ int main(int argc, char **argv)
   move_group.setJointValueTarget(joint_positions);
 
   success = (move_group.plan(my_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-  ROS_INFO_NAMED("tutorial", "Visualizing plan 2 (pose goal) %s", success ? "" : "FAILED");
-  move_group.execute(my_plan);
-  ROS_INFO("Execution done!");
+//  ROS_INFO_NAMED("tutorial", "Visualizing plan 2 (pose goal) %s", success ? "" : "FAILED");
+//  move_group.execute(my_plan);
+//  ROS_INFO("Execution done!");
+
+  //TODO!!!
+  //moving with path constraints
+  //create some constraint for a link:
+  moveit_msgs::OrientationConstraint ocm;
+  ocm.link_name = "upper_arm_link";
+  robot_state::RobotState start_state(*move_group.getCurrentState()); //the current state of move_group (the robot)
+
+  //Plan a path through waypoints
+  //set the set start state to current:
+  move_group.setStartStateToCurrentState();
+  std::vector<geometry_msgs::Pose> waypts;
+  //Create the waypoints starting with the current pose & add them to vector:
+  geometry_msgs::Pose target3 = move_group.getCurrentPose().pose;
+  waypts.push_back(target3);
+  //target3 just gets updated to create a triangle like move
+  target3.position.z -= 0.1; //move 20cm down
+  waypts.push_back(target3);
+  target3.position.y += 0.1; //move 20cm along y
+  waypts.push_back(target3);
+  target3.position.z += 0.1; //move 20cm up
+  target3.position.y -= 0.1; //move 20cm back on y
+  waypts.push_back(target3);
+
+  move_group.setMaxVelocityScalingFactor(2); //set caling to max-vel to make approaches more safe
+
+  // We want the Cartesian path to be interpolated at a resolution of 1 cm
+  // which is why we will specify 0.01 as the max step in Cartesian
+  // translation.  We will specify the jump threshold as 0.0, effectively disabling it.
+  // Warning - disabling the jump threshold while operating real hardware can cause
+  // large unpredictable motions of redundant joints and could be a safety issue
+  moveit_msgs::RobotTrajectory trajectory;
+  const double jump_threshold = 0.0;
+  const double eef_step = 0.01;
+  double fraction = move_group.computeCartesianPath(waypts, eef_step, jump_threshold, trajectory);
+  ROS_INFO_NAMED("tutorial", "Visualizing plan 4 (Cartesian path) (%.2f%% acheived)", fraction * 100.0);
+  ros::Duration(5).sleep();
+  my_plan.trajectory_ = trajectory;
+  if (fraction == 1.0){
+    move_group.execute(my_plan);
+    ROS_INFO("Executing plan");
+  }
 }
