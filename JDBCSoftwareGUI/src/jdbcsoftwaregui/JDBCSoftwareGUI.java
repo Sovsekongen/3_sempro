@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 public class JDBCSoftwareGUI extends Application
 {    
+    public static Stage stage;
+    
     @Override
     public void start(Stage stage) throws Exception
     {

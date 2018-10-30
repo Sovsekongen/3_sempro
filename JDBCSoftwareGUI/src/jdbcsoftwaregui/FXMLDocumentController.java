@@ -3,21 +3,31 @@ package jdbcsoftwaregui;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.control.TextField;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -27,6 +37,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Pair;
 import jdbcCon.AllVal;
 import jdbcCon.JDBC;
 import jdbcCon.ObjectVal;
@@ -101,10 +112,19 @@ public class FXMLDocumentController implements Initializable
     @FXML private Button sTargetFalse;
     @FXML private Button sSelect;
     @FXML private TextField sChooseBox;
-    @FXML private ImageView sPic;
+    @FXML private ChoiceBox graphBox;
+   
     @FXML private LineChart sGraph;
     @FXML private NumberAxis sXAxis;
     @FXML private NumberAxis sYAxis;
+    @FXML private CheckBox sImagePBox;
+    @FXML private CheckBox sPickupBox;
+    @FXML private CheckBox sThrowBox;
+    @FXML private CheckBox sTotalBox;
+    
+    @FXML private StackedBarChart sChart;
+    @FXML private CategoryAxis nameAxis;
+    @FXML private NumberAxis numberAxis;
     
     private PickUpVal[] pickUpVals;
     private TimeVal[] timeVals;
@@ -121,10 +141,16 @@ public class FXMLDocumentController implements Initializable
     XYChart.Series sSeriesThrow = new XYChart.Series();
     XYChart.Series sSeriesTotal = new XYChart.Series();
     
-    private AtomicBoolean imagePCheck = new AtomicBoolean(false);
-    private AtomicBoolean pickUpCheck = new AtomicBoolean(false);
-    private AtomicBoolean throwCheck = new AtomicBoolean(false);
-    private AtomicBoolean totalCheck = new AtomicBoolean(false);
+    XYChart.Series sBarMin = new XYChart.Series();
+    XYChart.Series sBarMax = new XYChart.Series();
+    XYChart.Series sBarAvg = new XYChart.Series();
+    
+    ObservableList<String> list = FXCollections.observableArrayList();
+    
+    private final AtomicBoolean imagePCheck = new AtomicBoolean(false);;
+    private final AtomicBoolean pickUpCheck = new AtomicBoolean(false);;
+    private final AtomicBoolean throwCheck = new AtomicBoolean(false);;
+    private final AtomicBoolean totalCheck = new AtomicBoolean(false);;
     
     private JDBC con = null;
     
@@ -136,6 +162,8 @@ public class FXMLDocumentController implements Initializable
         minMaxTable.setPlaceholder(new Label(""));
         
         updateTables();
+        FXMLDocumentController.this.updateSTableView();
+        initComboBox();
         
         addSeriesListener(imagePBox.selectedProperty(), seriesImageP, minMaxTable, timeGraph);
         addSeriesListener(pickUpBox.selectedProperty(), seriesPickUp, minMaxTable, timeGraph);
@@ -168,7 +196,6 @@ public class FXMLDocumentController implements Initializable
             updateTables();
             drawScatterPlot();
             updateLineChartData();
-            System.out.println("dab");
         };
                 
         EventHandler<ActionEvent> deleteHandler = (ActionEvent event) -> 
@@ -192,32 +219,54 @@ public class FXMLDocumentController implements Initializable
             updateTables();
         };
         
-        EventHandler<ActionEvent> setTrueFalse = (ActionEvent event) -> 
+        EventHandler<ActionEvent> setTrueFalse = new EventHandler<ActionEvent>() 
         {
-            AllVal p = (AllVal)sTableView.getSelectionModel().getSelectedItem();
-            
-            if(((Control)event.getSource()).getId().equals("sPickTrue")) 
+            @Override
+            public void handle(ActionEvent event) 
             {
-                String query = "UPDATE pickupobject SET pickTarget = TRUE WHERE throwNr = " + p.getThrowNum() + ";";
-                con.updateObject(query);
+                AllVal p = (AllVal)sTableView.getSelectionModel().getSelectedItem();
+                int index = sTableView.getSelectionModel().getFocusedIndex();
+                
+                switch (((Control)event.getSource()).getId())
+                {
+                    case "sPickTrue":
+                    {
+                        String query = "UPDATE pickupobject SET pickTarget = TRUE WHERE throwNr = " + p.getThrowNum() + ";";
+                        con.updateObject(query);
+                        AllVal[] updatedVal = con.getThrowNum(p.getThrowNum());
+                        sTableView.getItems().set(index, updatedVal[0]);
+                        break;
+                    }
+                    case "sPickFalse":
+                    {
+                        String query = "UPDATE pickupobject SET pickTarget = FALSE WHERE throwNr = " + p.getThrowNum() + ";";
+                        con.updateObject(query);
+                        AllVal[] updatedVal = con.getThrowNum(p.getThrowNum());
+                        sTableView.getItems().set(index, updatedVal[0]);
+                        break;
+                    }
+                    case "sTargetTrue":
+                    {
+                        String query = "UPDATE pickupobject SET hitTarget = TRUE WHERE throwNr = " + p.getThrowNum() + ";";
+                        con.updateObject(query);
+                        AllVal[] updatedVal = con.getThrowNum(p.getThrowNum());
+                        sTableView.getItems().set(index, updatedVal[0]);
+                        break;
+                    }
+                    case "sTargetFalse":
+                    {
+                        String query = "UPDATE pickupobject SET hitTarget = FALSE WHERE throwNr = " + p.getThrowNum() + ";";
+                        con.updateObject(query);
+                        AllVal[] updatedVal = con.getThrowNum(p.getThrowNum());
+                        sTableView.getItems().set(index, updatedVal[0]);
+                        break;
+                    }
+                    default:
+                        break;
+                }
+                
+                updateTables();
             }
-            else if(((Control)event.getSource()).getId().equals("sPickFalse"))
-            {
-                String query = "UPDATE pickupobject SET pickTarget = FALSE WHERE throwNr = " + p.getThrowNum() + ";";
-                con.updateObject(query);
-            }
-            else if(((Control)event.getSource()).getId().equals("sTargetTrue"))
-            {
-                String query = "UPDATE pickupobject SET hitTarget = TRUE WHERE throwNr = " + p.getThrowNum() + ";";
-                con.updateObject(query);
-            }
-            else if(((Control)event.getSource()).getId().equals("sTargetFalse"))
-            {
-                String query = "UPDATE pickupobject SET hitTarget = FALSE WHERE throwNr = " + p.getThrowNum() + ";";
-                con.updateObject(query);
-            }
-            
-            updateTables();
         };
         
         EventHandler<ActionEvent> selectVal = (ActionEvent event) -> 
@@ -225,17 +274,35 @@ public class FXMLDocumentController implements Initializable
             String val = sChooseBox.getText();
             if(val.contains("-"))
             {
-                Scanner s = new Scanner(val).useDelimiter("-");
+               Scanner s = new Scanner(val).useDelimiter("-");
                 int num1 = s.nextInt(), num2 = s.nextInt();
-                setThrowVal(num1, num2);
                 updateSLineChart(num1, num2);
+                updateSTableView(num1, num2);
+                updateBarChart();
+                
+                addSeriesListener(sImagePBox.selectedProperty(), sSeriesImageP, sTimeView, sGraph);
+                addSeriesListener(sPickupBox.selectedProperty(), sSeriesPickUp, sTimeView, sGraph);
+                addSeriesListener(sThrowBox.selectedProperty(), sSeriesThrow, sTimeView, sGraph);
+                addSeriesListener(sTotalBox.selectedProperty(), sSeriesTotal, sTimeView, sGraph);
+                
+                addBarSeriesListener(sImagePBox.selectedProperty(), sBarMin, sChart, sImagePBox.getText());
+                addBarSeriesListener(sPickupBox.selectedProperty(), sBarMax, sChart, sPickupBox.getText());
+                addBarSeriesListener(sThrowBox.selectedProperty(), sBarAvg, sChart, sThrowBox.getText());
             }
             else
             {
-                int num = Integer.parseInt(val);
-                setThrowVal(num);
+                try
+                {
+                    int num = Integer.parseInt(val);
+                    FXMLDocumentController.this.updateSTableView(num);
+                }
+                catch (NumberFormatException e)
+                {
+                    
+                }
             }
             
+            sChooseBox.clear();
             updateTables();
         };
         
@@ -255,6 +322,10 @@ public class FXMLDocumentController implements Initializable
         sSelect.setOnAction(selectVal);
     }
 
+    
+    /*
+     * General update all tables.
+     */
     public void updateTables()
     {
         pickUpVals = con.getPickUpArray();
@@ -264,7 +335,6 @@ public class FXMLDocumentController implements Initializable
         updatePickUpTab();
         updateTimeTab();
         updateObjectTab();
-        updateSTableView();
         
         drawScatterPlot();
         updateLineChartData();
@@ -316,6 +386,9 @@ public class FXMLDocumentController implements Initializable
         }
     }
     
+    /*
+     * Draws the scatter Plot on the first tab.
+     */
     public void drawScatterPlot()
     {
         chartTab1.getData().clear();
@@ -334,6 +407,9 @@ public class FXMLDocumentController implements Initializable
         chartTab1.getData().add(seriesTab1);
     }
     
+    /*
+     * Updates the chart on the Time-Tab
+     */
     public void updateLineChartData()
     {
         timeGraph.getData().clear();
@@ -354,18 +430,31 @@ public class FXMLDocumentController implements Initializable
         }
     }
     
+    /*
+     * Updates the chart on Single tab by getting det min, max and avg for all values and min, max and avg
+     * for the specific amount of items and calculating the differences of those.
+     * Then the series are added to the graph.
+     * The Graph showcases the actual numerical difference from value to value.
+     */
     public void updateSLineChart(int num1, int num2)
     {
-        allVals = con.getThrowNum(num1, num2);
+        Series bufIP = new Series();
+        Series bufPU = new Series();
+        Series bufThrow = new Series();
+        Series bufTot = new Series();
         
+        if(num1 == num2)
+        {
+            FXMLDocumentController.this.updateSTableView(num2);
+            return;
+        }
+        
+        allVals = con.getThrowNum(num1, num2);
+        AllVal[] bufVals = con.getThrowNum();
+                
         sGraph.getData().clear();
         sXAxis.setLabel("Throw Nr.");
         sYAxis.setLabel("Difference (ms)");
-        
-        sSeriesImageP.setName("Image P. Time");
-        sSeriesPickUp.setName("Pickup Time");
-        sSeriesThrow.setName("Throw Time");
-        sSeriesTotal.setName("Total Time");
         
         for(AllVal t : allVals)
         {
@@ -374,43 +463,90 @@ public class FXMLDocumentController implements Initializable
             sSeriesThrow.getData().add(new XYChart.Data(t.getThrowNum(), t.getThrowTime()));
             sSeriesTotal.getData().add(new XYChart.Data(t.getThrowNum(), t.getTotalTime()));
         }
+        
+        for(AllVal t : bufVals)
+        {
+            bufIP.getData().add(new XYChart.Data(t.getThrowNum(), t.getImagePTime()));
+            bufPU.getData().add(new XYChart.Data(t.getThrowNum(), t.getPickUpTime()));
+            bufThrow.getData().add(new XYChart.Data(t.getThrowNum(), t.getThrowTime()));
+            bufTot.getData().add(new XYChart.Data(t.getThrowNum(), t.getTotalTime()));
+        }
+        
+        sSeriesImageP = getDifSeries(bufIP, sSeriesImageP);
+        sSeriesPickUp = getDifSeries(bufPU, sSeriesPickUp);
+        sSeriesThrow = getDifSeries(bufThrow, sSeriesThrow);
+        sSeriesTotal = getDifSeries(bufTot, sSeriesTotal);
+        
+        sSeriesImageP.setName("Image P. Time");
+        sSeriesPickUp.setName("Pickup Time");
+        sSeriesThrow.setName("Throw Time");
+        sSeriesTotal.setName("Total Time");    
     }
     
-    private void addSeriesListener(BooleanProperty selected, final XYChart.Series series, TableView v, LineChart lc) 
+    
+    /*
+     * Adds a series listener for a specific ClickBox.
+     * Uses the isSelected property to determine whether or not to perfom an action.
+     */
+    private void addSeriesListener(BooleanProperty selected, final Series series, TableView tv, LineChart lc) 
     {
-        MinMaxMessage m = new MinMaxMessage(series);
+        MinMaxMessage mmm = new MinMaxMessage(series);
+        
         selected.addListener((observable, wasSelected, isSelected) -> 
         {
             if (isSelected) 
             {
-               addToTable(m, v);
+               addToTable(mmm, tv);
                lc.getData().add(series);
             } 
             else 
             {
-                removeFromTable(m, v);
+                removeFromTable(mmm, tv);
                 lc.getData().remove(series);
             }
         });
     }
     
+    /*
+     * Adds information to MinMaxAvg TableViews.     * 
+     */
     private void addToTable(MinMaxMessage series, TableView tv)
     {
-        series.calcMinMaxAvg(series.getSeries());
-               
-        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        minColumn.setCellValueFactory(new PropertyValueFactory<>("min"));
-        maxColumn.setCellValueFactory(new PropertyValueFactory<>("max"));
-        avgColumn.setCellValueFactory(new PropertyValueFactory<>("avg"));
+        series.calcMinMaxAvg();
+        
+        if(tv.getId().equals(sTimeView.getId()))
+        {
+            sName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            sMin.setCellValueFactory(new PropertyValueFactory<>("min"));
+            sMax.setCellValueFactory(new PropertyValueFactory<>("max"));
+            sAvg.setCellValueFactory(new PropertyValueFactory<>("avg"));
+        }
+        else
+        {
+            seriesColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+            minColumn.setCellValueFactory(new PropertyValueFactory<>("min"));
+            maxColumn.setCellValueFactory(new PropertyValueFactory<>("max"));
+            avgColumn.setCellValueFactory(new PropertyValueFactory<>("avg"));
+        }
         
         tv.getItems().add(series);
     }
     
+    /*
+     * Removes information from MinMaxAvg TableViews.     * 
+     */
     private void removeFromTable(MinMaxMessage series, TableView tv)
     {
         tv.getItems().remove(series);
     }
     
+    /*
+     * Gets information from the SQL server and adds it to the TableView found on the single-tab.
+     * Works like the update individual table-view updates where the SQL-con object gets information from the server,
+     * adds the information to a single data-value object call AllVal.
+     * In the end it gets the columns defined as variables and adds the values to the columns based on ID of column and
+     * variable name in AllVals.
+     */
     private void updateSTableView()
     {
         sTableView.getItems().clear();
@@ -446,14 +582,20 @@ public class FXMLDocumentController implements Initializable
         sPickedUp.setCellValueFactory(new PropertyValueFactory<>("pickTarget"));
         sHitTarget.setCellValueFactory(new PropertyValueFactory<>("hitTarget"));
         
-        for(AllVal t : vals)
-        {
-            sTableView.getItems().add(t);
-        }
+        sTableView.getItems().addAll(Arrays.asList(vals));
        
     }
     
-    private void setThrowVal(int num)
+    /*
+     * Gets information from the SQL server and adds it to the TableView found on the single-tab.
+     * Works like the update individual table-view updates where the SQL-con object gets information from the server,
+     * adds the information to a single data-value object call AllVal.
+     * In the end it gets the columns defined as variables and adds the values to the columns based on ID of column and
+     * variable name in AllVals.
+     * 
+     * For a single value.
+     */
+    private void updateSTableView(int num)
     {
         sTableView.getItems().clear();
         
@@ -483,14 +625,24 @@ public class FXMLDocumentController implements Initializable
         }
     }
     
-    private void setThrowVal(int num1, int num2)
+    
+    /*
+     * Gets information from the SQL server and adds it to the TableView found on the single-tab.
+     * Works like the update individual table-view updates where the SQL-con object gets information from the server,
+     * adds the information to a single data-value object call AllVal.
+     * In the end it gets the columns defined as variables and adds the values to the columns based on ID of column and
+     * variable name in AllVals.
+     * 
+     * For values between two numbers.
+     */
+    private void updateSTableView(int num1, int num2)
     {
         sTableView.getItems().clear();
         
         pickUpVals = con.getPickUpArray();
         objectVals = con.getObjectArray();
         timeVals = con.getTimeArray();
-        
+
         AllVal[] vals = con.getThrowNum(num1, num2);
         
         sThrowNum.setCellValueFactory(new PropertyValueFactory<>("throwNum"));
@@ -511,5 +663,125 @@ public class FXMLDocumentController implements Initializable
         {
             sTableView.getItems().add(t);
         }
+    }
+    
+    /*
+     * Takes to series and gets the differences between them. Returns the values in a new series object.
+     * Series1 - series2.
+     */
+    public Series getDifSeries(Series s1, Series s2)
+    {
+        Series res = new Series();
+        Scanner in;
+        double bufVal;
+        ArrayList series1 = new ArrayList(s1.getData());
+        ArrayList series2 = new ArrayList(s2.getData());
+        
+        for(int i = 0; i < series2.size(); i++)
+        {
+            in = new Scanner(series1.get(i).toString()).useDelimiter(",");
+            in.next();
+            bufVal = in.nextDouble();
+            
+            in = new Scanner(series2.get(i).toString()).useDelimiter(",");
+            in.next();
+            
+            res.getData().add(new XYChart.Data(i, bufVal - in.nextDouble()));
+        }
+        
+        return res;
+    }
+    
+    
+    /*
+     * Uses the choice box to show/hide the Bar Chart or the Line Chart.
+     */
+    public void initComboBox()
+    {
+        graphBox.getItems().addAll("Line Chart", "Bar Chart");
+        updateBarChart();
+        
+        graphBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() 
+        {
+            @Override
+            public void changed(ObservableValue observable, Number oldValue, Number newValue)
+            {
+                if(newValue.equals(0))
+                {
+                    sGraph.setVisible(true);
+                    sChart.setVisible(false);
+                }
+                else
+                {
+                    sGraph.setVisible(false);
+                    sChart.setVisible(true);
+                }
+            }
+        } );
+    }
+    
+    public void updateBarChart()
+    {
+        sChart.getData().clear();
+        
+        sBarMin.setName("Min");
+        sBarMax.setName("Max");
+        sBarAvg.setName("Avg");
+        
+        numberAxis.setLabel("Time [ms]");
+        nameAxis.setLabel("Axis");
+        
+        ArrayList<Pair<String, Double>> avgArray = new ArrayList<>();
+        ArrayList<Pair<String, Double>> maxArray = new ArrayList<>();
+        ArrayList<Pair<String, Double>> minArray = new ArrayList<>();
+        
+//        //System.out.println(sTimeView.getItems().toString());
+//        for(MinMaxMessage d : new ArrayList<MinMaxMessage>(sTimeView.getItems()))
+//        {
+//            System.out.println(d.getName());
+//            avgArray.add(new Pair<>(d.getName(), d.getAvg()));
+//            minArray.add(new Pair<>(d.getName(), d.getMin()));
+//            maxArray.add(new Pair<>(d.getName(), d.getMax()));
+//        }
+
+        ArrayList<MinMaxMessage> vals = new ArrayList<>(sTimeView.getItems());
+        for (MinMaxMessage item : vals) 
+        {
+            System.out.println(sName.getCellData(item) + " " + sAvg.getCellObservableValue(item).getValue());
+            avgArray.add(new Pair(sName.getCellData(item), sAvg.getCellObservableValue(item).getValue()));
+            maxArray.add(new Pair(sName.getCellData(item), sMax.getCellObservableValue(item).getValue()));
+            minArray.add(new Pair(sName.getCellData(item), sMin.getCellObservableValue(item).getValue()));
+        }
+        
+        for(int i = 0; i < avgArray.size(); i++)
+        {
+            sBarAvg.getData().add(new XYChart.Data(avgArray.get(i).getKey(), avgArray.get(i).getValue()));
+            sBarMin.getData().add(new XYChart.Data(minArray.get(i).getKey(), minArray.get(i).getValue()));
+            sBarMax.getData().add(new XYChart.Data(maxArray.get(i).getKey(), maxArray.get(i).getValue()));
+        }
+    }
+    
+    private void addBarSeriesListener(BooleanProperty selected, final Series series, StackedBarChart lc, String nameOfBut) 
+    {
+        selected.addListener((observable, wasSelected, isSelected) -> 
+        {
+            if (isSelected) 
+            {
+               lc.getData().add(series);
+               
+               updateBarChart();
+               list.add(nameOfBut);
+               
+               System.out.println(nameOfBut);
+               nameAxis.setCategories(list);
+            } 
+            else 
+            {
+                list.remove(nameOfBut);
+                nameAxis.setCategories(list);
+                
+                lc.getData().remove(series);
+            }
+        });
     }
 }

@@ -2,14 +2,18 @@ package jdbcsoftwaregui;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 
 public class MinMaxMessage 
 {
     private double min, max, avg;
     private String name;
-    Series series;
+    private Series series;
+    
+    public MinMaxMessage()
+    {
+        
+    }
     
     public MinMaxMessage(Series series)
     {
@@ -19,39 +23,59 @@ public class MinMaxMessage
         this.avg = 0;
         this.name = series.getName();
     }
-    
-    public void calcDifMinMaxAvg(Series s, int num1, int num2)
-    {
-        calcMinMaxAvg(calcDifSeries(s, num1, num2));
-    }
-    
-    public void calcMinMaxAvg(Series s)
+        
+    public void calcMinMaxAvg()
     {
         double num = 0, sum = 0;
-        this.name = s.getName();
-        ArrayList list = new ArrayList(s.getData());
-        
+        ArrayList list = new ArrayList(series.getData());
         ArrayList<Double> listValues = new ArrayList<>();
-        String val = "";
-        String length;
-        
+        Scanner in;
+
         for(int i = 0; i < list.size(); i++)
         {
-            length = list.get(i).toString();
-            System.out.println(list.get(i));
-            if(length.length() == 16)
+            in = new Scanner(list.get(i).toString()).useDelimiter(",");
+            in.next();
+            listValues.add(Double.parseDouble(in.next()));
+        }
+        
+        for(int i = 0; i < listValues.size(); i++)
+        {
+            num = listValues.get(i);
+            
+            if(num < min)
             {
-                val = list.get(i).toString().substring(7, 10);
+                min = num;
             }
-            else if(length.length() == 17)
+            
+            if(num > max)
             {
-                val = list.get(i).toString().substring(7, 11);
+                max = num;
             }
-            else if(length.length() < 16)
-            {
-                val = list.get(i).toString().substring(7, 9);
-            }
-            listValues.add(Double.parseDouble(val));
+            
+            sum += num;
+        }
+        avg = sum / listValues.size();
+    }
+
+    public void calcMinMaxAvg(Series s)
+    {
+        double num = 0, sum = 0, bufVal;
+        ArrayList list = new ArrayList(series.getData());
+        ArrayList fullList = new ArrayList(s.getData());
+        
+        ArrayList<Double> listValues = new ArrayList<>();
+        Scanner in;
+
+        for(int i = 0; i < list.size(); i++)
+        {
+            in = new Scanner(list.get(i).toString()).useDelimiter(",");
+            in.next();
+            bufVal = in.nextDouble();
+            
+            in = new Scanner(fullList.get(i).toString()).useDelimiter(",");
+            in.next();
+            
+            listValues.add(in.nextDouble() - bufVal);
         }
         
         for(int i = 0; i < listValues.size(); i++)
@@ -73,31 +97,17 @@ public class MinMaxMessage
         avg = sum / listValues.size();
     }
     
-    public Series calcDifSeries(Series s1, int num1, int num2)
+    public MinMaxMessage getDiff(MinMaxMessage m)
     {
-        double listVal, orgListVal;
-        Scanner s;
-        Series res = new Series();
+        MinMaxMessage res = new MinMaxMessage();
         
-        ArrayList list = new ArrayList(s1.getData());
-        ArrayList orgList = new ArrayList(series.getData());
-
-        for(int i = num1, j = 0; i < num2; i++, j++)
-        {
-            s = new Scanner(list.get(i).toString()).useDelimiter(",");
-            s.next();
-            listVal = s.nextDouble();
-            
-            s = new Scanner(orgList.get(i).toString()).useDelimiter(",");
-            s.next();
-            orgListVal = s.nextDouble();
-            
-            res.getData().add(new XYChart.Data(j, (orgListVal - listVal)));
-        }
+        res.setMin(m.getMin() - min);
+        res.setMax(m.getMax() - max);
+        res.setAvg(m.getAvg() - avg);
         
         return res;
     }
-
+    
     public double getMin()
     {
         return min;
@@ -148,5 +158,9 @@ public class MinMaxMessage
         this.series = series;
     }
     
-    
+    @Override
+    public String toString()
+    {
+        return max + " " + min + " " + avg;
+    }
 }

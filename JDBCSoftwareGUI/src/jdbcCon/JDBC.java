@@ -378,6 +378,93 @@ public class JDBC
         return vals;
     }
     
+    public AllVal[] getThrowNum()
+    {
+        AllVal[] vals = null;
+        PickUpVal p = null;
+        TimeVal tv = null;
+        ObjectVal o = null;
+
+        String select = "SELECT * FROM ";
+        String[] tables = {"exetime;", "pickupobject;", "pickuppos;"};
+        
+        
+        try
+        {
+            stmt = con.createStatement();
+            
+            rs = stmt.executeQuery("SELECT * FROM pickuppos");
+            
+            int numOfRows = 0;
+            
+            while(rs.next())
+            {
+                numOfRows++;
+            }
+            
+            vals = new AllVal[numOfRows];
+            
+            for(int j = 0; j < numOfRows; j++)
+            {
+                for(String t : tables)
+                {
+                    rs.beforeFirst();
+                    rs = stmt.executeQuery(select + t);
+
+                    if(t.equals(tables[0]))
+                    {
+                        for(int i = 0; rs.next(); i++)
+                        {
+                            imagePTime = rs.getInt("openCVTime");
+                            pickUpTime = rs.getInt("pickUpTime");
+                            throwTime = rs.getInt("throwTime");
+                            totalTime = rs.getInt("cycleTime");
+                            throwNr = rs.getInt("throwNr");
+                        }
+                        tv = new TimeVal(throwNr, pickUpTime, imagePTime, throwTime, totalTime);
+                    }
+                    else if(t.equals(tables[1]))
+                    {
+                        for(int i = 0; rs.next(); i++)
+                        {
+                            radius = rs.getInt("radius");
+                            colour = rs.getString("colour");
+                            shape = rs.getString("shape");
+                            throwNr = rs.getInt("throwNr");
+                            pic = rs.getString("pic");
+                            hitTarget = rs.getBoolean("hitTarget");
+                            pickTarget = rs.getBoolean("pickTarget");
+                        }
+                        
+                        o = new ObjectVal(throwNr, radius, colour, shape, pic, hitTarget, pickTarget);
+                    }
+                    else if(t.equals(tables[2]))
+                    {
+                        for(int i = 0; rs.next(); i++)
+                        {
+                            date = rs.getString("dbTime");
+                            posX = rs.getInt("posX");
+                            posY = rs.getInt("posY");
+                            throwNr = rs.getInt("throwNr");
+                        }
+                        
+                        p = new PickUpVal(throwNr, date, posX, posY);
+                    }
+                }
+                
+                vals[j] = new AllVal(p, tv, o);
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println("SQLException: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("VendorError: " + e.getErrorCode());
+        }
+        
+        return vals;
+    }
+    
     public AllVal[] getThrowNum(int num1, int num2)
     {
         AllVal[] vals = null;
