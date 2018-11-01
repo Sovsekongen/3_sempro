@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.control.TextField;
 import javafx.scene.chart.LineChart;
@@ -30,6 +31,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -122,7 +124,7 @@ public class FXMLDocumentController implements Initializable
     @FXML private CheckBox sThrowBox;
     @FXML private CheckBox sTotalBox;
     
-    @FXML private StackedBarChart sChart;
+    @FXML private BarChart sChart;
     @FXML private CategoryAxis nameAxis;
     @FXML private NumberAxis numberAxis;
     
@@ -145,14 +147,10 @@ public class FXMLDocumentController implements Initializable
     XYChart.Series sBarMax = new XYChart.Series();
     XYChart.Series sBarAvg = new XYChart.Series();
     
-    ObservableList<String> list = FXCollections.observableArrayList();
-    
-    private final AtomicBoolean imagePCheck = new AtomicBoolean(false);;
-    private final AtomicBoolean pickUpCheck = new AtomicBoolean(false);;
-    private final AtomicBoolean throwCheck = new AtomicBoolean(false);;
-    private final AtomicBoolean totalCheck = new AtomicBoolean(false);;
-    
+    private ArrayList<String> barCategories = new ArrayList<>();
+        
     private JDBC con = null;
+    private boolean addSeriesListener = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -162,7 +160,7 @@ public class FXMLDocumentController implements Initializable
         minMaxTable.setPlaceholder(new Label(""));
         
         updateTables();
-        FXMLDocumentController.this.updateSTableView();
+        updateSTableView();
         initComboBox();
         
         addSeriesListener(imagePBox.selectedProperty(), seriesImageP, minMaxTable, timeGraph);
@@ -271,23 +269,20 @@ public class FXMLDocumentController implements Initializable
         
         EventHandler<ActionEvent> selectVal = (ActionEvent event) -> 
         {
+            resetAll();
             String val = sChooseBox.getText();
             if(val.contains("-"))
             {
-               Scanner s = new Scanner(val).useDelimiter("-");
+                Scanner s = new Scanner(val).useDelimiter("-");
                 int num1 = s.nextInt(), num2 = s.nextInt();
                 updateSLineChart(num1, num2);
                 updateSTableView(num1, num2);
                 updateBarChart();
                 
-                addSeriesListener(sImagePBox.selectedProperty(), sSeriesImageP, sTimeView, sGraph);
-                addSeriesListener(sPickupBox.selectedProperty(), sSeriesPickUp, sTimeView, sGraph);
-                addSeriesListener(sThrowBox.selectedProperty(), sSeriesThrow, sTimeView, sGraph);
-                addSeriesListener(sTotalBox.selectedProperty(), sSeriesTotal, sTimeView, sGraph);
-                
-                addBarSeriesListener(sImagePBox.selectedProperty(), sBarMin, sChart, sImagePBox.getText());
-                addBarSeriesListener(sPickupBox.selectedProperty(), sBarMax, sChart, sPickupBox.getText());
-                addBarSeriesListener(sThrowBox.selectedProperty(), sBarAvg, sChart, sThrowBox.getText());
+                if(!addSeriesListener)
+                {
+                    addSeriesListener = addListeners();
+                }
             }
             else
             {
@@ -298,12 +293,11 @@ public class FXMLDocumentController implements Initializable
                 }
                 catch (NumberFormatException e)
                 {
-                    
+                    System.out.println("You have entered a bad value.");
                 }
             }
             
             sChooseBox.clear();
-            updateTables();
         };
         
         sPickTrue.setOnAction(setTrueFalse);
@@ -322,7 +316,21 @@ public class FXMLDocumentController implements Initializable
         sSelect.setOnAction(selectVal);
     }
 
-    
+        public boolean addListeners()
+        {
+            addSeriesListener(sImagePBox.selectedProperty(), sSeriesImageP, sTimeView, sGraph);
+            addSeriesListener(sPickupBox.selectedProperty(), sSeriesPickUp, sTimeView, sGraph);
+            addSeriesListener(sThrowBox.selectedProperty(), sSeriesThrow, sTimeView, sGraph);
+            addSeriesListener(sTotalBox.selectedProperty(), sSeriesTotal, sTimeView, sGraph);
+
+            addBarSeriesListener(sImagePBox.selectedProperty(), sChart, sImagePBox.getText());
+            addBarSeriesListener(sPickupBox.selectedProperty(), sChart, sPickupBox.getText());
+            addBarSeriesListener(sThrowBox.selectedProperty(), sChart, sThrowBox.getText());
+            addBarSeriesListener(sTotalBox.selectedProperty(), sChart, sTotalBox.getText());
+
+            return true;
+        }
+        
     /*
      * General update all tables.
      */
@@ -349,10 +357,7 @@ public class FXMLDocumentController implements Initializable
         posYTab.setCellValueFactory(new PropertyValueFactory<>("posY"));
         timestampTab.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
         
-        for(PickUpVal t : pickUpVals)
-        {
-            pickUpTable.getItems().add(t);
-        }
+        pickUpTable.getItems().addAll(Arrays.asList(pickUpVals));
     }
     
     public void updateObjectTab()
@@ -364,10 +369,7 @@ public class FXMLDocumentController implements Initializable
         colourTab.setCellValueFactory(new PropertyValueFactory<>("colour"));
         shapeTab.setCellValueFactory(new PropertyValueFactory<>("shape"));
         
-        for(ObjectVal t : objectVals)
-        {
-            objectTable.getItems().add(t);
-        }
+        objectTable.getItems().addAll(Arrays.asList(objectVals));
     }
     
     public void updateTimeTab()
@@ -380,10 +382,7 @@ public class FXMLDocumentController implements Initializable
         throwTimeTab.setCellValueFactory(new PropertyValueFactory<>("throwTime"));
         totalTimeTab.setCellValueFactory(new PropertyValueFactory<>("totalTime"));
         
-        for(TimeVal t : timeVals)
-        {
-            timeTable.getItems().add(t);
-        }
+        timeTable.getItems().addAll(Arrays.asList(timeVals));
     }
     
     /*
@@ -438,10 +437,17 @@ public class FXMLDocumentController implements Initializable
      */
     public void updateSLineChart(int num1, int num2)
     {
+        sGraph.getData().clear();
+        
         Series bufIP = new Series();
         Series bufPU = new Series();
         Series bufThrow = new Series();
         Series bufTot = new Series();
+        
+        sSeriesImageP.getData().clear();
+        sSeriesPickUp.getData().clear();
+        sSeriesThrow.getData().clear();
+        sSeriesTotal.getData().clear();
         
         if(num1 == num2)
         {
@@ -619,10 +625,7 @@ public class FXMLDocumentController implements Initializable
         sPickedUp.setCellValueFactory(new PropertyValueFactory<>("pickTarget"));
         sHitTarget.setCellValueFactory(new PropertyValueFactory<>("hitTarget"));
         
-        for(AllVal t : vals)
-        {
-            sTableView.getItems().add(t);
-        }
+        sTableView.getItems().addAll(Arrays.asList(vals));
     }
     
     
@@ -672,8 +675,8 @@ public class FXMLDocumentController implements Initializable
     public Series getDifSeries(Series s1, Series s2)
     {
         Series res = new Series();
-        Scanner in;
-        double bufVal;
+        Scanner in = null;
+        double bufVal = 0, orgVal = 0;
         ArrayList series1 = new ArrayList(s1.getData());
         ArrayList series2 = new ArrayList(s2.getData());
         
@@ -682,13 +685,15 @@ public class FXMLDocumentController implements Initializable
             in = new Scanner(series1.get(i).toString()).useDelimiter(",");
             in.next();
             bufVal = in.nextDouble();
+            in.reset();
             
             in = new Scanner(series2.get(i).toString()).useDelimiter(",");
             in.next();
+            orgVal = in.nextDouble();
             
-            res.getData().add(new XYChart.Data(i, bufVal - in.nextDouble()));
+            res.getData().add(new XYChart.Data(i + 1, bufVal - orgVal));
+            in.reset();
         }
-        
         return res;
     }
     
@@ -699,7 +704,7 @@ public class FXMLDocumentController implements Initializable
     public void initComboBox()
     {
         graphBox.getItems().addAll("Line Chart", "Bar Chart");
-        updateBarChart();
+        graphBox.getSelectionModel().selectFirst();
         
         graphBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() 
         {
@@ -724,33 +729,30 @@ public class FXMLDocumentController implements Initializable
     {
         sChart.getData().clear();
         
-        sBarMin.setName("Min");
-        sBarMax.setName("Max");
-        sBarAvg.setName("Avg");
-        
-        numberAxis.setLabel("Time [ms]");
-        nameAxis.setLabel("Axis");
-        
         ArrayList<Pair<String, Double>> avgArray = new ArrayList<>();
         ArrayList<Pair<String, Double>> maxArray = new ArrayList<>();
         ArrayList<Pair<String, Double>> minArray = new ArrayList<>();
-        
-//        //System.out.println(sTimeView.getItems().toString());
-//        for(MinMaxMessage d : new ArrayList<MinMaxMessage>(sTimeView.getItems()))
-//        {
-//            System.out.println(d.getName());
-//            avgArray.add(new Pair<>(d.getName(), d.getAvg()));
-//            minArray.add(new Pair<>(d.getName(), d.getMin()));
-//            maxArray.add(new Pair<>(d.getName(), d.getMax()));
-//        }
 
-        ArrayList<MinMaxMessage> vals = new ArrayList<>(sTimeView.getItems());
-        for (MinMaxMessage item : vals) 
+        sBarAvg.setName("Avg");
+        sBarMax.setName("Max");
+        sBarMin.setName("Min");
+   
+        numberAxis.setLabel("Time [ms]");
+        nameAxis.setLabel("Axis");
+
+        MinMaxMessage imagePTime = new MinMaxMessage(sSeriesImageP);
+        MinMaxMessage pickupTime = new MinMaxMessage(sSeriesPickUp);
+        MinMaxMessage throwTime = new MinMaxMessage(sSeriesThrow);
+        MinMaxMessage totalTime = new MinMaxMessage(sSeriesTotal);
+
+        MinMaxMessage[] minMaxAvg = {imagePTime, pickupTime, throwTime, totalTime};
+  
+        for(MinMaxMessage m : minMaxAvg)
         {
-            System.out.println(sName.getCellData(item) + " " + sAvg.getCellObservableValue(item).getValue());
-            avgArray.add(new Pair(sName.getCellData(item), sAvg.getCellObservableValue(item).getValue()));
-            maxArray.add(new Pair(sName.getCellData(item), sMax.getCellObservableValue(item).getValue()));
-            minArray.add(new Pair(sName.getCellData(item), sMin.getCellObservableValue(item).getValue()));
+            m.calcMinMaxAvg();
+            avgArray.add(new Pair(m.getName(), m.getAvg()));
+            minArray.add(new Pair(m.getName(), m.getMin()));
+            maxArray.add(new Pair(m.getName(), m.getMax()));
         }
         
         for(int i = 0; i < avgArray.size(); i++)
@@ -761,27 +763,64 @@ public class FXMLDocumentController implements Initializable
         }
     }
     
-    private void addBarSeriesListener(BooleanProperty selected, final Series series, StackedBarChart lc, String nameOfBut) 
+    private void addBarSeriesListener(BooleanProperty selected, BarChart lc, String nameOfBut) 
     {
         selected.addListener((observable, wasSelected, isSelected) -> 
         {
             if (isSelected) 
             {
-               lc.getData().add(series);
-               
+               nameAxis.getCategories().clear();
+               sBarAvg.getData().clear();
+               sBarMax.getData().clear();
+               sBarMin.getData().clear();
                updateBarChart();
-               list.add(nameOfBut);
                
-               System.out.println(nameOfBut);
+               barCategories.add(nameOfBut);
+               ObservableList<String> list = FXCollections.observableArrayList(barCategories);
                nameAxis.setCategories(list);
+               try
+               {
+                   lc.getData().addAll(sBarMin, sBarAvg, sBarMax);
+               }
+               catch(IllegalArgumentException e)
+               {
+                   System.out.println("Failed to add information: ");
+                   e.printStackTrace();
+               }
+                
             } 
             else 
             {
-                list.remove(nameOfBut);
+                nameAxis.getCategories().clear();
+                sBarAvg.getData().clear();
+                sBarMax.getData().clear();
+                sBarMin.getData().clear();
+                updateBarChart();
+                
+                barCategories.remove(nameOfBut);
+                
+                ObservableList<String> list = FXCollections.observableArrayList(barCategories);
                 nameAxis.setCategories(list);
                 
-                lc.getData().remove(series);
+                if(barCategories.isEmpty())
+                {
+                    
+                }
+                else
+                {
+                    lc.getData().addAll(sBarMin, sBarAvg, sBarMax);
+                }
             }
         });
+    }
+    
+    public void resetAll()
+    {
+        sImagePBox.selectedProperty().setValue(false);
+        sThrowBox.selectedProperty().setValue(false);
+        sPickupBox.selectedProperty().setValue(false);
+        sTotalBox.selectedProperty().setValue(false);
+        
+        sGraph.getData().clear();
     }
 }

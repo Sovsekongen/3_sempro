@@ -173,14 +173,14 @@
                         <CheckBox fx:id="sThrowBox" layoutX="465.0" layoutY="257.0" mnemonicParsing="false" text="Throw Time" id="Throw Time"/>
                         <CheckBox fx:id="sTotalBox" layoutX="465.0" layoutY="287.0" mnemonicParsing="false" text="Total Time" id="Total Time"/>
                         <ChoiceBox fx:id="graphBox" layoutX="488.0" layoutY="308.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.topAnchor="310.0" />
-                        <StackedBarChart fx:id="sChart" layoutX="89.0" layoutY="282.0" prefHeight="400.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+                        <BarChart fx:id="sChart" layoutX="89.0" layoutY="282.0" prefHeight="400.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" fx:id="nameAxis"/>
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" fx:id="numberAxis"/>
                           </yAxis>
-                        </StackedBarChart>
+                        </BarChart>
                      </children>
                   </AnchorPane>
                </content></Tab>
