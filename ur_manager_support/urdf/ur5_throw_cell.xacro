@@ -2,6 +2,7 @@
 <robot name="ur5_throw_cell" xmlns:xacro="http://ros.org/wiki/xacro">
     <!-- UR5 macro -->
     <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+    <xacro:include filename="$(find wsg_50_simulation)/urdf/wsg_50.urdf.xacro"/>
 
     <!-- ***LINKS*** -->
 
@@ -108,7 +109,17 @@
     </link>
 
     <!-- UR5 robot -->
-   <xacro:ur5_robot prefix="" joint_limited="true"/>
+    <xacro:ur5_robot prefix="" joint_limited="true"/>
+
+    <!--WSG 50 gripper-->
+    <!--the origin-->
+    <!--<xacro:macro name="org">
+        <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+    </xacro:macro>-->
+
+    <xacro:wsg_50_xacro name="wsg" parent="ee_link" finger_length="0.02" finger_tip="0.02">
+        <origin xyz="0 0 0" rpy="-${pi/2} -${pi} -${pi/2}"/>
+    </xacro:wsg_50_xacro>
 
     <!-- ***JOINTS*** -->
     <joint name="table_top_to_world" type="fixed">
@@ -155,12 +166,20 @@
         <child link="camera_frame"/>
     </joint>
 
+    <!--Connect gripper to robot-->
+    <!--<joint name="wsg_to_robot" type="fixed">
+        <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+        <parent link="ee_link"/>
+        <child link="wsg_base_link"/>
+    </joint>-->
+
 <!-- Connect tool0_controller to base using floating joint -->
+ <!--   <link name="tool0_controller"/>
     <joint name="base-tool0_controller_floating_joint" type="floating">
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <parent link="base"/>
-      <child link="tool0"/>
-    </joint>
+      <child link="tool0_controller"/>
+    </joint>-->
 
 </robot>
 

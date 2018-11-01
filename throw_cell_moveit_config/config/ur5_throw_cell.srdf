@@ -12,6 +12,15 @@
     <group name="ur5_arm">
         <chain base_link="base_link" tip_link="tool0" />
     </group>
+    <group name="wsg">
+        <joint name="wsg_anterior_gripper_joint" />
+        <joint name="wsg_center_joint" />
+        <joint name="wsg_finger_left_joint" />
+        <joint name="wsg_guide_joint_finger_left" />
+        <joint name="wsg_finger_right_joint" />
+        <joint name="wsg_guide_joint_finger_right" />
+        <joint name="wrist_3_link-tool0_fixed_joint" />
+    </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="all_zero" group="ur5_arm">
         <joint name="elbow_joint" value="0" />
@@ -37,6 +46,12 @@
         <joint name="wrist_2_joint" value="1.57" />
         <joint name="wrist_3_joint" value="0" />
     </group_state>
+    <group_state name="open" group="wsg">
+        <joint name="wsg_finger_left_joint" value="-0.055" />
+        <joint name="wsg_finger_right_joint" value="0.055" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="wsg_ee" parent_link="tool0" group="wsg" parent_group="ur5_arm" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="world_ref_frame" type="fixed" parent_frame="world" child_link="world" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
@@ -59,11 +74,21 @@
     <disable_collisions link1="camera" link2="wrist_1_link" reason="Never" />
     <disable_collisions link1="camera" link2="wrist_2_link" reason="Never" />
     <disable_collisions link1="camera" link2="wrist_3_link" reason="Never" />
+    <disable_collisions link1="camera" link2="wsg_base_link" reason="Never" />
+    <disable_collisions link1="camera" link2="wsg_finger_left" reason="Never" />
+    <disable_collisions link1="camera" link2="wsg_finger_right" reason="Never" />
+    <disable_collisions link1="camera" link2="wsg_gripper_left" reason="Never" />
+    <disable_collisions link1="camera" link2="wsg_gripper_right" reason="Never" />
     <disable_collisions link1="ee_link" link2="post_far" reason="Never" />
     <disable_collisions link1="ee_link" link2="post_top" reason="Never" />
     <disable_collisions link1="ee_link" link2="wrist_1_link" reason="Never" />
     <disable_collisions link1="ee_link" link2="wrist_2_link" reason="Never" />
     <disable_collisions link1="ee_link" link2="wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ee_link" link2="wsg_base_link" reason="Adjacent" />
+    <disable_collisions link1="ee_link" link2="wsg_finger_left" reason="Never" />
+    <disable_collisions link1="ee_link" link2="wsg_finger_right" reason="Never" />
+    <disable_collisions link1="ee_link" link2="wsg_gripper_left" reason="Never" />
+    <disable_collisions link1="ee_link" link2="wsg_gripper_right" reason="Never" />
     <disable_collisions link1="forearm_link" link2="post_far" reason="Never" />
     <disable_collisions link1="forearm_link" link2="post_top" reason="Never" />
     <disable_collisions link1="forearm_link" link2="upper_arm_link" reason="Adjacent" />
@@ -81,6 +106,11 @@
     <disable_collisions link1="post_far" link2="wrist_1_link" reason="Never" />
     <disable_collisions link1="post_far" link2="wrist_2_link" reason="Never" />
     <disable_collisions link1="post_far" link2="wrist_3_link" reason="Never" />
+    <disable_collisions link1="post_far" link2="wsg_base_link" reason="Never" />
+    <disable_collisions link1="post_far" link2="wsg_finger_left" reason="Never" />
+    <disable_collisions link1="post_far" link2="wsg_finger_right" reason="Never" />
+    <disable_collisions link1="post_far" link2="wsg_gripper_left" reason="Never" />
+    <disable_collisions link1="post_far" link2="wsg_gripper_right" reason="Never" />
     <disable_collisions link1="post_top" link2="shoulder_link" reason="Never" />
     <disable_collisions link1="post_top" link2="table" reason="Never" />
     <disable_collisions link1="post_top" link2="table_top" reason="Adjacent" />
@@ -88,11 +118,38 @@
     <disable_collisions link1="post_top" link2="wrist_1_link" reason="Never" />
     <disable_collisions link1="post_top" link2="wrist_2_link" reason="Never" />
     <disable_collisions link1="post_top" link2="wrist_3_link" reason="Never" />
+    <disable_collisions link1="post_top" link2="wsg_base_link" reason="Never" />
+    <disable_collisions link1="post_top" link2="wsg_finger_left" reason="Never" />
+    <disable_collisions link1="post_top" link2="wsg_finger_right" reason="Never" />
+    <disable_collisions link1="post_top" link2="wsg_gripper_left" reason="Never" />
+    <disable_collisions link1="post_top" link2="wsg_gripper_right" reason="Never" />
     <disable_collisions link1="shoulder_link" link2="table" reason="Never" />
     <disable_collisions link1="shoulder_link" link2="table_top" reason="Never" />
     <disable_collisions link1="shoulder_link" link2="upper_arm_link" reason="Adjacent" />
     <disable_collisions link1="table" link2="table_top" reason="Adjacent" />
     <disable_collisions link1="wrist_1_link" link2="wrist_2_link" reason="Adjacent" />
     <disable_collisions link1="wrist_1_link" link2="wrist_3_link" reason="Never" />
+    <disable_collisions link1="wrist_1_link" link2="wsg_base_link" reason="Never" />
+    <disable_collisions link1="wrist_1_link" link2="wsg_finger_left" reason="Never" />
+    <disable_collisions link1="wrist_1_link" link2="wsg_finger_right" reason="Never" />
+    <disable_collisions link1="wrist_1_link" link2="wsg_gripper_left" reason="Never" />
+    <disable_collisions link1="wrist_1_link" link2="wsg_gripper_right" reason="Never" />
     <disable_collisions link1="wrist_2_link" link2="wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="wrist_2_link" link2="wsg_base_link" reason="Never" />
+    <disable_collisions link1="wrist_2_link" link2="wsg_finger_left" reason="Never" />
+    <disable_collisions link1="wrist_2_link" link2="wsg_finger_right" reason="Never" />
+    <disable_collisions link1="wrist_2_link" link2="wsg_gripper_left" reason="Never" />
+    <disable_collisions link1="wrist_2_link" link2="wsg_gripper_right" reason="Never" />
+    <disable_collisions link1="wrist_3_link" link2="wsg_base_link" reason="Never" />
+    <disable_collisions link1="wrist_3_link" link2="wsg_finger_left" reason="Never" />
+    <disable_collisions link1="wrist_3_link" link2="wsg_finger_right" reason="Never" />
+    <disable_collisions link1="wrist_3_link" link2="wsg_gripper_left" reason="Never" />
+    <disable_collisions link1="wrist_3_link" link2="wsg_gripper_right" reason="Never" />
+    <disable_collisions link1="wsg_base_link" link2="wsg_finger_left" reason="Never" />
+    <disable_collisions link1="wsg_base_link" link2="wsg_finger_right" reason="Never" />
+    <disable_collisions link1="wsg_base_link" link2="wsg_gripper_left" reason="Adjacent" />
+    <disable_collisions link1="wsg_base_link" link2="wsg_gripper_right" reason="Adjacent" />
+    <disable_collisions link1="wsg_finger_left" link2="wsg_gripper_left" reason="Adjacent" />
+    <disable_collisions link1="wsg_finger_right" link2="wsg_gripper_right" reason="Adjacent" />
+    <disable_collisions link1="wsg_gripper_left" link2="wsg_gripper_right" reason="Never" />
 </robot>

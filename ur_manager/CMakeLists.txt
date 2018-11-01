@@ -12,6 +12,11 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   geometry_msgs
+  message_generation
+  tf
+  moveit_ros_planning_interface
+  moveit_ros_visualization
+  moveit_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -113,6 +118,11 @@ catkin_package(
   rospy
   std_msgs
   geometry_msgs
+  message_runtime
+  tf
+  moveit_ros_planning_interface
+  moveit_ros_visualization
+  moveit_msgs
 #  DEPENDS system_lib
 )
 
@@ -141,6 +151,9 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/ur_manager_node.cpp)
+add_executable(find_robot_state src/find_robot_state.cpp)
+add_executable(plan_exe_hardcoded_traj src/plan_exe_hardcoded_traj.cpp)
+add_executable(plan_exe_hardcoded_joint src/plan_exe_hardcoded_joint.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -151,11 +164,17 @@ include_directories(
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(find_robot_state ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(plan_exe_hardcoded_traj ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(plan_exe_hardcoded_joint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(find_robot_state ${catkin_LIBRARIES})
+target_link_libraries(plan_exe_hardcoded_traj ${catkin_LIBRARIES})
+target_link_libraries(plan_exe_hardcoded_joint ${catkin_LIBRARIES})
 
 #############
 ## Install ##

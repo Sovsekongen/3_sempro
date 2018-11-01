@@ -7,3 +7,7 @@ controller_list:
       - wrist_1_joint
       - wrist_2_joint
       - wrist_3_joint
+  - name: fake_wsg_controller
+    joints:
+      - wsg_finger_left_joint
+      - wsg_finger_right_joint

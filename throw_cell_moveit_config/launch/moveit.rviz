@@ -325,8 +325,8 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-        Loop Animation: true
-        Robot Alpha: 0.5
+        Loop Animation: false
+        Robot Alpha: 1
         Show Robot Collision: false
         Show Robot Visual: true
         Show Trail: false
@@ -340,7 +340,7 @@ Visualization Manager:
         Show Weight Limit: false
       Planning Request:
         Colliding Link Color: 255; 0; 0
-        Goal State Alpha: 1
+        Goal State Alpha: 0.5
         Goal State Color: 250; 128; 0
         Interactive Marker Size: 0
         Joint Violation Color: 255; 0; 255

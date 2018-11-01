@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   spin.start();
   ROS_INFO("Basic_throw_node launched");
 
-  const std::string GROUP = "manipulator"; //move group name
+  const std::string GROUP = "ur5_arm"; //move group name
   moveit::planning_interface::MoveGroupInterface move_group(GROUP); //the move-group object
   moveit::planning_interface::PlanningSceneInterface planning_scene_interface; //can manipulate the scene
 
