@@ -117,7 +117,7 @@
         <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
     </xacro:macro>-->
 
-    <xacro:wsg_50_xacro name="wsg" parent="ee_link" finger_length="0.02" finger_tip="0.02">
+    <xacro:wsg_50_xacro name="wsg" parent="ee_link" finger_length="0.03" finger_tip="0.02">
         <origin xyz="0 0 0" rpy="-${pi/2} -${pi} -${pi/2}"/>
     </xacro:wsg_50_xacro>
 
