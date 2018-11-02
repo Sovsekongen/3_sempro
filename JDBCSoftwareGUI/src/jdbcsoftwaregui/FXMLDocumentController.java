@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,7 +22,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
-import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
@@ -31,7 +29,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -115,6 +112,7 @@ public class FXMLDocumentController implements Initializable
     @FXML private Button sSelect;
     @FXML private TextField sChooseBox;
     @FXML private ChoiceBox graphBox;
+    @FXML private ChoiceBox tableBox;
    
     @FXML private LineChart sGraph;
     @FXML private NumberAxis sXAxis;
@@ -148,9 +146,12 @@ public class FXMLDocumentController implements Initializable
     XYChart.Series sBarAvg = new XYChart.Series();
     
     private ArrayList<String> barCategories = new ArrayList<>();
+    private ArrayList<Series> seriesInGraph = new ArrayList<>();
         
     private JDBC con = null;
     private boolean addSeriesListener = false;
+    private boolean tableBoxVal = true;
+    private int bufNum1, bufNum2;
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -162,6 +163,11 @@ public class FXMLDocumentController implements Initializable
         updateTables();
         updateSTableView();
         initComboBox();
+        initTableBox();
+        
+        sGraph.setAnimated(false);
+        sChart.setAnimated(false);
+        timeGraph.setAnimated(false);
         
         addSeriesListener(imagePBox.selectedProperty(), seriesImageP, minMaxTable, timeGraph);
         addSeriesListener(pickUpBox.selectedProperty(), seriesPickUp, minMaxTable, timeGraph);
@@ -269,18 +275,21 @@ public class FXMLDocumentController implements Initializable
         
         EventHandler<ActionEvent> selectVal = (ActionEvent event) -> 
         {
-            resetAll();
             String val = sChooseBox.getText();
+            resetAll();
+            
             if(val.contains("-"))
             {
                 Scanner s = new Scanner(val).useDelimiter("-");
-                int num1 = s.nextInt(), num2 = s.nextInt();
-                updateSLineChart(num1, num2);
-                updateSTableView(num1, num2);
-                updateBarChart();
-                
+                bufNum1 = s.nextInt();
+                bufNum2 = s.nextInt();
+
                 if(!addSeriesListener)
                 {
+                    updateSLineChart(bufNum1, bufNum2);
+                    updateSTableView(bufNum1, bufNum2);
+                    updateBarChart();
+                    
                     addSeriesListener = addListeners();
                 }
             }
@@ -289,7 +298,7 @@ public class FXMLDocumentController implements Initializable
                 try
                 {
                     int num = Integer.parseInt(val);
-                    FXMLDocumentController.this.updateSTableView(num);
+                    updateSTableView(num);
                 }
                 catch (NumberFormatException e)
                 {
@@ -316,20 +325,20 @@ public class FXMLDocumentController implements Initializable
         sSelect.setOnAction(selectVal);
     }
 
-        public boolean addListeners()
-        {
-            addSeriesListener(sImagePBox.selectedProperty(), sSeriesImageP, sTimeView, sGraph);
-            addSeriesListener(sPickupBox.selectedProperty(), sSeriesPickUp, sTimeView, sGraph);
-            addSeriesListener(sThrowBox.selectedProperty(), sSeriesThrow, sTimeView, sGraph);
-            addSeriesListener(sTotalBox.selectedProperty(), sSeriesTotal, sTimeView, sGraph);
+    public boolean addListeners()
+    {
+        addSSeriesListener(sImagePBox.selectedProperty(), sSeriesImageP, sTimeView, sGraph);
+        addSSeriesListener(sPickupBox.selectedProperty(), sSeriesPickUp, sTimeView, sGraph);
+        addSSeriesListener(sThrowBox.selectedProperty(), sSeriesThrow, sTimeView, sGraph);
+        addSSeriesListener(sTotalBox.selectedProperty(), sSeriesTotal, sTimeView, sGraph);
 
-            addBarSeriesListener(sImagePBox.selectedProperty(), sChart, sImagePBox.getText());
-            addBarSeriesListener(sPickupBox.selectedProperty(), sChart, sPickupBox.getText());
-            addBarSeriesListener(sThrowBox.selectedProperty(), sChart, sThrowBox.getText());
-            addBarSeriesListener(sTotalBox.selectedProperty(), sChart, sTotalBox.getText());
+        addBarSeriesListener(sImagePBox.selectedProperty(), sChart, sImagePBox.getText());
+        addBarSeriesListener(sPickupBox.selectedProperty(), sChart, sPickupBox.getText());
+        addBarSeriesListener(sThrowBox.selectedProperty(), sChart, sThrowBox.getText());
+        addBarSeriesListener(sTotalBox.selectedProperty(), sChart, sTotalBox.getText());
 
-            return true;
-        }
+        return true;
+    }
         
     /*
      * General update all tables.
@@ -339,6 +348,10 @@ public class FXMLDocumentController implements Initializable
         pickUpVals = con.getPickUpArray();
         objectVals = con.getObjectArray();
         timeVals = con.getTimeArray();
+        pickUpBox.setSelected(false);
+        imagePBox.setSelected(false);
+        throwBox.setSelected(false);
+        totalBox.setSelected(false);
         
         updatePickUpTab();
         updateTimeTab();
@@ -414,7 +427,7 @@ public class FXMLDocumentController implements Initializable
         timeGraph.getData().clear();
         xAxisTab4.setLabel("Throw Nr.");
         yAxisTab4.setLabel("Time (ms)");
-        
+
         seriesImageP.setName("Image P. Time");
         seriesPickUp.setName("Pickup Time");
         seriesThrow.setName("Throw Time");
@@ -437,12 +450,15 @@ public class FXMLDocumentController implements Initializable
      */
     public void updateSLineChart(int num1, int num2)
     {
-        sGraph.getData().clear();
-        
         Series bufIP = new Series();
         Series bufPU = new Series();
         Series bufThrow = new Series();
         Series bufTot = new Series();
+        
+        bufIP.setName("bufIP");
+        bufPU.setName("bufPU");
+        bufThrow.setName("bufThrow");
+        bufTot.setName("bufTot");
         
         sSeriesImageP.getData().clear();
         sSeriesPickUp.getData().clear();
@@ -451,14 +467,13 @@ public class FXMLDocumentController implements Initializable
         
         if(num1 == num2)
         {
-            FXMLDocumentController.this.updateSTableView(num2);
+            updateSTableView(num2);
             return;
         }
         
         allVals = con.getThrowNum(num1, num2);
         AllVal[] bufVals = con.getThrowNum();
                 
-        sGraph.getData().clear();
         sXAxis.setLabel("Throw Nr.");
         sYAxis.setLabel("Difference (ms)");
         
@@ -478,6 +493,7 @@ public class FXMLDocumentController implements Initializable
             bufTot.getData().add(new XYChart.Data(t.getThrowNum(), t.getTotalTime()));
         }
         
+        System.out.println("Method " + bufIP.getName());
         sSeriesImageP = getDifSeries(bufIP, sSeriesImageP);
         sSeriesPickUp = getDifSeries(bufPU, sSeriesPickUp);
         sSeriesThrow = getDifSeries(bufThrow, sSeriesThrow);
@@ -489,28 +505,36 @@ public class FXMLDocumentController implements Initializable
         sSeriesTotal.setName("Total Time");    
     }
     
-    
-    /*
-     * Adds a series listener for a specific ClickBox.
-     * Uses the isSelected property to determine whether or not to perfom an action.
-     */
-    private void addSeriesListener(BooleanProperty selected, final Series series, TableView tv, LineChart lc) 
+    public void updateSLineChartNonDif(int num1, int num2)
     {
-        MinMaxMessage mmm = new MinMaxMessage(series);
+        sSeriesImageP.getData().clear();
+        sSeriesPickUp.getData().clear();
+        sSeriesThrow.getData().clear();
+        sSeriesTotal.getData().clear();
         
-        selected.addListener((observable, wasSelected, isSelected) -> 
+        if(num1 == num2)
         {
-            if (isSelected) 
-            {
-               addToTable(mmm, tv);
-               lc.getData().add(series);
-            } 
-            else 
-            {
-                removeFromTable(mmm, tv);
-                lc.getData().remove(series);
-            }
-        });
+            updateSTableView(num2);
+            return;
+        }
+        
+        allVals = con.getThrowNum(num1, num2);
+                
+        sXAxis.setLabel("Throw Nr.");
+        sYAxis.setLabel("Time (ms)");
+        
+        for(AllVal t : allVals)
+        {
+            sSeriesImageP.getData().add(new XYChart.Data(t.getThrowNum(), t.getImagePTime()));
+            sSeriesPickUp.getData().add(new XYChart.Data(t.getThrowNum(), t.getPickUpTime()));
+            sSeriesThrow.getData().add(new XYChart.Data(t.getThrowNum(), t.getThrowTime()));
+            sSeriesTotal.getData().add(new XYChart.Data(t.getThrowNum(), t.getTotalTime()));
+        }
+        
+        sSeriesImageP.setName("Image P. Time");
+        sSeriesPickUp.setName("Pickup Time");
+        sSeriesThrow.setName("Throw Time");
+        sSeriesTotal.setName("Total Time");    
     }
     
     /*
@@ -662,30 +686,28 @@ public class FXMLDocumentController implements Initializable
         sPickedUp.setCellValueFactory(new PropertyValueFactory<>("pickTarget"));
         sHitTarget.setCellValueFactory(new PropertyValueFactory<>("hitTarget"));
         
-        for(AllVal t : vals)
-        {
-            sTableView.getItems().add(t);
-        }
+        sTableView.getItems().addAll(Arrays.asList(vals));
     }
     
     /*
      * Takes to series and gets the differences between them. Returns the values in a new series object.
-     * Series1 - series2.
+     * avg - sammenligningsseries.
      */
     public Series getDifSeries(Series s1, Series s2)
     {
         Series res = new Series();
-        Scanner in = null;
+        Scanner in;
         double bufVal = 0, orgVal = 0;
-        ArrayList series1 = new ArrayList(s1.getData());
+        //ArrayList series1 = new ArrayList(s1.getData());
+        MinMaxMessage buf = new MinMaxMessage(s1);
+        buf.calcMinMaxAvg();
+        
         ArrayList series2 = new ArrayList(s2.getData());
         
         for(int i = 0; i < series2.size(); i++)
         {
-            in = new Scanner(series1.get(i).toString()).useDelimiter(",");
-            in.next();
-            bufVal = in.nextDouble();
-            in.reset();
+            bufVal = buf.getAvg();
+            System.out.println(s1.getName() + " " + buf.getAvg());
             
             in = new Scanner(series2.get(i).toString()).useDelimiter(",");
             in.next();
@@ -696,8 +718,7 @@ public class FXMLDocumentController implements Initializable
         }
         return res;
     }
-    
-    
+        
     /*
      * Uses the choice box to show/hide the Bar Chart or the Line Chart.
      */
@@ -720,6 +741,32 @@ public class FXMLDocumentController implements Initializable
                 {
                     sGraph.setVisible(false);
                     sChart.setVisible(true);
+                }
+            }
+        } );
+    }
+    
+    public void initTableBox()
+    {
+        tableBox.getItems().addAll("Difference", "Series");
+        tableBox.getSelectionModel().selectFirst();
+        
+        tableBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() 
+        {
+            @Override
+            public void changed(ObservableValue observable, Number oldValue, Number newValue)
+            {
+                resetAll();
+                
+                if(newValue.equals(0))
+                {
+                    updateSLineChart(bufNum1, bufNum2);
+                    updateBarChart();
+                }
+                else if(newValue.equals(1))
+                {
+                    updateSLineChartNonDif(bufNum1, bufNum2);
+                    updateBarChart();
                 }
             }
         } );
@@ -787,7 +834,6 @@ public class FXMLDocumentController implements Initializable
                    System.out.println("Failed to add information: ");
                    e.printStackTrace();
                }
-                
             } 
             else 
             {
@@ -802,14 +848,57 @@ public class FXMLDocumentController implements Initializable
                 ObservableList<String> list = FXCollections.observableArrayList(barCategories);
                 nameAxis.setCategories(list);
                 
-                if(barCategories.isEmpty())
-                {
-                    
-                }
-                else
+                if(!barCategories.isEmpty())
                 {
                     lc.getData().addAll(sBarMin, sBarAvg, sBarMax);
                 }
+            }
+        });
+    }
+    
+    /*
+    * Adds a series listener for a specific ClickBox.
+    * Uses the isSelected property to determine whether or not to perfom an action.
+    */
+    private void addSeriesListener(BooleanProperty selected, final Series series, TableView tv, LineChart lc) 
+    {
+        MinMaxMessage mmm = new MinMaxMessage(series);
+        
+        selected.addListener((observable, wasSelected, isSelected) -> 
+        {            
+            if (isSelected) 
+            {
+                addToTable(mmm, tv);
+                lc.getData().add(series);
+            } 
+            else 
+            {
+                removeFromTable(mmm, tv);
+                lc.getData().remove(series);
+            }
+        });
+    }
+    
+    private void addSSeriesListener(BooleanProperty selected, final Series series, TableView tv, LineChart lc) 
+    {
+        MinMaxMessage mmm = new MinMaxMessage(series);
+        
+        selected.addListener((observable, wasSelected, isSelected) -> 
+        {
+            if(!sImagePBox.isSelected() && !sPickupBox.isSelected() && !sThrowBox.isSelected() && !sTotalBox.isSelected())
+            {
+                resetAll();
+            }
+            
+            if (isSelected) 
+            {
+                addToTable(mmm, tv);
+                lc.getData().add(series);
+            } 
+            else 
+            {
+                removeFromTable(mmm, tv);
+                lc.getData().remove(series);
             }
         });
     }
@@ -821,6 +910,18 @@ public class FXMLDocumentController implements Initializable
         sPickupBox.selectedProperty().setValue(false);
         sTotalBox.selectedProperty().setValue(false);
         
+        seriesImageP.getData().clear();
+        seriesPickUp.getData().clear();
+        seriesThrow.getData().clear();
+        seriesTotal.getData().clear();       
+                
+        sBarMin.getData().clear();
+        sBarMax.getData().clear();
+        sBarAvg.getData().clear();
+        
         sGraph.getData().clear();
+        sChart.getData().clear();
+        
+        sTimeView.getItems().clear();
     }
 }
