@@ -1,6 +1,7 @@
 package jdbcCon;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class JDBC
 {
@@ -381,14 +382,13 @@ public class JDBC
     public AllVal[] getThrowNum()
     {
         AllVal[] vals = null;
-        PickUpVal p = null;
-        TimeVal tv = null;
-        ObjectVal o = null;
+        ArrayList<PickUpVal> p = new ArrayList<>();
+        ArrayList<TimeVal> tv = new ArrayList<>();
+        ArrayList<ObjectVal> o = new ArrayList<>();
 
         String select = "SELECT * FROM ";
         String[] tables = {"exetime;", "pickupobject;", "pickuppos;"};
-        
-        
+
         try
         {
             stmt = con.createStatement();
@@ -420,8 +420,10 @@ public class JDBC
                             throwTime = rs.getInt("throwTime");
                             totalTime = rs.getInt("cycleTime");
                             throwNr = rs.getInt("throwNr");
+                            
+                            tv.add(new TimeVal(throwNr, pickUpTime, imagePTime, throwTime, totalTime));
                         }
-                        tv = new TimeVal(throwNr, pickUpTime, imagePTime, throwTime, totalTime);
+                        
                     }
                     else if(t.equals(tables[1]))
                     {
@@ -434,9 +436,9 @@ public class JDBC
                             pic = rs.getString("pic");
                             hitTarget = rs.getBoolean("hitTarget");
                             pickTarget = rs.getBoolean("pickTarget");
+                            
+                            o.add(new ObjectVal(throwNr, radius, colour, shape, pic, hitTarget, pickTarget));
                         }
-                        
-                        o = new ObjectVal(throwNr, radius, colour, shape, pic, hitTarget, pickTarget);
                     }
                     else if(t.equals(tables[2]))
                     {
@@ -446,13 +448,14 @@ public class JDBC
                             posX = rs.getInt("posX");
                             posY = rs.getInt("posY");
                             throwNr = rs.getInt("throwNr");
+                            
+                            p.add(new PickUpVal(throwNr, date, posX, posY));
                         }
                         
-                        p = new PickUpVal(throwNr, date, posX, posY);
+                        
                     }
                 }
-                
-                vals[j] = new AllVal(p, tv, o);
+            vals[j] = new AllVal(p.get(j), tv.get(j), o.get(j));          
             }
         }
         catch (SQLException e)
@@ -462,7 +465,7 @@ public class JDBC
             System.out.println("VendorError: " + e.getErrorCode());
         }
         
-        return vals;
+            return vals;
     }
     
     public AllVal[] getThrowNum(int num1, int num2)

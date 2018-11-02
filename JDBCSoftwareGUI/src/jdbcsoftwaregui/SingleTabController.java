@@ -89,20 +89,18 @@ public class SingleTabController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        
         con = new JDBC("root", "doyouloveit123");
         
         minMaxTable.setPlaceholder(new Label(""));
         
         timeGraph.setAnimated(false);
+        updateTables();
         
         addSeriesListener(imagePBox.selectedProperty(), seriesImageP, minMaxTable, timeGraph);
         addSeriesListener(pickUpBox.selectedProperty(), seriesPickUp, minMaxTable, timeGraph);
         addSeriesListener(throwBox.selectedProperty(), seriesThrow, minMaxTable, timeGraph);
         addSeriesListener(totalBox.selectedProperty(), seriesTotal, minMaxTable, timeGraph);
-        
-        updateTables();
-        
+
         objectTable.setOnMouseClicked((MouseEvent event) -> 
         {
             if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 1)
@@ -112,7 +110,6 @@ public class SingleTabController implements Initializable
                     ObjectVal b = (ObjectVal)objectTable.getSelectionModel().getSelectedItem();
                 
                     FileInputStream fs = new FileInputStream(b.getPic());
-                    System.out.println(b.getPic());
                     Image pic = new Image(fs);
         
                     objectImageView.setImage(pic);
@@ -127,8 +124,6 @@ public class SingleTabController implements Initializable
         EventHandler<ActionEvent> updateHandler = (ActionEvent event) ->
         {
             updateTables();
-            drawScatterPlot();
-            updateLineChartData();
         };
                 
         EventHandler<ActionEvent> deleteHandler = (ActionEvent event) -> 
@@ -159,7 +154,6 @@ public class SingleTabController implements Initializable
         updateBut.setOnAction(updateHandler);
         updateBut1.setOnAction(updateHandler);
         updateBut3.setOnAction(updateHandler);
-        
     }    
     
     /*
@@ -170,6 +164,7 @@ public class SingleTabController implements Initializable
         pickUpVals = con.getPickUpArray();
         objectVals = con.getObjectArray();
         timeVals = con.getTimeArray();
+        
         pickUpBox.setSelected(false);
         imagePBox.setSelected(false);
         throwBox.setSelected(false);
@@ -190,7 +185,6 @@ public class SingleTabController implements Initializable
     {
         chartTab1.getData().clear();
         xAxisTab1.setLabel("Pos X");
-        
         yAxisTab1.setLabel("Pos Y");
 
         Series seriesTab1 = new Series();

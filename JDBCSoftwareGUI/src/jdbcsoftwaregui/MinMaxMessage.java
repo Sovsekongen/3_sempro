@@ -10,11 +10,6 @@ public class MinMaxMessage
     private String name;
     private Series series;
     
-    public MinMaxMessage()
-    {
-        
-    }
-    
     public MinMaxMessage(Series series)
     {
         this.series = series;
@@ -22,6 +17,11 @@ public class MinMaxMessage
         this.max = 1;
         this.avg = 0;
         this.name = series.getName();
+    }
+
+    private MinMaxMessage()
+    {
+        
     }
         
     public void calcMinMaxAvg()

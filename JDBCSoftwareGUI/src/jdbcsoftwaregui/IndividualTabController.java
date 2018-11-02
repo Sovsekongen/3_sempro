@@ -19,6 +19,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -30,9 +31,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Pair;
 import jdbcCon.AllVal;
 import jdbcCon.JDBC;
-import jdbcCon.ObjectVal;
-import jdbcCon.PickUpVal;
-import jdbcCon.TimeVal;
 
 public class IndividualTabController implements Initializable
 {
@@ -76,26 +74,22 @@ public class IndividualTabController implements Initializable
     @FXML private CategoryAxis nameAxis;
     @FXML private NumberAxis numberAxis;
     
-    private PickUpVal[] pickUpVals;
-    private TimeVal[] timeVals;
-    private ObjectVal[] objectVals;
     private AllVal[] allVals;
     
-    XYChart.Series sSeriesImageP = new XYChart.Series();
-    XYChart.Series sSeriesPickUp = new XYChart.Series();
-    XYChart.Series sSeriesThrow = new XYChart.Series();
-    XYChart.Series sSeriesTotal = new XYChart.Series();
+    Series sSeriesImageP = new Series();
+    Series sSeriesPickUp = new Series();
+    Series sSeriesThrow = new Series();
+    Series sSeriesTotal = new Series();
     
-    XYChart.Series sBarMin = new XYChart.Series();
-    XYChart.Series sBarMax = new XYChart.Series();
-    XYChart.Series sBarAvg = new XYChart.Series();
+    Series sBarMin = new Series();
+    Series sBarMax = new Series();
+    Series sBarAvg = new Series();
     
     private ArrayList<String> barCategories = new ArrayList<>();
-    private ArrayList<XYChart.Series> seriesInGraph = new ArrayList<>();
+    private ArrayList<Series> seriesInGraph = new ArrayList<>();
         
     private JDBC con = null;
     private boolean addSeriesListener = false;
-    private final boolean tableBoxVal = true;
     private int bufNum1, bufNum2;
     
     @Override
@@ -176,6 +170,13 @@ public class IndividualTabController implements Initializable
                     updateBarChart();
                     
                     addSeriesListener = addListeners();
+                
+                }
+                else
+                {
+                    updateSLineChart(bufNum1, bufNum2);
+                    updateSTableView(bufNum1, bufNum2);
+                    updateBarChart();
                 }
             }
             else
@@ -213,7 +214,6 @@ public class IndividualTabController implements Initializable
         addBarSeriesListener(sPickupBox.selectedProperty(), sChart, sPickupBox.getText());
         addBarSeriesListener(sThrowBox.selectedProperty(), sChart, sThrowBox.getText());
         addBarSeriesListener(sTotalBox.selectedProperty(), sChart, sTotalBox.getText());
-
         return true;
     }
         
@@ -225,10 +225,10 @@ public class IndividualTabController implements Initializable
      */
     public void updateSLineChart(int num1, int num2)
     {
-        XYChart.Series bufIP = new XYChart.Series();
-        XYChart.Series bufPU = new XYChart.Series();
-        XYChart.Series bufThrow = new XYChart.Series();
-        XYChart.Series bufTot = new XYChart.Series();
+        Series bufIP = new Series();
+        Series bufPU = new Series();
+        Series bufThrow = new Series();
+        Series bufTot = new Series();
         
         bufIP.setName("bufIP");
         bufPU.setName("bufPU");
@@ -268,7 +268,6 @@ public class IndividualTabController implements Initializable
             bufTot.getData().add(new XYChart.Data(t.getThrowNum(), t.getTotalTime()));
         }
         
-        System.out.println("Method " + bufIP.getName());
         sSeriesImageP = getDifSeries(bufIP, sSeriesImageP);
         sSeriesPickUp = getDifSeries(bufPU, sSeriesPickUp);
         sSeriesThrow = getDifSeries(bufThrow, sSeriesThrow);
@@ -346,22 +345,7 @@ public class IndividualTabController implements Initializable
     {
         sTableView.getItems().clear();
         
-        pickUpVals = con.getPickUpArray();
-        objectVals = con.getObjectArray();
-        timeVals = con.getTimeArray();
-        
-        AllVal[] vals = new AllVal[pickUpVals.length];
-        
-        for(int i = 0; i < pickUpVals.length; i++)
-        {
-            AllVal t = new AllVal(pickUpVals[i].getPosX(), pickUpVals[i].getPosY(), 
-                pickUpVals[i].getThrowNum(), pickUpVals[i].getTimestamp(), timeVals[i].getPickUpTime(), 
-                timeVals[i].getImagePTime(), timeVals[i].getThrowTime(), timeVals[i].getTotalTime(), objectVals[i].getRadius(), 
-                objectVals[i].getColour(), objectVals[i].getShape(), objectVals[i].getPic(), 
-                objectVals[i].isHitTarget(), objectVals[i].isPickTarget());
-            
-            vals[i] = t;
-        }
+        AllVal[] vals = con.getThrowNum();
         
         sThrowNum.setCellValueFactory(new PropertyValueFactory<>("throwNum"));
         sPosX.setCellValueFactory(new PropertyValueFactory<>("posX"));
@@ -393,10 +377,6 @@ public class IndividualTabController implements Initializable
     private void updateSTableView(int num)
     {
         sTableView.getItems().clear();
-        
-        pickUpVals = con.getPickUpArray();
-        objectVals = con.getObjectArray();
-        timeVals = con.getTimeArray();
         
         AllVal[] vals = con.getThrowNum(num);
         
@@ -430,10 +410,6 @@ public class IndividualTabController implements Initializable
     private void updateSTableView(int num1, int num2)
     {
         sTableView.getItems().clear();
-        
-        pickUpVals = con.getPickUpArray();
-        objectVals = con.getObjectArray();
-        timeVals = con.getTimeArray();
 
         AllVal[] vals = con.getThrowNum(num1, num2);
         
@@ -458,9 +434,9 @@ public class IndividualTabController implements Initializable
      * Takes to series and gets the differences between them. Returns the values in a new series object.
      * avg - sammenligningsseries.
      */
-    public XYChart.Series getDifSeries(XYChart.Series s1, XYChart.Series s2)
+    public Series getDifSeries(Series s1, Series s2)
     {
-        XYChart.Series res = new XYChart.Series();
+        Series res = new Series();
         Scanner in;
         double bufVal = 0, orgVal = 0;
         //ArrayList series1 = new ArrayList(s1.getData());
@@ -623,7 +599,7 @@ public class IndividualTabController implements Initializable
     
    
     
-    private void addSSeriesListener(BooleanProperty selected, final XYChart.Series series, TableView tv, LineChart lc) 
+    private void addSSeriesListener(BooleanProperty selected, final Series series, TableView tv, LineChart lc) 
     {
         MinMaxMessage mmm = new MinMaxMessage(series);
         
