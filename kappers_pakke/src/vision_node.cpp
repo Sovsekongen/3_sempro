@@ -5,6 +5,7 @@
 #include <kappers_pakke/LocalizePart.h>
 #include <tf/transform_listener.h>
 
+
 //callback code
 class Localizer{
 public:
@@ -25,7 +26,7 @@ public:
 //    ROS_INFO_STREAM(last_msg -> pose.pose);
   }
 
-  //callback service
+  //callback service function
   bool localizePart(kappers_pakke::LocalizePart::Request &req, kappers_pakke::LocalizePart::Response &res){
     fake_ar_publisher::ARMarkerConstPtr p = last_msg;
     ROS_INFO("pointer p updated");
