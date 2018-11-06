@@ -42,6 +42,7 @@ public:
     //kører en pickup rutine
     void pickupCallback(const ur_manager::ballPoseConstPtr& msg)
     {
+
         last_pose = msg;
         ROS_INFO_STREAM("PICKER: Pose recieved: \n Frame_id: "
                         << last_pose->header.frame_id
@@ -49,6 +50,9 @@ public:
                         << last_pose->pose);
 
         if (last_pose != nullptr){ //a pose was recieved!
+            //save radius for service call
+            radius = last_pose->radius;
+
             //transform pose to world frame
             this->getPoseInWorld();
 
@@ -146,6 +150,7 @@ private:
     ros::Subscriber pose_sub;
     ur_manager::ballPoseConstPtr last_pose;
     geometry_msgs::Pose cur_target;
+    double radius;
 
     //rviz debugger
     moveit::planning_interface::MoveGroupInterface::Plan thee_plan;
