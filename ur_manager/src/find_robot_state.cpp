@@ -27,6 +27,10 @@ int main(int argc, char **argv)
             ur5.getCurrentState()->getJointModelGroup(ur5_group);
     geometry_msgs::Pose pose;
     pose = ur5.getCurrentPose().pose;
+
+    //general robot info:
+    ROS_INFO_STREAM("EE-link: " << ur5.getEndEffectorLink()
+                    << "\nEE: " << ur5.getEndEffector());
     ROS_INFO_STREAM("Current pose: " << pose);
 
     //vars for saving found points

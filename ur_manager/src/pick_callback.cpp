@@ -15,7 +15,7 @@
 #define TOPIC "poses"
 #define WORLD_FRAME "world"
 #define CAM_FRAME "camera_frame"
-#define GRIPPER_OFFSET 0.19 //sørger for at gribberen IKKE kører ned i bordet
+#define GRIPPER_OFFSET 0.05 //sørger for at gribberen IKKE kører ned i bordet
 #define MOVE_GROUP "ur5_arm" //moveit navn for ur5 armen (uden gripper)
 #define HOME "standby" //ur5_arm default pose
 
