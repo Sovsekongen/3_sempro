@@ -14,42 +14,15 @@
 #define MOVE_GROUP "ur5_arm" //moveit navn for ur5 armen (uden gripper)
 #define HOME "standby" //ur5_arm default pose
 
-bool move_arm_srv(ur_manager::move::Request &req, ur_manager::move::Response &res){ //move to requested position
-    bool success = move_arm(req.pose);
-    if (success){
-        return true;
-    } else {
-        res.error = 255;
-        return false;
-    }
-}
-
-bool home_arm_srv(std_srvs::Empty::Request &req, std_srvs::Empty::Request &res){ //move arm to "standby"
-    moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP);
-    arm.setNumPlanningAttempts(10);
-    arm.setNamedTarget(HOME);
-
-    bool success
-            = (arm.plan(thee_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
-
-    if (success){
-        ROS_INFO("Moving arm");
-        arm.execute(thee_plan);
-        return true;
-    } else {
-        res.error = 255;
-        ROS_ERROR("Could not plan move!");
-        return false;
-    }
-}
-
-bool pick_srv(){ //pick object with wsg gripper - will make an approach
-    return true
-}
-
-bool move_arm(geometry_msgs::Pose target){ //move arm to a target
-    moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP);
+bool move_arm(geometry_msgs::Pose target, double scalingFactor){ //move arm to a target
+    moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP); // Der skal sættes en scalingfaktor på arm.
     moveit::planning_interface::MoveGroupInterface::Plan thee_plan;
+    if (0.0 < scalingFactor <= 1.0) {
+      arm.setMaxVelocityScalingFactor(scalingFactor);
+    }
+    else {
+      ROS_INFO("Error setting maximum velocity for robot joints. The specified value is either 0, lower than 0, or higher than 1.");
+    }
     arm.setNumPlanningAttempts(10);
     arm.setPoseTarget(target);
     bool success
@@ -63,6 +36,39 @@ bool move_arm(geometry_msgs::Pose target){ //move arm to a target
         ROS_ERROR("Could not plan move!");
         return false;
     }
+}
+
+bool move_arm_srv(ur_manager::move::Request &req, ur_manager::move::Response &res){ //move to requested position
+    bool success = move_arm(req.pose, req.scalingFactor); //Move_arm skal også have scalingfactor med som argument.
+    if (success){
+        return true;
+    } else {
+        res.error = 255;
+        return false;
+    }
+}
+
+bool home_arm_srv(std_srvs::Empty::Request &req, std_srvs::Empty::Request &res){ //move arm to "standby"
+    moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP);
+    moveit::planning_interface::MoveGroupInterface::Plan thee_plan;
+    arm.setNumPlanningAttempts(10);
+    arm.setNamedTarget(HOME);
+
+    bool success
+            = (arm.plan(thee_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+
+    if (success){
+        ROS_INFO("Moving arm");
+        arm.execute(thee_plan);
+        return true;
+    } else {
+        ROS_ERROR("Could not plan move!");
+        return false;
+    }
+}
+
+bool pick_srv(){ //pick object with wsg gripper - will make an approach
+    return true;
 }
 
 int main(int argc, char **argv)

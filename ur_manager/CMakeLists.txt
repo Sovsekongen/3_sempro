@@ -65,6 +65,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_service_files(
    FILES
    move.srv
+   pick.srv
 #   Service1.srv
 #   Service2.srv
  )
@@ -156,9 +157,10 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/ur_manager_node.cpp)
 add_executable(find_robot_state src/find_robot_state.cpp)
-add_executable(plan_exe_hardcoded_traj src/plan_exe_hardcoded_traj.cpp)
+#add_executable(plan_exe_hardcoded_traj src/plan_exe_hardcoded_traj.cpp)
 add_executable(plan_exe_hardcoded_joint src/plan_exe_hardcoded_joint.cpp)
 add_executable(pick_callback src/pick_callback.cpp)
+add_executable(ur_service src/ur_service.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -170,18 +172,21 @@ add_executable(pick_callback src/pick_callback.cpp)
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(find_robot_state ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(plan_exe_hardcoded_traj ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(plan_exe_hardcoded_traj ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(plan_exe_hardcoded_joint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(pick_callback ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(ur_service ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(find_robot_state ${catkin_LIBRARIES})
-target_link_libraries(plan_exe_hardcoded_traj ${catkin_LIBRARIES})
+#target_link_libraries(plan_exe_hardcoded_traj ${catkin_LIBRARIES})
 target_link_libraries(plan_exe_hardcoded_joint ${catkin_LIBRARIES})
 target_link_libraries(pick_callback ${catkin_LIBRARIES})
+target_link_libraries(ur_service ${catkin_LIBRARIES})
+
 
 #############
 ## Install ##

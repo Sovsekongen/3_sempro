@@ -1,3 +1,9 @@
+/* TODO
+ * TCP på model
+ * Stik på model
+ * TID!
+ */
+
 #include "ros/ros.h"
 #include <moveit/move_group_interface/move_group_interface.h> //styring af robot
 #include <tf/transform_listener.h> //til at transformere mellem frames
@@ -9,7 +15,7 @@
 #define TOPIC "poses"
 #define WORLD_FRAME "world"
 #define CAM_FRAME "camera_frame"
-#define GRIPPER_OFFSET 0.19 //sørger for at gribberen IKKE kører ned i bordet
+#define GRIPPER_OFFSET 0.05 //sørger for at gribberen IKKE kører ned i bordet
 #define MOVE_GROUP "ur5_arm" //moveit navn for ur5 armen (uden gripper)
 #define HOME "standby" //ur5_arm default pose
 
@@ -99,7 +105,7 @@ public:
         moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP);
         arm.setNumPlanningAttempts(10);
         geometry_msgs::Pose approach = cur_target; //buffer mål
-        approach.position.z += 0.2; //sæt buffer 2cm over target - for at konpensere for griber
+        approach.position.z += 0.2; //sæt buffer 20cm over target - for at konpensere for griber
         //læg mærke til at armen skal samle op lige ovenfra - dette begrænser rækkevide!
 
 
@@ -133,7 +139,7 @@ public:
 
             if (success){
                 ROS_INFO("PICKER - moving to grasp!");
-                arm.move();
+                arm.execute(thee_plan);
             } else {
                 ROS_ERROR("NO PLAN");
                 break;

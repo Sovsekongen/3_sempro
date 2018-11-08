@@ -12,6 +12,9 @@
     <!-- camera frame (virtual) -->
     <link name="camera_frame" />
 
+    <!-- actual TCP (virtual) -->
+    <link name="act_tcp"/>
+
     <!-- table -->
     <link name="table">
         <visual>
@@ -117,9 +120,53 @@
         <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
     </xacro:macro>-->
 
-    <xacro:wsg_50_xacro name="wsg" parent="ee_link" finger_length="0.03" finger_tip="0.02">
-        <origin xyz="0 0 0" rpy="-${pi/2} -${pi} -${pi/2}"/>
+
+    <!-- gripper construction -->
+    <link name="gripper_disc">
+        <visual>
+            <geometry>
+                <cylinder radius="0.04" length="0.02" />
+            </geometry>
+            <material name="light_gray">
+                <color rgba="0.9 0.9 0.9 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.04" length="0.02" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="gripper_plugs">
+        <visual>
+            <geometry>
+                <box size="0.025 0.03 0.055" />
+            </geometry>
+            <material name="pale_green">
+                <color rgba="0.1 1.0 0 0.8" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.025 0.03 0.055" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="gripper_disc_to_robot" type="fixed">
+        <origin xyz="0.01 0 0" rpy="0 ${pi/2} 0"/>
+        <parent link="ee_link"/>
+        <child link="gripper_disc"/>
+    </joint>
+    <xacro:wsg_50_xacro name="wsg" parent="gripper_disc" finger_length="0.048" finger_tip="0.004">
+        <origin xyz="0 0 0.01" rpy="${pi} -${pi} -${pi/2}"/>
     </xacro:wsg_50_xacro>
+    <joint name="gripper_plugs_to_wsg_base" type="fixed">
+        <origin xyz="-0.087 0 -0.012" rpy="0 0 0"/>
+        <parent link="wsg_base_link"/>
+        <child link="gripper_plugs"/>
+    </joint>
 
     <!-- ***JOINTS*** -->
     <joint name="table_top_to_world" type="fixed">
@@ -164,6 +211,13 @@
         <origin xyz="0 0 0.035" rpy="0 0 ${pi}"/>
         <parent link="camera"/>
         <child link="camera_frame"/>
+    </joint>
+
+    <!--Set TCP postition-->
+    <joint name="tcp_to_robot" type="fixed">
+        <origin xyz="0 0 0.1655" rpy="0 0 0"/>
+        <parent link="tool0"/>
+        <child link="act_tcp"/>
     </joint>
 
     <!--Connect gripper to robot-->
