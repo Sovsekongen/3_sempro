@@ -1,6 +1,6 @@
 #req
 geometry_msgs/Pose pose
-float32 scalingFactor
+uint32 radius
 ---
 #res
 uint8 error

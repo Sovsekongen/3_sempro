@@ -14,15 +14,9 @@
 #define MOVE_GROUP "ur5_arm" //moveit navn for ur5 armen (uden gripper)
 #define HOME "standby" //ur5_arm default pose
 
-bool move_arm(geometry_msgs::Pose target, double scalingFactor){ //move arm to a target
-    moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP); // Der skal sættes en scalingfaktor på arm.
+bool move_arm(geometry_msgs::Pose target){ //move arm to a target
+    moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP);
     moveit::planning_interface::MoveGroupInterface::Plan thee_plan;
-    if (0.0 < scalingFactor <= 1.0) {
-      arm.setMaxVelocityScalingFactor(scalingFactor);
-    }
-    else {
-      ROS_INFO("Error setting maximum velocity for robot joints. The specified value is either 0, lower than 0, or higher than 1.");
-    }
     arm.setNumPlanningAttempts(10);
     arm.setPoseTarget(target);
     bool success
@@ -39,7 +33,7 @@ bool move_arm(geometry_msgs::Pose target, double scalingFactor){ //move arm to a
 }
 
 bool move_arm_srv(ur_manager::move::Request &req, ur_manager::move::Response &res){ //move to requested position
-    bool success = move_arm(req.pose, req.scalingFactor); //Move_arm skal også have scalingfactor med som argument.
+    bool success = move_arm(req.pose);
     if (success){
         return true;
     } else {
