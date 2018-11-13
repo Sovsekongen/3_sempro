@@ -9,7 +9,8 @@
   <arg     if="$(arg config)" name="command_args" value="-d $(find throw_cell_moveit_config)/launch/moveit.rviz" />
 
   <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
-	args="$(arg command_args)" output="screen">
+        args="$(arg command_args)">
+        <!--output="screen"-->
     <rosparam command="load" file="$(find throw_cell_moveit_config)/config/kinematics.yaml"/>
   </node>
 

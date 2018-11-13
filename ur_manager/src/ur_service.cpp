@@ -17,23 +17,28 @@
 bool move_arm(geometry_msgs::Pose target, double scalingFactor){ //move arm to a target
     moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP); // Der skal sættes en scalingfaktor på arm.
     moveit::planning_interface::MoveGroupInterface::Plan thee_plan;
-    if (0.0 < scalingFactor <= 1.0) {
+
+    ROS_INFO_STREAM("UR_SERVICE: arm_ref_frame: " << arm.getPoseReferenceFrame());
+
+    if (0.0 < scalingFactor && scalingFactor <= 1.0) {
       arm.setMaxVelocityScalingFactor(scalingFactor);
     }
     else {
-      ROS_INFO("Error setting maximum velocity for robot joints. The specified value is either 0, lower than 0, or higher than 1.");
+      ROS_WARN("UR_SERVICE: Error setting maximum velocity for robot joints. The specified value is either 0, lower than 0, or higher than 1.");
     }
     arm.setNumPlanningAttempts(10);
     arm.setPoseTarget(target);
+    arm.setStartStateToCurrentState();
+
     bool success
             = (arm.plan(thee_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
 
     if (success){
-        ROS_INFO("Moving arm");
+        ROS_INFO("UR_SERVICE: Moving arm");
         arm.execute(thee_plan);
         return true;
     } else {
-        ROS_ERROR("Could not plan move!");
+        ROS_ERROR("UR_SERVICE: Could not plan move!");
         return false;
     }
 }
@@ -53,16 +58,17 @@ bool home_arm_srv(std_srvs::Empty::Request &req, std_srvs::Empty::Request &res){
     moveit::planning_interface::MoveGroupInterface::Plan thee_plan;
     arm.setNumPlanningAttempts(10);
     arm.setNamedTarget(HOME);
+    arm.setStartStateToCurrentState();
 
     bool success
             = (arm.plan(thee_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
 
     if (success){
-        ROS_INFO("Moving arm");
+        ROS_INFO("UR_SERVICE: Moving arm");
         arm.execute(thee_plan);
         return true;
     } else {
-        ROS_ERROR("Could not plan move!");
+        ROS_ERROR("UR_SERVICE: Could not plan move!");
         return false;
     }
 }
@@ -74,9 +80,11 @@ bool pick_srv(){ //pick object with wsg gripper - will make an approach
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "ur_service");
-    ros::NodeHandle nh;
+    ros::NodeHandle nh("~");
     ros::AsyncSpinner spin(2);
     spin.start();
+
+    ROS_INFO("UR_services available now!");
 
     ros::ServiceServer move_armSS, home_armSS;
 

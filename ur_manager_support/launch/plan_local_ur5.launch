@@ -3,4 +3,6 @@
         <arg name="sim" value="false"/>
         <arg name="robot_ip" value="127.0.0.1"/>
     </include>
+
+    <include file="$(find ur_manager_support)/launch/launch_exu_nodes.launch"/>
 </launch>
