@@ -17,7 +17,8 @@ void CallBackFunc(int event, int x, int y, int, void*){
         pt.x = x;
         pt.y = y;
         pixelCoor.push_back(pt);
-        std::cout << pt.x << pt.y << std::endl;
+        std::cout << pt.x  << " " << pt.y << std::endl;
+
 
     }
 }
@@ -32,7 +33,7 @@ int main(int argc, char **argv)
     ros::Publisher pub = n.advertise<std_msgs::Float32MultiArray>("array", 1000);
 
     std::vector<cv::String> fileNames;
-    cv::glob("/home/mads/Documents/billeder/calibration/calibration/Image*.png", fileNames, false);
+    cv::glob("/home/peter/images/Image*.png", fileNames, false);
     cv::Size patternSize(14 - 1, 11 - 1);
     std::vector<std::vector<cv::Point2f> > q(fileNames.size());
     cv::TermCriteria term;
@@ -115,60 +116,67 @@ int main(int argc, char **argv)
     cv::initUndistortRectifyMap(K, k, cv::Matx33f::eye(), K, frameSize, CV_32FC1,mapX, mapY);
 
     // Opstille perspektiv-matrice
-      cv::Mat input = cv::imread(fileNames.at(0));
+      cv::Mat input = cv::imread("/home/peter/image_cali2.png", cv::IMREAD_COLOR);
       cv::Mat output;
       cv::undistort(input,output,K,k);
-      cv::namedWindow("caliwindow",cv::WINDOW_FREERATIO);
-      cv::imshow("caliwindow",output);
+//      cv::namedWindow("caliwindow",cv::WINDOW_FREERATIO);
+//      cv::imshow("caliwindow",output);
 
-      std::cout << "Please double click to add point to array" << std::endl;
+//      std::cout << "Please double click to add point to array" << std::endl;
+//      char keypress;
 
-    //  while(true){
-    //       cv::setMouseCallback("caliwindow", CallBackFunc);
-    //       keypress = cv::waitKey();
-    //      if(keypress == 'q'){
-    //        //  cv::destroyAllWindows();
-    //          break;
-    //      }
-    //    }
+//      while(true){
+//           cv::setMouseCallback("caliwindow", CallBackFunc);
+//           keypress = cv::waitKey();
+//          if(keypress == 'q'){
+//            //  cv::destroyAllWindows();
+//              break;
+//          }
+//        }
 
 
-    // for(unsigned int i = 0; i < pixelCoor.size() ;++i){
-    //    std::cout << pixelCoor[i].x << "," << pixelCoor[i].y << std::endl;
-    // }
+//     for(unsigned int i = 0; i < pixelCoor.size() ;++i){
+//        std::cout << pixelCoor[i].x << "," << pixelCoor[i].y << std::endl;
+//     }
 
      //top-left:    99,173
      //top-right:   928,164
      //buttom-left: 89,1078
      //buttom-right:939,1078
-     pixelCoor.at(0).x = 99;
-     pixelCoor.at(0).y = 173;
-     pixelCoor.at(1).x = 928;
-     pixelCoor.at(1).y = 164;
-     pixelCoor.at(2).x = 89;
-     pixelCoor.at(2).y = 1078;
-     pixelCoor.at(3).x = 939;
-     pixelCoor.at(3).y = 1078;
+     pixelCoor.at(0).x = 54;
+     pixelCoor.at(0).y = 1042;
+     pixelCoor.at(1).x = 41;
+     pixelCoor.at(1).y = 29;
+     pixelCoor.at(2).x = 1428;
+     pixelCoor.at(2).y = 4;
+     pixelCoor.at(3).x = 1435;
+     pixelCoor.at(3).y = 1030;
+//     pixelCoor.at(4).x = 48;
+//     pixelCoor.at(4).y = 545;
 
 
      //Definere møtrikker på det fysiske bord i forhold til hinanden
-        // Øverste venstre hjørne er 0,0
+        // midt på bordet er 0,0
      realCoor.at(0).y = 0;
      realCoor.at(0).x = 0;
         //Øverste højre hjørne
      realCoor.at(1).y = 0;
-     realCoor.at(1).x = 1000;
+     realCoor.at(1).x = 914;
         //Nederste venstre hjørne
-     realCoor.at(2).y = 1000;
-     realCoor.at(2).x = 0;
+     realCoor.at(2).y = 1245;
+     realCoor.at(2).x = 914;
         //Nederste højre hjørne
-     realCoor.at(3).y = 1000;
-     realCoor.at(3).x = 1000;
+     realCoor.at(3).y = 1245;
+     realCoor.at(3).x = 0;
 
-     cv::Mat result((int)realCoor.at(3).y,(int)realCoor.at(3).x,output.type());
+//     realCoor.at(4).y = -645;
+//     realCoor.at(4).x = 0;
+
+
+     cv::Mat result(1245,914, output.type());
 
        cv::Mat perspective_matrix = cv::getPerspectiveTransform(pixelCoor,realCoor);
-       cv::warpPerspective(output, result,perspective_matrix,result.size(),CV_INTER_LINEAR);
+       cv::warpPerspective(output, result, perspective_matrix,result.size(),CV_INTER_LINEAR);
 
        std::cout << perspective_matrix << std::endl;
 
