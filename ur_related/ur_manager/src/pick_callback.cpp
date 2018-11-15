@@ -5,7 +5,8 @@
 #include "ros/ros.h"
 #include <moveit/move_group_interface/move_group_interface.h> //styring af robot
 #include <tf/transform_listener.h> //til at transformere mellem frames
-#include "ur_manager/ballPose.h" //topic
+//#include "opencv/ballPose.h" // topic [TIL Peter]
+#include "ur_manager/ballPose.h" // [til Kasper]
 #include <chrono>
 
 //services
@@ -43,14 +44,15 @@ public:
         wsg_release_cli = nh.serviceClient<wsg_50_common::Move>(RELEASE_SRV);
 
         //subscriber til TOPIC
-        pose_sub = nh.subscribe<ur_manager::ballPose>(TOPIC, 1, &Picker::pickupCallback, this);
+//        pose_sub = nh.subscribe<opencv::ballPose>(TOPIC, 1, &Picker::pickupCallback, this); //[til Peter]
+        pose_sub = nh.subscribe<ur_manager::ballPose>(TOPIC, 1, &Picker::pickupCallback, this); //[til Kasper]
         //kun én messege bliver i køen
 
 
     }
 
     //kører en pickup rutine
-    void pickupCallback(const ur_manager::ballPoseConstPtr& msg)
+    void pickupCallback(const opencv::ballPoseConstPtr& msg)
     {
 
         //start time
@@ -65,7 +67,8 @@ public:
 
         if (last_pose != nullptr){ //a pose was recieved!
 //            //save radius for service call
-            radius = last_pose->radius;
+//            radius = last_pose->radius;
+            radius = 60; //hardcoded
             grip_call.request.speed = 420;
             grip_call.request.width = radius;
             release_call.request.speed = 420;
@@ -215,7 +218,8 @@ public:
 private:
     tf::TransformListener listener;
     ros::Subscriber pose_sub;
-    ur_manager::ballPoseConstPtr last_pose;
+//    opencv::ballPoseConstPtr last_pose; //til peter
+    ur_manager::ballPoseConstPtr last_pose; //til kasper
     geometry_msgs::Pose cur_target;
     geometry_msgs::Pose approach;
     double radius;
