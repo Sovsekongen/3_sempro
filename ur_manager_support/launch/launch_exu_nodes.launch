@@ -1,7 +1,0 @@
-<launch>
-    <!--UR SERVICES-->
-    <node name="ur_service_node" pkg="ur_manager" type="ur_service" output="screen"/>
-
-    <!--PICKER NODE-->
-    <node name="picker_node" pkg="ur_manager" type="pick_callback" output="screen"/>
-</launch>
