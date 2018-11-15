@@ -72,9 +72,14 @@ public:
             release_call.request.width = 100;
 
             //transform pose to world frame
-            this->getPoseInWorld();
+            bool cor_frame = this->getPoseInWorld();
+            if (!cor_frame){
+                ROS_INFO_STREAM("PICKER recieved wrong frame on topic - recieved: " << last_pose->header.frame_id);
+                return;
+            }
 
             //set target til request
+            ur_move_call.request.frame_id = WORLD_FRAME;
             ur_move_call.request.pose = approach;
             ur_move_call.request.scalingFactor = 1.0;
             ROS_INFO_STREAM("PICKER: request to move_arm_srv: " << ur_move_call.request.pose);
@@ -123,7 +128,10 @@ public:
     }
 
     //omregner pose fra kamera frame til world frame
-    void getPoseInWorld(){
+    bool getPoseInWorld(){ //wrong frame
+        if (last_pose->header.frame_id != CAM_FRAME)
+            return false;
+
         tf::Transform cam_to_target;
         tf::poseMsgToTF(last_pose->pose, cam_to_target);
         //omregner object
@@ -142,7 +150,7 @@ public:
         approach.position.z += 0.1;
         ROS_INFO_STREAM("PICKER: Pose in World frame:\n"
                         << cur_target);
-        return;
+        return true;
     }
 
     bool readyToMove(){
@@ -194,7 +202,7 @@ public:
                 ROS_INFO("PICKER - moving to grasp!");
                 arm.execute(thee_plan);std::chrono::milliseconds end_time;
             } else {
-                ROS_ERROR("NO PLAN");
+                ROS_ERROR("PICKER - NO PLAN");
                 break;
             }
         } while(false); //kør loop én gang, men muliggør break

@@ -3,6 +3,10 @@
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
 #include <moveit_msgs/DisplayRobotState.h>
 #include <moveit_msgs/DisplayTrajectory.h>
+#include <moveit_msgs/RobotTrajectory.h> //to publish on topic /ur_driver/joint_speed
+#include <trajectory_msgs/JointTrajectory.h>
+#include <trajectory_msgs/JointTrajectoryPoint.h>
+#include <cmath>
 
 #include <string>
 #include <vector>
@@ -19,6 +23,8 @@ int main(int argc, char **argv)
     ros::AsyncSpinner spinner(1);
     spinner.start();
     ROS_INFO("Plan & execute hardcoded joint values!");
+
+    ros::Publisher publ = nh.advertise<trajectory_msgs::JointTrajectory>("/ur_driver/joint_speed", 1);
 
     const std::string GROUP = "ur5_arm"; //move group name
     moveit::planning_interface::MoveGroupInterface move_group(GROUP); //the move-group object
@@ -54,22 +60,35 @@ int main(int argc, char **argv)
 
     //attempt to speed up things:
     if (success){
-        double speed = 1.1;
-        moveit::planning_interface::MoveGroupInterface::Plan fast_plan = speed_up_plan(my_plan, speed);
+        double speed = 1.0;
+        //moveit::planning_interface::MoveGroupInterface::Plan fast_plan = speed_up_plan(my_plan, speed);
+
+        //TEST
+        trajectory_msgs::JointTrajectory traj;
+//        traj = my_plan.trajectory_.joint_trajectory;
+        trajectory_msgs::JointTrajectoryPoint point;
+        point = my_plan.trajectory_.joint_trajectory.points[5];
+        traj.points.push_back(point);
+
+        //traj.points[0] = traj.points[traj.points.size()];
+
+        ROS_INFO_STREAM("TEST: " << traj);
+
+       publ.publish(traj);
+
+        ROS_INFO("TEST - published");
 
         //some debug:
-        std::cout << "my_plan time from start: "
-                  << my_plan.trajectory_.joint_trajectory.points[1].time_from_start.sec
-                  << std::endl;
-        std::cout << "my_plan time from start: "
-                  << fast_plan.trajectory_.joint_trajectory.points[1].time_from_start.sec
-                  << std::endl;
+//        ROS_INFO_STREAM("FAST_PLAN: " << "my_plan time from start: "
+//                  << my_plan.trajectory_.joint_trajectory.points[1].time_from_start.sec);
+//        ROS_INFO_STREAM("FAST_PLAN: " << "my_plan time from start: "
+//                  << fast_plan.trajectory_.joint_trajectory.points[1].time_from_start.sec);
 
         ROS_INFO("excuting fast plan!!!!");
         ros::Duration(3).sleep();
 //        move_group.setMaxVelocityScalingFactor(0.1);
 //        move_group.setMaxAccelerationScalingFactor(0.1);
-        move_group.execute(fast_plan);
+        //move_group.execute(fast_plan);
     }
 
 //    joint_positions[1] = -0.5;
@@ -78,26 +97,60 @@ int main(int argc, char **argv)
 //    move_group.execute(my_plan);
 }
 
+//moveit::planning_interface::MoveGroupInterface::Plan speed_up_plan(
+//        moveit::planning_interface::MoveGroupInterface::Plan &plan, double scale){
+//    moveit::planning_interface::MoveGroupInterface::Plan new_plan;
+//    new_plan.trajectory_.joint_trajectory = plan.trajectory_.joint_trajectory;
+//    int num_joints = new_plan.trajectory_.joint_trajectory.joint_names.size();
+//    int num_points = new_plan.trajectory_.joint_trajectory.points.size();
+
+//    //scale points
+//    for (int i = 0; i < num_points; i++){
+//        new_plan.trajectory_.joint_trajectory.points[i].time_from_start.sec =
+//                new_plan.trajectory_.joint_trajectory.points[i].time_from_start.toSec() / scale;
+//        for (int j = 0; j < num_joints; j++){
+//            new_plan.trajectory_.joint_trajectory.points[i].velocities[j] *= scale;
+
+//            new_plan.trajectory_.joint_trajectory.points[i].accelerations[j] *= std::pow(scale, 2);
+
+//            new_plan.trajectory_.joint_trajectory.points[i].positions[j] =
+//                    plan.trajectory_.joint_trajectory.points[i].positions[j];
+//        }
+//    }
+
+//    return new_plan;
+//}
+
 moveit::planning_interface::MoveGroupInterface::Plan speed_up_plan(
         moveit::planning_interface::MoveGroupInterface::Plan &plan, double scale){
+
     moveit::planning_interface::MoveGroupInterface::Plan new_plan;
-    new_plan.trajectory_.joint_trajectory = plan.trajectory_.joint_trajectory;
+    new_plan.trajectory_ = plan.trajectory_;
+
+    std::vector<trajectory_msgs::JointTrajectoryPoint> points;
+
     int num_joints = new_plan.trajectory_.joint_trajectory.joint_names.size();
     int num_points = new_plan.trajectory_.joint_trajectory.points.size();
 
-    //scale points
+    //scaling
     for (int i = 0; i < num_points; i++){
-        new_plan.trajectory_.joint_trajectory.points[i].time_from_start.sec =
-                new_plan.trajectory_.joint_trajectory.points[i].time_from_start.toSec() / scale;
+        trajectory_msgs::JointTrajectoryPoint point;
+        point.time_from_start.sec = plan.trajectory_.joint_trajectory.points[i].time_from_start.toSec() / scale;
+        point.velocities = plan.trajectory_.joint_trajectory.points[i].velocities;
+        point.accelerations = plan.trajectory_.joint_trajectory.points[i].accelerations;
+        point.positions = plan.trajectory_.joint_trajectory.points[i].positions;
+
         for (int j = 0; j < num_joints; j++){
-            new_plan.trajectory_.joint_trajectory.points[i].velocities[j] *= scale;
-
-            new_plan.trajectory_.joint_trajectory.points[i].accelerations[j] *= scale;
-
-            new_plan.trajectory_.joint_trajectory.points[i].positions[j] =
-                    plan.trajectory_.joint_trajectory.points[i].positions[j];
+            point.velocities[j] *= scale;
+            point.accelerations[j] *= scale * scale;
         }
+
+        points.push_back(point);
     }
 
+    new_plan.trajectory_.joint_trajectory.points = points;
+
     return new_plan;
+
+
 }
