@@ -1,6 +1,0 @@
-#req
-geometry_msgs/Pose pose
-uint32 radius
----
-#res
-uint8 error
