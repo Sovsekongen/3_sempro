@@ -1,0 +1,7 @@
+#req
+string frame_id
+geometry_msgs/Pose pose
+float32 scalingFactor
+---
+#res
+uint8 error
