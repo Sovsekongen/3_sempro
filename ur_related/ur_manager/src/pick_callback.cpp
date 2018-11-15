@@ -52,7 +52,8 @@ public:
     }
 
     //kører en pickup rutine
-    void pickupCallback(const opencv::ballPoseConstPtr& msg)
+//    void pickupCallback(const opencv::ballPoseConstPtr& msg) //til peter
+    void pickupCallback(const ur_manager::ballPoseConstPtr& msg) //til kasper
     {
 
         //start time
