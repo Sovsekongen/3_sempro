@@ -14,10 +14,12 @@
 #include <std_srvs/Empty.h>
 #include "wsg_50_common/Move.h"
 
-#include "std_msgs/String.h"
+#include <std_msgs/String.h>
+#include <std_msgs/Empty.h>
 
 //defined vars
-#define TOPIC "poses"
+#define POSE_TOPIC "poses" //where ball-poses are published
+#define PICK_UP_STATE_TOPIC "pickup_state"
 #define WORLD_FRAME "world"
 #define CAM_FRAME "camera_frame"
 #define GRIPPER_OFFSET 0.05 //sørger for at gribberen IKKE kører ned i bordet
@@ -44,10 +46,12 @@ public:
         wsg_release_cli = nh.serviceClient<wsg_50_common::Move>(RELEASE_SRV);
 
         //subscriber til TOPIC
-//        pose_sub = nh.subscribe<opencv::ballPose>(TOPIC, 1, &Picker::pickupCallback, this); //[til Peter]
-        pose_sub = nh.subscribe<ur_manager::ballPose>(TOPIC, 1, &Picker::pickupCallback, this); //[til Kasper]
+//        pose_sub = nh.subscribe<opencv::ballPose>(POSE_TOPIC, 1, &Picker::pickupCallback, this); //[til Peter]
+        pose_sub = nh.subscribe<ur_manager::ballPose>(POSE_TOPIC, 1, &Picker::pickupCallback, this); //[til Kasper]
         //kun én messege bliver i køen
 
+        //state publisher
+        pickup_state_pub = nh.advertise<std_msgs::Empty>(PICK_UP_STATE_TOPIC, 1);
 
     }
 
@@ -129,6 +133,10 @@ public:
         std::chrono::milliseconds total_time = end_time - start_time;
         ROS_INFO_STREAM("PICKER: Pickup time: " << total_time.count() << "ms");
 
+        //publish to pickup_state
+        //Will trigger new image prossecing!
+        pickup_state_pub.publish(state_msg);
+
     }
 
     //omregner pose fra kamera frame til world frame
@@ -157,7 +165,7 @@ public:
         return true;
     }
 
-    bool readyToMove(){
+    bool readyToMove(){ /*(deprecated)*/
         if (!last_pose)
             return false;
 
@@ -165,7 +173,7 @@ public:
         return true;
     }
 
-    void moveToPickUp(/*moveit::planning_interface::MoveGroupInterface &group*/){
+    void moveToPickUp(/*moveit::planning_interface::MoveGroupInterface &group*/){ /*(deptrecated)*/
         //arm object
         moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP);
         arm.setNumPlanningAttempts(10);
@@ -224,6 +232,10 @@ private:
     geometry_msgs::Pose cur_target;
     geometry_msgs::Pose approach;
     double radius;
+
+    //publisher for pickupstate
+    ros::Publisher pickup_state_pub;
+    std_msgs::Empty state_msg;
 
     //service clients
     ros::ServiceClient ur_home_cli;
