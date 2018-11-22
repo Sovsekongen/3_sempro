@@ -39,10 +39,10 @@
         <joint name="wrist_3_joint" value="0" />
     </group_state>
     <group_state name="throw_prime" group="ur5_arm">
-        <joint name="elbow_joint" value="-0.725" />
-        <joint name="shoulder_lift_joint" value="-3.1415" />
-        <joint name="shoulder_pan_joint" value="-1.57" />
-        <joint name="wrist_1_joint" value="-1.2773" />
+        <joint name="elbow_joint" value="-0.4143" />
+        <joint name="shoulder_lift_joint" value="-2.8308" />
+        <joint name="shoulder_pan_joint" value="-2.0368" />
+        <joint name="wrist_1_joint" value="0.4143" />
         <joint name="wrist_2_joint" value="1.57" />
         <joint name="wrist_3_joint" value="0" />
     </group_state>
@@ -50,9 +50,6 @@
     <end_effector name="wsg_gripper" parent_link="tool0" group="wsg" parent_group="ur5_arm" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="world_ref_frame" type="fixed" parent_frame="world" child_link="world" />
-    <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
-    <passive_joint name="wsg_finger_left_joint" />
-    <passive_joint name="wsg_finger_right_joint" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_link" link2="camera" reason="Never" />
     <disable_collisions link1="base_link" link2="post_close" reason="Never" />
@@ -61,6 +58,7 @@
     <disable_collisions link1="base_link" link2="shoulder_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="table" reason="Default" />
     <disable_collisions link1="base_link" link2="table_top" reason="Adjacent" />
+    <disable_collisions link1="camera" link2="dummy_grippers" reason="Never" />
     <disable_collisions link1="camera" link2="ee_link" reason="Never" />
     <disable_collisions link1="camera" link2="forearm_link" reason="Never" />
     <disable_collisions link1="camera" link2="gripper_disc" reason="Never" />
@@ -80,6 +78,18 @@
     <disable_collisions link1="camera" link2="wsg_finger_right" reason="Never" />
     <disable_collisions link1="camera" link2="wsg_gripper_left" reason="Never" />
     <disable_collisions link1="camera" link2="wsg_gripper_right" reason="Never" />
+    <disable_collisions link1="dummy_grippers" link2="ee_link" reason="Never" />
+    <disable_collisions link1="dummy_grippers" link2="gripper_disc" reason="Never" />
+    <disable_collisions link1="dummy_grippers" link2="gripper_plugs" reason="Never" />
+    <disable_collisions link1="dummy_grippers" link2="post_far" reason="Never" />
+    <disable_collisions link1="dummy_grippers" link2="wrist_1_link" reason="Never" />
+    <disable_collisions link1="dummy_grippers" link2="wrist_2_link" reason="Never" />
+    <disable_collisions link1="dummy_grippers" link2="wrist_3_link" reason="Never" />
+    <disable_collisions link1="dummy_grippers" link2="wsg_base_link" reason="Adjacent" />
+    <disable_collisions link1="dummy_grippers" link2="wsg_finger_left" reason="Default" />
+    <disable_collisions link1="dummy_grippers" link2="wsg_finger_right" reason="Default" />
+    <disable_collisions link1="dummy_grippers" link2="wsg_gripper_left" reason="Default" />
+    <disable_collisions link1="dummy_grippers" link2="wsg_gripper_right" reason="Default" />
     <disable_collisions link1="ee_link" link2="gripper_disc" reason="Adjacent" />
     <disable_collisions link1="ee_link" link2="gripper_plugs" reason="Never" />
     <disable_collisions link1="ee_link" link2="post_far" reason="Never" />
@@ -143,7 +153,6 @@
     <disable_collisions link1="post_top" link2="wrist_2_link" reason="Never" />
     <disable_collisions link1="post_top" link2="wrist_3_link" reason="Never" />
     <disable_collisions link1="post_top" link2="wsg_base_link" reason="Never" />
-    <disable_collisions link1="post_top" link2="wsg_finger_right" reason="Never" />
     <disable_collisions link1="post_top" link2="wsg_gripper_left" reason="Never" />
     <disable_collisions link1="post_top" link2="wsg_gripper_right" reason="Never" />
     <disable_collisions link1="shoulder_link" link2="table" reason="Never" />
@@ -173,6 +182,8 @@
     <disable_collisions link1="wsg_base_link" link2="wsg_gripper_left" reason="Adjacent" />
     <disable_collisions link1="wsg_base_link" link2="wsg_gripper_right" reason="Adjacent" />
     <disable_collisions link1="wsg_finger_left" link2="wsg_gripper_left" reason="Adjacent" />
+    <disable_collisions link1="wsg_finger_left" link2="wsg_gripper_right" reason="Never" />
+    <disable_collisions link1="wsg_finger_right" link2="wsg_gripper_left" reason="Never" />
     <disable_collisions link1="wsg_finger_right" link2="wsg_gripper_right" reason="Adjacent" />
     <disable_collisions link1="wsg_gripper_left" link2="wsg_gripper_right" reason="Never" />
 </robot>

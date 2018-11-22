@@ -28,8 +28,10 @@
 
 #define MOVE_SRV "/ur_service_node/move_arm"
 #define HOME_SRV "/ur_service_node/home_arm"
+#define PRIME_SRV "/ur_service_node/prime_arm"
 #define GRIP_SRV "/wsg_50_driver/grasp"
 #define RELEASE_SRV "/wsg_50_driver/release"
+#define THROW_SRV "/ur_script_service_node/throw_v1"
 
 //DEBUG VAR
 #define DEBUG false
@@ -42,8 +44,10 @@ public:
         //services
         ur_home_cli = nh.serviceClient<std_srvs::Empty>(HOME_SRV);
         ur_move_cli = nh.serviceClient<ur_manager::move>(MOVE_SRV);
+        ur_prime_cli = nh.serviceClient<std_srvs::Empty>(PRIME_SRV);
         wsg_grip_cli = nh.serviceClient<wsg_50_common::Move>(GRIP_SRV);
         wsg_release_cli = nh.serviceClient<wsg_50_common::Move>(RELEASE_SRV);
+        throw_cli = nh.serviceClient<std_srvs::Empty>(THROW_SRV);
 
         //subscriber til TOPIC
 //        pose_sub = nh.subscribe<opencv::ballPose>(POSE_TOPIC, 1, &Picker::pickupCallback, this); //[til Peter]
@@ -73,7 +77,7 @@ public:
         if (last_pose != nullptr){ //a pose was recieved!
 //            //save radius for service call
 //            radius = last_pose->radius;
-            radius = 60; //hardcoded
+            radius = 64; //hardcoded ball radius
             grip_call.request.speed = 420;
             grip_call.request.width = radius;
             release_call.request.speed = 420;
@@ -116,9 +120,17 @@ public:
 
             }while(false); //kør én gang
 
-            //kør hjem igen
-            ur_home_cli.call(ur_home_call);
+
+            ur_home_cli.call(emp_call); //standby
+            ur_prime_cli.call(emp_call); //ryk arm tilbage
+            throw_cli.call(emp_call); //kaste move
+
+            //wait for release
+            usleep(250000); //500000 (slam dunk WORKS! //[400000, 350000] hits the backboard //250000 is a nice loop
             wsg_release_cli.call(release_call);
+
+             //kør hjem igen
+            ur_home_cli.call(emp_call);
 
 //            this->moveToPickUp();
         } else {
@@ -140,7 +152,7 @@ public:
     }
 
     //omregner pose fra kamera frame til world frame
-    bool getPoseInWorld(){ //wrong frame
+    bool getPoseInWorld(){
         if (last_pose->header.frame_id != CAM_FRAME)
             return false;
 
@@ -240,14 +252,16 @@ private:
     //service clients
     ros::ServiceClient ur_home_cli;
     ros::ServiceClient ur_move_cli;
+    ros::ServiceClient ur_prime_cli;
     ros::ServiceClient wsg_grip_cli;
     ros::ServiceClient wsg_release_cli;
+    ros::ServiceClient throw_cli;
 
     //service objects
     wsg_50_common::Move grip_call;
     wsg_50_common::Move release_call;
     ur_manager::move ur_move_call;
-    std_srvs::Empty ur_home_call;
+    std_srvs::Empty emp_call;
 
     //move_group planning
     moveit::planning_interface::MoveGroupInterface::Plan thee_plan;

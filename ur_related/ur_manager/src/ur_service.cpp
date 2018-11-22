@@ -11,8 +11,10 @@
 
 #define MOVE_SRV "move_arm"
 #define HOME_SRV "home_arm"
+#define PRIME_SRV "prime_arm"
 #define MOVE_GROUP "ur5_arm" //moveit navn for ur5 armen (uden gripper)
 #define HOME "standby" //ur5_arm default pose
+#define PRIME "throw_prime"
 
 bool move_arm(geometry_msgs::Pose target, double scalingFactor){ //move arm to a target
     moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP); // Der skal sættes en scalingfaktor på arm.
@@ -73,6 +75,26 @@ bool home_arm_srv(std_srvs::Empty::Request &req, std_srvs::Empty::Request &res){
     }
 }
 
+bool prime_arm_srv(std_srvs::Empty::Request &req, std_srvs::Empty::Request &res){ //move arm to "standby"
+    moveit::planning_interface::MoveGroupInterface arm(MOVE_GROUP);
+    moveit::planning_interface::MoveGroupInterface::Plan thee_plan;
+    arm.setNumPlanningAttempts(10);
+    arm.setNamedTarget(PRIME);
+    arm.setStartStateToCurrentState();
+
+    bool success
+            = (arm.plan(thee_plan) == moveit::planning_interface::MoveItErrorCode::SUCCESS);
+
+    if (success){
+        ROS_INFO("UR_SERVICE: Moving arm");
+        arm.execute(thee_plan);
+        return true;
+    } else {
+        ROS_ERROR("UR_SERVICE: Could not plan move!");
+        return false;
+    }
+}
+
 bool pick_srv(){ //pick object with wsg gripper - will make an approach
     return true;
 }
@@ -86,10 +108,11 @@ int main(int argc, char **argv)
 
     ROS_INFO("UR_services available now!");
 
-    ros::ServiceServer move_armSS, home_armSS;
+    ros::ServiceServer move_armSS, home_armSS, prime_armSS;
 
     move_armSS = nh.advertiseService(MOVE_SRV, move_arm_srv);
     home_armSS = nh.advertiseService(HOME_SRV, home_arm_srv);
+    prime_armSS = nh.advertiseService(PRIME_SRV, prime_arm_srv);
 
     //ros::spin();
     ros::waitForShutdown();

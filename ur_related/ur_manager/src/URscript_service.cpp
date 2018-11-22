@@ -25,6 +25,7 @@
 //names/defines
 #define MOVE_ARM_JOINT_SRV "joint_move"
 #define MOVE_ARM_CART_SRV "cart_move"
+#define THROW_V1_SRV "throw_v1"
 
 #define SCRIPT_TOPIC "/ur_driver/URScript"
 
@@ -42,6 +43,7 @@ public:
         //advertise services
         cart_moveSS = nh.advertiseService(MOVE_ARM_CART_SRV, &Script_srv::cart_move_srv, this);
         joint_moveSS = nh.advertiseService(MOVE_ARM_JOINT_SRV, &Script_srv::joint_move_srv, this);
+        throw_v1SS = nh.advertiseService(THROW_V1_SRV, &Script_srv::throw_v1_srv, this);
 
         //tell publisher wich topic to publish on
         script_pub = nh.advertise<std_msgs::String>(SCRIPT_TOPIC, 1);
@@ -112,10 +114,42 @@ public:
         return target;
     }
 
+    bool throw_v1_srv(std_srvs::Empty::Request &req, std_srvs::Empty::Request &res){ //UNSAFE SERVICE!!
+        ROS_INFO("Script_service: attempting to throw"); //debug stream
+
+        std::stringstream script; //buffer for URscript msg
+
+        //orientation in UR format
+        double rx = M_PI;
+        double ry = 0;
+        double rz = 0;
+
+        //create script
+        script << "movej(p["
+           << 0.256 << "," //x-coor
+           << 0.69 << "," //y-coor
+           << 0.481 << "," //z-coor
+           << 0.2705 << ","
+           << 1.141 << ","
+           << 2.4383
+           <<"],"
+           << "a=" << 10//acceleration
+           <<",v=" << 3 //speed
+          << ",t=0,r=0)";
+
+        msg.data = script.str();
+
+        ROS_INFO_STREAM("URscript_service - msg: " << msg.data);
+
+        script_pub.publish(msg); //publish script to controller
+
+        return true;
+    }
+
 private:
     ros::Publisher script_pub; //publisher
     std_msgs::String msg; //string to be publishd to ur_script topic
-    ros::ServiceServer joint_moveSS, cart_moveSS; //service objects
+    ros::ServiceServer joint_moveSS, cart_moveSS, throw_v1SS; //service objects
     tf::TransformListener listener; //transform listener
 };
 

@@ -1,5 +1,3 @@
-<<<<<<< HEAD:ur_manager_support/CMakeLists.txt
-=======
 cmake_minimum_required(VERSION 2.8.3)
 project(ur_manager_support)
 
@@ -200,4 +198,3 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b:ur_related/ur_manager_support/CMakeLists.txt
