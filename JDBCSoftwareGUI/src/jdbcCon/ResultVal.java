@@ -4,9 +4,11 @@ public class ResultVal
 {
     private int points;
     private double distanceFromO;
-
-    public ResultVal(int points, double distanceFromO)
+    private int throwNr;
+    
+    public ResultVal(int throwNr, int points, double distanceFromO)
     {
+        this.throwNr = throwNr;
         this.points = points;
         this.distanceFromO = distanceFromO;
     }
@@ -30,4 +32,16 @@ public class ResultVal
     {
         this.distanceFromO = distanceFromO;
     }
+
+    public int getThrowNr()
+    {
+        return throwNr;
+    }
+
+    public void setThrowNr(int throwNr)
+    {
+        this.throwNr = throwNr;
+    }
+    
+    
 }

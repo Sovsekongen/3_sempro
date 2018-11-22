@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Export-Package: rosjava_test_msgs;version="0.3.0";uses:="org.ros.inter
+ nal.message,org.ros.message,std_msgs"
+Bundle-SymbolicName: org.ros.rosjava_messages.rosjava_test_msgs
+Bundle-Version: 0.3.0
+Bundle-Name: rosjava_test_msgs
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1541497647000
+Import-Package: org.ros.internal.message,org.ros.message,std_msgs;vers
+ ion="[0.5,1)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Created-By: 1.8.0_181 (Oracle Corporation)
+Tool: Bnd-3.2.0.201605172007
+

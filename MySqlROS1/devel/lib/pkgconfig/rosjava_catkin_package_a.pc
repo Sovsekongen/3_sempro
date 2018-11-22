@@ -1,0 +1,8 @@
+prefix=/home/viktor/Desktop/3_sempro/MySqlROS/devel
+
+Name: rosjava_catkin_package_a
+Description: Description of rosjava_catkin_package_a
+Version: 0.1.0
+Cflags: -I/home/viktor/Desktop/3_sempro/MySqlROS/devel/include
+Libs: -L/home/viktor/Desktop/3_sempro/MySqlROS/devel/lib 
+Requires: message_runtime

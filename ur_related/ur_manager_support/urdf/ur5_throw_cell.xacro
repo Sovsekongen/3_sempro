@@ -1,0 +1,253 @@
+<<<<<<< HEAD:ur_manager_support/urdf/ur5_throw_cell.urdf
+=======
+<?xml version="1.0" ?>
+<robot name="ur5_throw_cell" xmlns:xacro="http://ros.org/wiki/xacro">
+    <!-- UR5 macro -->
+    <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+    <xacro:include filename="$(find wsg_50_simulation)/urdf/wsg_50.urdf.xacro"/>
+
+    <!-- ***LINKS*** -->
+
+    <!-- world frame (virtual) -->
+    <link name="world"/>
+
+    <!-- camera frame (virtual) -->
+    <link name="camera_frame" />
+
+    <!-- actual TCP (virtual) -->
+    <link name="act_tcp"/>
+
+    <!-- table -->
+    <link name="table">
+        <visual>
+            <geometry>
+                <box size="1.45 1.4 0.75" />
+            </geometry>
+            <material name="light_gray">
+                <color rgba="0.9 0.9 0.9 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="1.4 1.45 0.75" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="table_top">
+        <visual>
+            <geometry>
+                <box size="1.45 1.4 0" />
+            </geometry>
+            <material name="light_gray">
+                <color rgba="0.9 0.9 0.9 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <!-- workcell frame posts -->
+    <link name="post_far"> <!-- furthest away from robot -->
+        <visual>
+            <geometry>
+                <box size="0.04 0.04 1.50" />
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.04 1.50" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="post_close"> <!-- closest to robot -->
+        <visual>
+            <geometry>
+                <box size="0.04 0.04 1.50" />
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.04 1.50" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="post_top"> <!-- top beam -->
+        <visual>
+            <geometry>
+                <box size="0.04 0.04 1.40" />
+            </geometry>
+            <material name="green">
+                <color rgba="0 1 0 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.04 1.4" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- physical camera -->
+    <link name="camera">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.07" />
+            </geometry>
+            <material name="darker_gray">
+                <color rgba="0.8 0.8 0.8 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.03 0.03 0.07" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- UR5 robot -->
+    <xacro:ur5_robot prefix="" joint_limited="true"/>
+
+    <!--WSG 50 gripper-->
+    <!--the origin-->
+    <!--<xacro:macro name="org">
+        <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+    </xacro:macro>-->
+
+
+    <!-- gripper construction -->
+    <link name="gripper_disc">
+        <visual>
+            <geometry>
+                <cylinder radius="0.04" length="0.02" />
+            </geometry>
+            <material name="light_gray">
+                <color rgba="0.9 0.9 0.9 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.04" length="0.02" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="gripper_plugs">
+        <visual>
+            <geometry>
+                <box size="0.025 0.03 0.055" />
+            </geometry>
+            <material name="pale_green">
+                <color rgba="0.1 1.0 0 0.8" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.025 0.03 0.055" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="gripper_disc_to_robot" type="fixed">
+        <origin xyz="0.01 0 0" rpy="0 ${pi/2} 0"/>
+        <parent link="ee_link"/>
+        <child link="gripper_disc"/>
+    </joint>
+    <xacro:wsg_50_xacro name="wsg" parent="gripper_disc" finger_length="0.048" finger_tip="0.004">
+        <origin xyz="0 0 0.01" rpy="${pi} -${pi} -${pi/2}"/>
+    </xacro:wsg_50_xacro>
+    <joint name="gripper_plugs_to_wsg_base" type="fixed">
+        <origin xyz="-0.087 0 -0.012" rpy="0 0 0"/>
+        <parent link="wsg_base_link"/>
+        <child link="gripper_plugs"/>
+    </joint>
+
+    <!-- ***JOINTS*** -->
+    <joint name="table_top_to_world" type="fixed">
+        <origin xyz="0.625 0 0" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="table_top"/>
+    </joint>
+    <joint name="table_to_table_top" type="fixed">
+        <origin xyz="0 0 -0.375" rpy="0 0 0" />
+        <parent link="table_top"/>
+        <child link="table"/>
+    </joint>
+    <joint name="post_far_to_table_top" type="fixed">
+        <origin xyz="-0.1 0.72 0.39" rpy="0 0 0"/>
+        <parent link="table_top"/>
+        <child link="post_far"/>
+    </joint>
+    <joint name="post_close_to_table_top" type="fixed">
+        <origin xyz="-0.1 -0.72 0.39" rpy="0 0 0"/>
+        <parent link="table_top"/>
+        <child link="post_close"/>
+    </joint>
+    <joint name="post_top_to_table_top" type="fixed">
+        <origin xyz="-0.1 0 1.12" rpy="${pi/2} 0 0"/>
+        <parent link="table_top"/>
+        <child link="post_top"/>
+    </joint>
+
+    <joint name="camera_to_post_top" type="fixed">
+        <origin xyz="-0.041 -0.024 0" rpy="${pi/2} 0 0"/>
+        <parent link="post_top"/>
+        <child link="camera"/>
+    </joint>
+
+    <!-- robot link to world -->
+    <joint name="robot_to_world" type="fixed">
+        <origin xyz="0.1295 -0.4685 0" rpy="0 0 ${pi}"/>
+        <parent link="world"/>
+        <child link="base_link"/>
+    </joint>
+    <joint name="camera_frame_on_cam" type="fixed">
+        <origin xyz="0 0 0.035" rpy="0 0 ${pi}"/>
+        <parent link="camera"/>
+        <child link="camera_frame"/>
+    </joint>
+
+    <!--Set TCP postition-->
+    <joint name="tcp_to_robot" type="fixed">
+        <origin xyz="0 0 0.1655" rpy="0 0 0"/>
+        <parent link="tool0"/>
+        <child link="act_tcp"/>
+    </joint>
+
+    <!--Connect gripper to robot-->
+    <!--<joint name="wsg_to_robot" type="fixed">
+        <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+        <parent link="ee_link"/>
+        <child link="wsg_base_link"/>
+    </joint>-->
+
+<!-- Connect tool0_controller to base using floating joint -->
+ <!--   <link name="tool0_controller"/>
+    <joint name="base-tool0_controller_floating_joint" type="floating">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="base"/>
+      <child link="tool0_controller"/>
+    </joint>-->
+
+</robot>
+
+
+<!--
+<link name="base"/>
+<link name="tool0"/>
+
+<joint name="base_to_tool0" type="fixed">
+  <parent link="base"/>
+  <child link="tool0"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+-->
+>>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b:ur_related/ur_manager_support/urdf/ur5_throw_cell.xacro
