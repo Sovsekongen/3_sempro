@@ -7,5 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PKG_CONFIG_PATH="/home/viktor/Desktop/3_sempro/MySqlROS/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD="/home/viktor/Desktop/3_sempro/MySqlROS/build"

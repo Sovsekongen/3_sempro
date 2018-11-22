@@ -1,2 +1,2 @@
-rosjava_catkin_package_a
--DCATKIN_DEVEL_PREFIX=/home/viktor/Desktop/3_sempro/MySqlROS/devel -DCMAKE_INSTALL_PREFIX=/home/viktor/Desktop/3_sempro/MySqlROS/install -G Unix Makefiles
+beginner_tutorials:myjava_message:rosjava_catkin_package_a
+-G CodeBlocks - Unix Makefiles -DCMAKE_BUILD_TYPE=Debug -DCATKIN_DEVEL_PREFIX=/home/viktor/Desktop/3_sempro/MySqlROS/devel -DCMAKE_INSTALL_PREFIX=/home/viktor/Desktop/3_sempro/MySqlROS/install

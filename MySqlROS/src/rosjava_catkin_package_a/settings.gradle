@@ -16,3 +16,4 @@
 
 include 'rosjava_gradle_subprojekt_a'
 include 'jdbc_connector_ros'
+include 'my_pub_sub_tutorial'

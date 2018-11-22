@@ -9,7 +9,15 @@ project(rosjava_catkin_package_a)
 # Catkin
 ##############################################################################
 
-find_package(catkin REQUIRED rosjava_build_tools)
+find_package(catkin REQUIRED COMPONENTS 
+	rosjava_build_tools
+	roscpp
+	rospy
+        message_generation
+        std_msgs
+        geometry_msgs
+	genjava
+)
 
 # Set the gradle targets you want catkin's make to run by default, e.g.
 #   catkin_rosjava_setup(installDist)
@@ -17,7 +25,36 @@ find_package(catkin REQUIRED rosjava_build_tools)
 # add tasks to this for you when you create subprojects.
 catkin_rosjava_setup(installDist publish)
 
-catkin_package()
+add_message_files(
+        DIRECTORY
+        my_pub_sub_tutorial/msg
+        FILES
+        Cvmsg.msg
+        Urmsg.msg
+#        DIRECTORY
+#        beginner_tutorials/msg
+#        FILES
+#        cvmsger.msg
+)
+
+generate_messages(
+        DEPENDENCIES
+        std_msgs
+        geometry_msgs
+)
+
+generate_rosjava_messages(
+  PACKAGES
+    std_msgs
+    ros_comm_msgs            # ros/ros_comm_msgs
+    rosjava_test_msgs        # rosjava/rosjava_test_msgs
+    actionlib_msgs           # ros/common_msgs
+)
+
+catkin_package(
+        CATKIN_DEPENDS message_runtime
+)
+
 
 ##############################################################################
 # Installation
@@ -27,3 +64,12 @@ catkin_package()
 # allprojects closure the root build.gradle
 install(DIRECTORY ${CATKIN_DEVEL_PREFIX}/${CATKIN_GLOBAL_MAVEN_DESTINATION}/com/github/rosjava/${PROJECT_NAME}/
         DESTINATION ${CATKIN_GLOBAL_MAVEN_DESTINATION}/com/github/rosjava/${PROJECT_NAME})
+
+## Build talker.cpp
+#add_executable(talker src/talker.cpp)
+#target_link_libraries(talker ${catkin_LIBRARIES})
+#add_dependencies(talker beginner_tutorials_generate_messages_cpp)
+
+#add_executable(listener src/listener.cpp)
+#target_link_libraries(listener ${catkin_LIBRARIES})
+#add_dependencies(listener beginner_tutorials_generate_messages_cpp)

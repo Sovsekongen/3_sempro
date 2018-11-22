@@ -1,0 +1,8 @@
+prefix=/home/viktor/Desktop/3_sempro/MySqlROS/install
+
+Name: beginner_tutorials
+Description: Description of beginner_tutorials
+Version: 0.0.0
+Cflags: -I/home/viktor/Desktop/3_sempro/MySqlROS/install/include
+Libs: -L/home/viktor/Desktop/3_sempro/MySqlROS/install/lib 
+Requires: message_runtime

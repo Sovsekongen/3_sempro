@@ -66,28 +66,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -110,6 +88,28 @@ test:
 test/fast: test
 
 .PHONY : test/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -166,6 +166,411 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_messages: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_messages
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_messages/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages.dir/build
+.PHONY : rosjava_catkin_package_a_generate_messages/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genlisp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genlisp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genlisp.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_genlisp: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genlisp.dir/rule
+
+.PHONY : rosjava_catkin_package_a_genlisp
+
+# fast build rule for target.
+rosjava_catkin_package_a_genlisp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genlisp.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genlisp.dir/build
+.PHONY : rosjava_catkin_package_a_genlisp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_cpp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_cpp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_messages_cpp: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_cpp.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_messages_cpp
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_messages_cpp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_cpp.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_cpp.dir/build
+.PHONY : rosjava_catkin_package_a_generate_messages_cpp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_nodejs: rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geometry_msgs_generate_messages_nodejs/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_py.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_py.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_messages_py: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_py.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_messages_py
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_messages_py/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_py.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_py.dir/build
+.PHONY : rosjava_catkin_package_a_generate_messages_py/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_eus: rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+.PHONY : roscpp_generate_messages_lisp
+
+# fast build rule for target.
+roscpp_generate_messages_lisp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_messages_java: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_messages_java
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_messages_java/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java.dir/build
+.PHONY : rosjava_catkin_package_a_generate_messages_java/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_nodejs: rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+.PHONY : roscpp_generate_messages_nodejs
+
+# fast build rule for target.
+roscpp_generate_messages_nodejs/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_eus: rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+
+.PHONY : roscpp_generate_messages_eus
+
+# fast build rule for target.
+roscpp_generate_messages_eus/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_eus.dir/build.make rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_eus.dir/build
+.PHONY : roscpp_generate_messages_eus/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_lisp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_lisp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_messages_lisp: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_lisp.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_messages_lisp
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_messages_lisp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_lisp.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_lisp.dir/build
+.PHONY : rosjava_catkin_package_a_generate_messages_lisp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_nodejs.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_nodejs.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_messages_nodejs: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_nodejs.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_messages_nodejs
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_messages_nodejs/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_nodejs.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_nodejs.dir/build
+.PHONY : rosjava_catkin_package_a_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_eus.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_eus.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_messages_eus: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_eus.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_messages_eus
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_messages_eus/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_eus.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_eus.dir/build
+.PHONY : rosjava_catkin_package_a_generate_messages_eus/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_cpp: rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : std_msgs_generate_messages_cpp
+
+# fast build rule for target.
+std_msgs_generate_messages_cpp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+.PHONY : std_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_cpp: rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_cpp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_cpp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_eus: rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_eus
+
+# fast build rule for target.
+geometry_msgs_generate_messages_eus/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_nodejs: rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_nodejs/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_eus: rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_eus
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_eus/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+.PHONY : rosgraph_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg.dir/rule
+
+# Convenience name for target.
+_rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg: rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg.dir/rule
+
+.PHONY : _rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg
+
+# fast build rule for target.
+_rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg.dir/build.make rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg.dir/build
+.PHONY : _rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_py: rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/rule
+
+.PHONY : roscpp_generate_messages_py
+
+# fast build rule for target.
+roscpp_generate_messages_py/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/build.make rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/build
+.PHONY : roscpp_generate_messages_py/fast
+
+# Convenience name for target.
 rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/rule
@@ -181,19 +586,64 @@ gradle-clean-rosjava_catkin_package_a/fast:
 .PHONY : gradle-clean-rosjava_catkin_package_a/fast
 
 # Convenience name for target.
-rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule:
-	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
-.PHONY : rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/rule
 
 # Convenience name for target.
-gradle-clean: rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
+rosjava_catkin_package_a_gencpp: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/rule
 
-.PHONY : gradle-clean
+.PHONY : rosjava_catkin_package_a_gencpp
 
 # fast build rule for target.
-gradle-clean/fast:
-	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/build.make rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/build
-.PHONY : gradle-clean/fast
+rosjava_catkin_package_a_gencpp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/build
+.PHONY : rosjava_catkin_package_a_gencpp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_geneus: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/rule
+
+.PHONY : rosjava_catkin_package_a_geneus
+
+# fast build rule for target.
+rosjava_catkin_package_a_geneus/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/build
+.PHONY : rosjava_catkin_package_a_geneus/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_genjava: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/rule
+
+.PHONY : rosjava_catkin_package_a_genjava
+
+# fast build rule for target.
+rosjava_catkin_package_a_genjava/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/build
+.PHONY : rosjava_catkin_package_a_genjava/fast
 
 # Convenience name for target.
 rosjava_catkin_package_a/CMakeFiles/gradle-rosjava_catkin_package_a.dir/rule:
@@ -211,19 +661,109 @@ gradle-rosjava_catkin_package_a/fast:
 .PHONY : gradle-rosjava_catkin_package_a/fast
 
 # Convenience name for target.
-rosjava_catkin_package_a/CMakeFiles/_catkin_empty_exported_target.dir/rule:
-	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/_catkin_empty_exported_target.dir/rule
-.PHONY : rosjava_catkin_package_a/CMakeFiles/_catkin_empty_exported_target.dir/rule
+rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-_catkin_empty_exported_target: rosjava_catkin_package_a/CMakeFiles/_catkin_empty_exported_target.dir/rule
+geometry_msgs_generate_messages_cpp: rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : _catkin_empty_exported_target
+.PHONY : geometry_msgs_generate_messages_cpp
 
 # fast build rule for target.
-_catkin_empty_exported_target/fast:
-	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/_catkin_empty_exported_target.dir/build.make rosjava_catkin_package_a/CMakeFiles/_catkin_empty_exported_target.dir/build
-.PHONY : _catkin_empty_exported_target/fast
+geometry_msgs_generate_messages_cpp/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genpy.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genpy.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genpy.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_genpy: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genpy.dir/rule
+
+.PHONY : rosjava_catkin_package_a_genpy
+
+# fast build rule for target.
+rosjava_catkin_package_a_genpy/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genpy.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genpy.dir/build
+.PHONY : rosjava_catkin_package_a_genpy/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Urmsg.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Urmsg.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Urmsg.dir/rule
+
+# Convenience name for target.
+_rosjava_catkin_package_a_generate_messages_check_deps_Urmsg: rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Urmsg.dir/rule
+
+.PHONY : _rosjava_catkin_package_a_generate_messages_check_deps_Urmsg
+
+# fast build rule for target.
+_rosjava_catkin_package_a_generate_messages_check_deps_Urmsg/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Urmsg.dir/build.make rosjava_catkin_package_a/CMakeFiles/_rosjava_catkin_package_a_generate_messages_check_deps_Urmsg.dir/build
+.PHONY : _rosjava_catkin_package_a_generate_messages_check_deps_Urmsg/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_artifacts: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_artifacts
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_artifacts/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/build
+.PHONY : rosjava_catkin_package_a_generate_artifacts/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
+
+# Convenience name for target.
+gradle-clean: rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
+
+.PHONY : gradle-clean
+
+# fast build rule for target.
+gradle-clean/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/build.make rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/build
+.PHONY : gradle-clean/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gennodejs.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gennodejs.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gennodejs.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_gennodejs: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gennodejs.dir/rule
+
+.PHONY : rosjava_catkin_package_a_gennodejs
+
+# fast build rule for target.
+rosjava_catkin_package_a_gennodejs/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gennodejs.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gennodejs.dir/build
+.PHONY : rosjava_catkin_package_a_gennodejs/fast
+
+# Convenience name for target.
+rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java_gradle.dir/rule:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java_gradle.dir/rule
+.PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java_gradle.dir/rule
+
+# Convenience name for target.
+rosjava_catkin_package_a_generate_messages_java_gradle: rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java_gradle.dir/rule
+
+.PHONY : rosjava_catkin_package_a_generate_messages_java_gradle
+
+# fast build rule for target.
+rosjava_catkin_package_a_generate_messages_java_gradle/fast:
+	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java_gradle.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java_gradle.dir/build
+.PHONY : rosjava_catkin_package_a_generate_messages_java_gradle/fast
 
 # Help Target
 help:
@@ -231,15 +771,51 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... gradle-clean-rosjava_catkin_package_a"
-	@echo "... gradle-clean"
-	@echo "... gradle-rosjava_catkin_package_a"
+	@echo "... std_msgs_generate_messages_py"
+	@echo "... rosjava_catkin_package_a_generate_messages"
+	@echo "... rosjava_catkin_package_a_genlisp"
+	@echo "... rosjava_catkin_package_a_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... rosjava_catkin_package_a_generate_messages_py"
+	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... std_msgs_generate_messages_eus"
+	@echo "... roscpp_generate_messages_lisp"
+	@echo "... rosjava_catkin_package_a_generate_messages_java"
+	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... std_msgs_generate_messages_nodejs"
+	@echo "... roscpp_generate_messages_nodejs"
+	@echo "... rosgraph_msgs_generate_messages_lisp"
+	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... list_install_components"
+	@echo "... roscpp_generate_messages_eus"
+	@echo "... rosjava_catkin_package_a_generate_messages_lisp"
+	@echo "... rosjava_catkin_package_a_generate_messages_nodejs"
+	@echo "... rosjava_catkin_package_a_generate_messages_eus"
+	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... rosgraph_msgs_generate_messages_eus"
+	@echo "... _rosjava_catkin_package_a_generate_messages_check_deps_Cvmsg"
+	@echo "... roscpp_generate_messages_py"
+	@echo "... gradle-clean-rosjava_catkin_package_a"
+	@echo "... rosjava_catkin_package_a_gencpp"
+	@echo "... rosjava_catkin_package_a_geneus"
+	@echo "... std_msgs_generate_messages_lisp"
+	@echo "... install"
+	@echo "... rosjava_catkin_package_a_genjava"
+	@echo "... gradle-rosjava_catkin_package_a"
+	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... test"
+	@echo "... rosjava_catkin_package_a_genpy"
+	@echo "... _rosjava_catkin_package_a_generate_messages_check_deps_Urmsg"
+	@echo "... rosjava_catkin_package_a_generate_artifacts"
+	@echo "... gradle-clean"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... _catkin_empty_exported_target"
-	@echo "... install"
-	@echo "... test"
+	@echo "... rosjava_catkin_package_a_gennodejs"
+	@echo "... rosjava_catkin_package_a_generate_messages_java_gradle"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 .PHONY : help
