@@ -18,12 +18,14 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Control;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -58,11 +60,15 @@ public class IndividualTabController implements Initializable
     @FXML private Button sTargetTrue;
     @FXML private Button sTargetFalse;
     @FXML private Button sSelect;
+    @FXML private Button deleteBut;
+    @FXML private Button resetBut;
     @FXML private TextField sChooseBox;
     @FXML private ChoiceBox graphBox;
     @FXML private ChoiceBox tableBox;
+    @FXML private Label pickUpPer;
+    @FXML private Label hitPer;
    
-    @FXML private LineChart sGraph;
+    @FXML private ScatterChart sGraph;
     @FXML private NumberAxis sXAxis;
     @FXML private NumberAxis sYAxis;
     @FXML private CheckBox sImagePBox;
@@ -91,11 +97,14 @@ public class IndividualTabController implements Initializable
     private JDBC con = null;
     private boolean addSeriesListener = false;
     private int bufNum1, bufNum2;
+    private double hitPerVal, pickPerVal;
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        con = new JDBC("root", "doyouloveit123");
+        con = new JDBC("root", "123");
+        pickUpPer.setText("");
+        hitPer.setText("");
         
         updateSTableView();
         initComboBox();
@@ -104,6 +113,36 @@ public class IndividualTabController implements Initializable
         sGraph.setAnimated(false);
         sChart.setAnimated(false);
        
+        EventHandler<ActionEvent> deleteHandler = (ActionEvent event) -> 
+        {
+            AllVal a = (AllVal)sTableView.getSelectionModel().getSelectedItem();
+            con.deleteRow(a.getThrowNum());
+            
+            if(bufNum1 != 0 && bufNum2 != 0)
+            {
+                updateSLineChart(bufNum1, bufNum2);
+                updateSTableView(bufNum1, bufNum2);
+            }
+            else if(bufNum1 != 0 && bufNum2 == 0)
+            {
+                updateSTableView(bufNum1);
+            }
+            else if(bufNum1 == 0 && bufNum2 == 0)
+            {
+                updateSTableView();
+            }
+        };
+        
+        EventHandler<ActionEvent> resetHandler = (ActionEvent event) ->
+        {
+            resetAll();
+            
+            bufNum1 = 0;
+            bufNum2 = 0;
+            
+            updateSTableView();
+        };
+        
         EventHandler<ActionEvent> setTrueFalse = new EventHandler<ActionEvent>() 
         {
             @Override
@@ -168,6 +207,7 @@ public class IndividualTabController implements Initializable
                     updateSLineChart(bufNum1, bufNum2);
                     updateSTableView(bufNum1, bufNum2);
                     updateBarChart();
+                    calcPercentage(bufNum1, bufNum2);
                     
                     addSeriesListener = addListeners();
                 
@@ -176,6 +216,7 @@ public class IndividualTabController implements Initializable
                 {
                     updateSLineChart(bufNum1, bufNum2);
                     updateSTableView(bufNum1, bufNum2);
+                    calcPercentage(bufNum1, bufNum2);
                     updateBarChart();
                 }
             }
@@ -183,8 +224,8 @@ public class IndividualTabController implements Initializable
             {
                 try
                 {
-                    int num = Integer.parseInt(val);
-                    updateSTableView(num);
+                    bufNum1 = Integer.parseInt(val);
+                    updateSTableView(bufNum1);
                 }
                 catch (NumberFormatException e)
                 {
@@ -199,6 +240,9 @@ public class IndividualTabController implements Initializable
         sPickFalse.setOnAction(setTrueFalse);
         sTargetTrue.setOnAction(setTrueFalse);
         sTargetFalse.setOnAction(setTrueFalse);
+        
+        deleteBut.setOnAction(deleteHandler);
+        resetBut.setOnAction(resetHandler);
         
         sSelect.setOnAction(selectVal);
     }    
@@ -439,7 +483,6 @@ public class IndividualTabController implements Initializable
         Series res = new Series();
         Scanner in;
         double bufVal = 0, orgVal = 0;
-        //ArrayList series1 = new ArrayList(s1.getData());
         MinMaxMessage buf = new MinMaxMessage(s1);
         buf.calcMinMaxAvg();
         
@@ -448,7 +491,6 @@ public class IndividualTabController implements Initializable
         for(int i = 0; i < series2.size(); i++)
         {
             bufVal = buf.getAvg();
-            System.out.println(s1.getName() + " " + buf.getAvg());
             
             in = new Scanner(series2.get(i).toString()).useDelimiter(",");
             in.next();
@@ -465,7 +507,7 @@ public class IndividualTabController implements Initializable
      */
     public void initComboBox()
     {
-        graphBox.getItems().addAll("Line Chart", "Bar Chart");
+        graphBox.getItems().addAll("Scatter Chart", "Bar Chart");
         graphBox.getSelectionModel().selectFirst();
         
         graphBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() 
@@ -597,9 +639,7 @@ public class IndividualTabController implements Initializable
         });
     }
     
-   
-    
-    private void addSSeriesListener(BooleanProperty selected, final Series series, TableView tv, LineChart lc) 
+    private void addSSeriesListener(BooleanProperty selected, final Series series, TableView tv, ScatterChart lc) 
     {
         MinMaxMessage mmm = new MinMaxMessage(series);
         
@@ -630,6 +670,11 @@ public class IndividualTabController implements Initializable
         sPickupBox.selectedProperty().setValue(false);
         sTotalBox.selectedProperty().setValue(false);
                 
+        sSeriesImageP.getData().clear();
+        sSeriesPickUp.getData().clear();
+        sSeriesThrow.getData().clear();
+        sSeriesTotal.getData().clear();
+        
         sBarMin.getData().clear();
         sBarMax.getData().clear();
         sBarAvg.getData().clear();
@@ -640,6 +685,38 @@ public class IndividualTabController implements Initializable
         sTimeView.getItems().clear();
     }
     
-    
+    public void calcPercentage(int num1, int num2)
+    {
+        ArrayList<Boolean> buf = con.getTrueFalseHit(num1, num2);
+        
+        for(boolean b : buf)
+        {
+            if(b)
+            {
+                hitPerVal++;
+            }
+            System.out.println(hitPerVal + " bufSize: " + buf.size());
+            
+        }
+        
+        hitPerVal /= buf.size();
+        buf.clear();
+        buf = con.getTrueFalsePickUp(num1, num2);
+        
+        for(Boolean b : buf)
+        {
+            if(b)
+            {
+                pickPerVal++;
+            }
+        }
+        
+        pickPerVal /= buf.size();
+        pickPerVal *= 100;
+        hitPerVal *= 100;
+        
+        pickUpPer.setText(String.format("%.2f", pickPerVal) + "%");
+        hitPer.setText(String.format("%.2f", hitPerVal) + "%");
+    }
     
 }

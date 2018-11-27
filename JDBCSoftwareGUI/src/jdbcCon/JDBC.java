@@ -2,6 +2,7 @@ package jdbcCon;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class JDBC
 {
@@ -559,5 +560,47 @@ public class JDBC
         }
         
         return vals;
+    }
+    
+    
+    public ArrayList<Boolean> getTrueFalseHit(int num1, int num2)
+    {
+        ArrayList<Boolean> bufList = new ArrayList<>();
+        
+        try
+        {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("SELECT hitTarget FROM pickupobject WHERE throwNr BETWEEN " + num1 + " AND " + num2 +";");
+            
+            while(rs.next())
+            {
+                bufList.add(rs.getBoolean("hitTarget"));
+            }
+        } 
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }        
+        return bufList;
+    }
+    public ArrayList<Boolean> getTrueFalsePickUp(int num1, int num2)
+    {
+        ArrayList<Boolean> bufList = new ArrayList<>();
+        
+        try
+        {
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("SELECT pickTarget FROM pickupobject WHERE throwNr BETWEEN " + num1 + " AND " + num2 +";");
+            
+            while(rs.next())
+            {
+                bufList.add(rs.getBoolean("pickTarget"));
+            }
+        } 
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }        
+        return bufList;
     }
 }

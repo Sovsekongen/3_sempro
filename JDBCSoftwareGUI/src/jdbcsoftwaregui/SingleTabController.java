@@ -89,7 +89,7 @@ public class SingleTabController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        con = new JDBC("root", "doyouloveit123");
+        con = new JDBC("root", "123");
         
         minMaxTable.setPlaceholder(new Label(""));
         
