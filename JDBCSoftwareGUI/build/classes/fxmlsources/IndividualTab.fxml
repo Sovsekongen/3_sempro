@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="IndividualView" prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jdbcsoftwaregui.IndividualTabController">
+    <children>
+        <TableView fx:id="sTableView" prefHeight="153.0" prefWidth="1313.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <columns>
+                <TableColumn id="throwNumTab" fx:id="sThrowNum" prefWidth="100.0" text="Throw Nr." />
+                <TableColumn id="timestampTab" fx:id="sTimestamp" prefWidth="168.0" text="Timestamp" />
+                <TableColumn id="posXTab" fx:id="sPosY" prefWidth="92.0" text="Pos Y [mm]" />
+                <TableColumn id="posYTab" fx:id="sPosX" prefWidth="93.0" text="Pos X [mm]" />
+                <TableColumn fx:id="sPickedUp" prefWidth="109.33331298828125" text="Picked Up" />
+                <TableColumn fx:id="sHitTarget" prefWidth="86.66668701171875" text="Hit Target" />
+                <TableColumn id="posXTab" fx:id="sShape" prefWidth="79.33331298828125" text="Shape" />
+                <TableColumn id="posYTab" fx:id="sColour" prefWidth="72.3333740234375" text="Colour" />
+                <TableColumn id="timestampTab" fx:id="sRadius" prefWidth="110.33331298828125" text="Radius [mm]" />
+                <TableColumn id="posYTab" fx:id="sPickUpTime" prefWidth="136.66668701171875" text="Pickup Time [ms]" />
+                <TableColumn id="timestampTab" fx:id="sImagePTime" prefWidth="148.0" text="Image P. Time [ms]" />
+                <TableColumn id="posXTab" fx:id="sThrowTime" minWidth="0.0" prefWidth="132.0" text="Throw Time [ms]" />
+                <TableColumn fx:id="sTotalTime" prefWidth="128.3333740234375" text="Total Time [ms]" />
+            </columns>
+        </TableView>
+        <TextField fx:id="sChooseBox" alignment="CENTER" layoutX="913.0" layoutY="240.0" prefHeight="30.0" prefWidth="208.0" AnchorPane.rightAnchor="379.0" AnchorPane.topAnchor="240.0" />
+        <Button fx:id="sSelect" layoutX="913.0" layoutY="280.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="208.0" text="Select" AnchorPane.rightAnchor="379.0" AnchorPane.topAnchor="280.0" />
+        <ScatterChart fx:id="sGraph" layoutX="755.0" layoutY="349.0" prefHeight="400.0" prefWidth="746.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+            <xAxis>
+                <NumberAxis fx:id="sXAxis" side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="sYAxis" side="LEFT" />
+            </yAxis>
+        </ScatterChart>
+        <Text layoutX="914.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Throw Nr." wrappingWidth="206.6708984375" AnchorPane.rightAnchor="379.3291015625" AnchorPane.topAnchor="200.1015625">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Text>
+        <TableView fx:id="sTimeView" layoutX="14.0" layoutY="197.0" prefHeight="153.0" prefWidth="440.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="200.0">
+            <columns>
+                <TableColumn fx:id="sName" prefWidth="125.0" styleClass="tableClass" text="Name" />
+                <TableColumn fx:id="sMin" prefWidth="99.0" styleClass="tableClass" text="Min" />
+                <TableColumn fx:id="sAvg" prefWidth="99.0" styleClass="tableClass" text="Avg" />
+                <TableColumn fx:id="sMax" prefWidth="96.0" styleClass="tableClass" text="Max" />
+            </columns>
+        </TableView>
+        <Text layoutX="913.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hit Target" textAlignment="CENTER" wrappingWidth="208.0" AnchorPane.rightAnchor="379.0" AnchorPane.topAnchor="489.0">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Text>
+        <Button fx:id="sTargetTrue" layoutX="919.0" layoutY="524.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="True" AnchorPane.rightAnchor="491.0" AnchorPane.topAnchor="524.0" />
+        <Button fx:id="sTargetFalse" layoutX="1031.0" layoutY="524.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="False" AnchorPane.rightAnchor="379.0" AnchorPane.topAnchor="524.0" />
+        <Button fx:id="sPickFalse" layoutX="1031.0" layoutY="394.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="False" AnchorPane.rightAnchor="379.0" AnchorPane.topAnchor="394.0" />
+        <Button fx:id="sPickTrue" layoutX="917.0" layoutY="394.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="True" AnchorPane.rightAnchor="493.0" AnchorPane.topAnchor="394.0" />
+        <Text layoutX="913.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Picked Up Object" textAlignment="CENTER" wrappingWidth="208.0" AnchorPane.rightAnchor="379.0" AnchorPane.topAnchor="359.0">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Text>
+        <Text layoutX="14.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numerical Time Comparsion" wrappingWidth="191.6708984375" AnchorPane.topAnchor="171.0" />
+        <CheckBox id="Image P. Time" fx:id="sImagePBox" layoutX="465.0" layoutY="214.0" mnemonicParsing="false" prefHeight="25.0" text="Image P. Time" AnchorPane.leftAnchor="465.0" AnchorPane.topAnchor="214.0" />
+        <CheckBox id="Pickup Time" fx:id="sPickupBox" layoutX="465.0" layoutY="249.0" mnemonicParsing="false" text="Pickup Time" AnchorPane.leftAnchor="465.0" AnchorPane.topAnchor="249.0" />
+        <CheckBox id="Throw Time" fx:id="sThrowBox" layoutX="465.0" layoutY="284.0" mnemonicParsing="false" text="Throw Time" AnchorPane.leftAnchor="465.0" AnchorPane.topAnchor="284.0" />
+        <CheckBox id="Total Time" fx:id="sTotalBox" layoutX="465.0" layoutY="319.0" mnemonicParsing="false" text="Total Time" AnchorPane.leftAnchor="465.0" AnchorPane.topAnchor="319.0" />
+        <ChoiceBox fx:id="graphBox" layoutX="610.0" layoutY="290.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="290.0" />
+        <BarChart fx:id="sChart" layoutX="89.0" layoutY="282.0" prefHeight="400.0" prefWidth="650.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+            <xAxis>
+                <CategoryAxis fx:id="nameAxis" side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="numberAxis" side="LEFT" />
+            </yAxis>
+        </BarChart>
+        <ChoiceBox fx:id="tableBox" layoutX="610.0" layoutY="240.0" prefWidth="150.0" AnchorPane.topAnchor="240.0" />
+      <Button fx:id="deleteBut" layoutX="1297.0" layoutY="674.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="DELETE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="126.0" />
+      <Button fx:id="resetBut" layoutX="1409.0" layoutY="690.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" text="RESET" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <Label layoutX="1217.0" layoutY="199.0" text="Succes Percentage" textAlignment="CENTER" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1289.0" layoutY="240.0" prefHeight="31.0" text="Pick Up" AnchorPane.topAnchor="240.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="1278.0" layoutY="306.0" text="Hit Target" AnchorPane.topAnchor="310.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="pickUpPer" layoutX="1304.0" layoutY="280.0" text="Label" AnchorPane.topAnchor="280.0" />
+      <Label fx:id="hitPer" layoutX="1304.0" layoutY="343.0" text="Label" AnchorPane.topAnchor="350.0" />
+    </children>
+</AnchorPane>
