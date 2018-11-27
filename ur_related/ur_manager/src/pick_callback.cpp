@@ -1,5 +1,5 @@
 /* TODO
- * TID!
+ *
  */
 
 #include "ros/ros.h"
@@ -14,10 +14,15 @@
 #include <std_srvs/Empty.h>
 #include "wsg_50_common/Move.h"
 
+//msgs
 #include <std_msgs/String.h>
 #include <std_msgs/Empty.h>
 
-//defined vars
+//Robot times topic
+#define TIME_TOPIC "robot_times"
+#include "ur_manager/robot_time.h"
+
+//defined vars for control
 #define POSE_TOPIC "poses" //where ball-poses are published
 #define PICK_UP_STATE_TOPIC "pickup_state"
 #define WORLD_FRAME "world"
@@ -26,6 +31,7 @@
 #define MOVE_GROUP "ur5_arm" //moveit navn for ur5 armen (uden gripper)
 #define HOME "standby" //ur5_arm default pose
 
+//defined service names
 #define MOVE_SRV "/ur_service_node/move_arm"
 #define HOME_SRV "/ur_service_node/home_arm"
 #define PRIME_SRV "/ur_service_node/prime_arm"
@@ -54,8 +60,11 @@ public:
         pose_sub = nh.subscribe<ur_manager::ballPose>(POSE_TOPIC, 1, &Picker::pickupCallback, this); //[til Kasper]
         //kun én messege bliver i køen
 
-        //state publisher
+        //state publisher - use to trigger camera processing
         pickup_state_pub = nh.advertise<std_msgs::Empty>(PICK_UP_STATE_TOPIC, 1);
+
+        //time publisher
+        times_pub = nh.advertise<ur_manager::robot_time>(TIME_TOPIC, 1);
 
     }
 
@@ -101,6 +110,7 @@ public:
                 ur_move_cli.call(ur_move_call); //call move
 
                 if (ur_move_call.response.error == 255){
+                    set_failed_times();
                     ROS_ERROR("PICKER_CALLBACK - MOVE FAILED");
                     break;
                 }
@@ -111,28 +121,44 @@ public:
                 ur_move_cli.call(ur_move_call); //call move
 
                 if (ur_move_call.response.error == 255){
+                    set_failed_times();
                     ROS_ERROR("PICKER_CALLBACK - MOVE FAILED");
                     break;
                 }
 
-                //grip
-                wsg_grip_cli.call(grip_call);
+                if (!wsg_grip_cli.call(grip_call)){ //grip
+                    set_failed_times();
+                    break;
+                }
+
+                if (!ur_home_cli.call(emp_call)){ //til standby
+                    set_failed_times();
+                    break;
+                }
+
+                //timestamp
+                pickup_end_time = std::chrono::duration_cast<std::chrono::milliseconds>(
+                            std::chrono::system_clock::now().time_since_epoch());
+                //set pick_up_time
+                times_msg.pickup_time = pickup_end_time.count() - start_time.count();
+
+                if (!ur_prime_cli.call(emp_call)) //ryk arm tilbage
+                    times_msg.throw_time = -1.0;
+                    break;
+
+                if (!throw_cli.call(emp_call)) //kaste move
+                    times_msg.throw_time = -1.0;
+                    break;
+
+                //wait for release
+                usleep(250000); //500000 (slam dunk WORKS! //[400000, 350000] hits the backboard //250000 is a nice loop
+                wsg_release_cli.call(release_call);
 
             }while(false); //kør én gang
 
-
-            ur_home_cli.call(emp_call); //standby
-            ur_prime_cli.call(emp_call); //ryk arm tilbage
-            throw_cli.call(emp_call); //kaste move
-
-            //wait for release
-            usleep(250000); //500000 (slam dunk WORKS! //[400000, 350000] hits the backboard //250000 is a nice loop
-            wsg_release_cli.call(release_call);
-
-             //kør hjem igen
+            //kør hjem igen
             ur_home_cli.call(emp_call);
 
-//            this->moveToPickUp();
         } else {
             ROS_ERROR("PICKER - NO POSE!");
         }
@@ -141,9 +167,13 @@ public:
         end_time = std::chrono::duration_cast< std::chrono::milliseconds >(
                     std::chrono::system_clock::now().time_since_epoch());
 
-        //total time
-        std::chrono::milliseconds total_time = end_time - start_time;
-        ROS_INFO_STREAM("PICKER: Pickup time: " << total_time.count() << "ms");
+        if (times_msg.throw_time != -1.0) //throw time
+            times_msg.throw_time = end_time.count() - pickup_end_time.count();
+
+        //publish times
+        times_pub.publish(times_msg);
+        ROS_INFO_STREAM("PICKER:\nPickup time:" << times_msg.pickup_time
+                        << "ms\nThrow time: " << times_msg.throw_time << "ms");
 
         //publish to pickup_state
         //Will trigger new image prossecing!
@@ -236,6 +266,10 @@ public:
         arm.move();
     }
 
+    void set_failed_times(){
+        times_msg.pickup_time = -1.0;
+        times_msg.throw_time = -1.0;
+    }
 private:
     tf::TransformListener listener;
     ros::Subscriber pose_sub;
@@ -268,7 +302,10 @@ private:
 
     //time
     std::chrono::milliseconds start_time;
+    std::chrono::milliseconds pickup_end_time;
     std::chrono::milliseconds end_time;
+    ros::Publisher times_pub;
+    ur_manager::robot_time times_msg;
 };
 
 
