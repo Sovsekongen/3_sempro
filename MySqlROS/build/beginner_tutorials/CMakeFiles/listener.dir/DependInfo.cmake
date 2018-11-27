@@ -17,10 +17,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-<<<<<<< HEAD
+
   "/home/viktor/Desktop/3_sempro/MySqlROS/devel/include"
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
   "/opt/ros/kinetic/include"
   "/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   )

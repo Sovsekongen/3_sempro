@@ -91,15 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(beginner_tutorials_FOUND_CATKIN_PROJECT TRUE)
 
-<<<<<<< HEAD
 if(NOT "/home/viktor/Desktop/3_sempro/MySqlROS/devel/include " STREQUAL " ")
   set(beginner_tutorials_INCLUDE_DIRS "")
   set(_include_dirs "/home/viktor/Desktop/3_sempro/MySqlROS/devel/include")
-=======
-if(NOT " " STREQUAL " ")
-  set(beginner_tutorials_INCLUDE_DIRS "")
-  set(_include_dirs "")
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -158,11 +152,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-<<<<<<< HEAD
 set(beginner_tutorials_EXPORTED_TARGETS "beginner_tutorials_generate_messages_cpp;beginner_tutorials_generate_messages_eus;beginner_tutorials_generate_messages_java;beginner_tutorials_generate_messages_lisp;beginner_tutorials_generate_messages_nodejs;beginner_tutorials_generate_messages_py")
-=======
-set(beginner_tutorials_EXPORTED_TARGETS "")
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${beginner_tutorials_EXPORTED_TARGETS})
   if(NOT TARGET ${t})
@@ -170,11 +160,7 @@ foreach(t ${beginner_tutorials_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-<<<<<<< HEAD
 set(depends "message_runtime")
-=======
-set(depends "")
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls
@@ -203,11 +189,7 @@ foreach(depend ${depends})
   list(APPEND beginner_tutorials_EXPORTED_TARGETS ${${beginner_tutorials_dep}_EXPORTED_TARGETS})
 endforeach()
 
-<<<<<<< HEAD
 set(pkg_cfg_extras "beginner_tutorials-msg-extras.cmake")
-=======
-set(pkg_cfg_extras "")
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 foreach(extra ${pkg_cfg_extras})
   if(NOT IS_ABSOLUTE ${extra})
     set(extra ${beginner_tutorials_DIR}/${extra})

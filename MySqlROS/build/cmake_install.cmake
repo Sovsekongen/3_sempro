@@ -119,10 +119,9 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/viktor/Desktop/3_sempro/MySqlROS/build/gtest/cmake_install.cmake")
   include("/home/viktor/Desktop/3_sempro/MySqlROS/build/rosjava_catkin_package_a/cmake_install.cmake")
   include("/home/viktor/Desktop/3_sempro/MySqlROS/build/beginner_tutorials/cmake_install.cmake")
-<<<<<<< HEAD
+
   include("/home/viktor/Desktop/3_sempro/MySqlROS/build/myjava_message/cmake_install.cmake")
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 
 endif()
 

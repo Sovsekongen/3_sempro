@@ -23,19 +23,16 @@ import org.ros.node.AbstractNodeMain;
 import org.ros.node.ConnectedNode;
 import org.ros.node.NodeMain;
 import org.ros.node.topic.Subscriber;
-<<<<<<< HEAD
 import java.sql.*;
 import java.util.Scanner;
 import geometry_msgs.Vector3;
 //import com.github.rosjava.rosjava_catkin_package_a.msg.*;
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 
 /**
  * A simple {@link Subscriber} {@link NodeMain}.
  */
-<<<<<<< HEAD
 
  // rosrun rosjava_catkin_package_a my_pub_sub_tutorial com.github.rosjava.rosjava_catkin_package_a.my_pub_sub_tutorial.Listener
 public class Listener extends AbstractNodeMain {
@@ -52,10 +49,9 @@ public class Listener extends AbstractNodeMain {
     public int throwTime;
     public int counter = 0;
 
-=======
+
 public class Listener extends AbstractNodeMain {
 
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
   @Override
   public GraphName getDefaultNodeName() {
     return GraphName.of("rosjava/listener");
@@ -64,7 +60,7 @@ public class Listener extends AbstractNodeMain {
   @Override
   public void onStart(ConnectedNode connectedNode) {
     final Log log = connectedNode.getLog();
-<<<<<<< HEAD
+
     final JDBC jdbc = new JDBC("root","123",log);
 //    final Subscriber<msg.Cvmsg> subscriber = connectedNode.newSubscriber("chatter", msg.Cvmsg._TYPE);
 //    subscriber.addMessageListener(new MessageListener<msg.Cvmsg>()
@@ -127,13 +123,12 @@ public class Listener extends AbstractNodeMain {
 
 
 
-=======
-    Subscriber<std_msgs.String> subscriber = connectedNode.newSubscriber("chatter", std_msgs.String._TYPE);
-    subscriber.addMessageListener(new MessageListener<std_msgs.String>() {
-      @Override
-      public void onNewMessage(std_msgs.String message) {
-        log.info("I heard1: \"" + message.getData() + "\"");
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+//    Subscriber<std_msgs.String> subscriber = connectedNode.newSubscriber("chatter", std_msgs.String._TYPE);
+//    subscriber.addMessageListener(new MessageListener<std_msgs.String>() {
+//      @Override
+//      public void onNewMessage(std_msgs.String message) {
+//        log.info("I heard1: \"" + message.getData() + "\"");
       }
     });
   }

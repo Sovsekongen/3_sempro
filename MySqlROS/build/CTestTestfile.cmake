@@ -7,7 +7,6 @@
 subdirs(gtest)
 subdirs(rosjava_catkin_package_a)
 subdirs(beginner_tutorials)
-<<<<<<< HEAD
+
 subdirs(myjava_message)
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+

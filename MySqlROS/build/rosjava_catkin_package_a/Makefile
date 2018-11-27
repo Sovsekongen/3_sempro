@@ -188,7 +188,7 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-<<<<<<< HEAD
+
 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule
@@ -597,11 +597,11 @@ roscpp_generate_messages_py/fast:
 rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/rule
-=======
+
 rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/rule
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 
 # Convenience name for target.
 roscpp_generate_messages_py: rosjava_catkin_package_a/CMakeFiles/roscpp_generate_messages_py.dir/rule
@@ -614,7 +614,7 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
-<<<<<<< HEAD
+
 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_gencpp.dir/rule
@@ -643,7 +643,7 @@ rosjava_catkin_package_a_geneus: rosjava_catkin_package_a/CMakeFiles/rosjava_cat
 rosjava_catkin_package_a_geneus/fast:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/build
 .PHONY : rosjava_catkin_package_a_geneus/fast
-=======
+
 rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
@@ -822,7 +822,7 @@ std_msgs_generate_messages_eus: rosjava_catkin_package_a/CMakeFiles/std_msgs_gen
 std_msgs_generate_messages_eus/fast:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 
 # Convenience name for target.
 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
@@ -838,7 +838,7 @@ std_msgs_generate_messages_lisp: rosjava_catkin_package_a/CMakeFiles/std_msgs_ge
 std_msgs_generate_messages_lisp/fast:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
-<<<<<<< HEAD
+
 
 # Convenience name for target.
 rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/rule:
@@ -854,8 +854,8 @@ rosjava_catkin_package_a_genjava: rosjava_catkin_package_a/CMakeFiles/rosjava_ca
 rosjava_catkin_package_a_genjava/fast:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/build
 .PHONY : rosjava_catkin_package_a_genjava/fast
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 
 # Convenience name for target.
 rosjava_catkin_package_a/CMakeFiles/gradle-rosjava_catkin_package_a.dir/rule:
@@ -873,7 +873,7 @@ gradle-rosjava_catkin_package_a/fast:
 .PHONY : gradle-rosjava_catkin_package_a/fast
 
 # Convenience name for target.
-<<<<<<< HEAD
+
 rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
@@ -932,7 +932,7 @@ rosjava_catkin_package_a_generate_artifacts: rosjava_catkin_package_a/CMakeFiles
 rosjava_catkin_package_a_generate_artifacts/fast:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/build
 .PHONY : rosjava_catkin_package_a_generate_artifacts/fast
-=======
+
 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/rule
@@ -946,13 +946,13 @@ std_msgs_generate_messages_py: rosjava_catkin_package_a/CMakeFiles/std_msgs_gene
 std_msgs_generate_messages_py/fast:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 
 # Convenience name for target.
 rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
 .PHONY : rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
-<<<<<<< HEAD
+
 
 # Convenience name for target.
 gradle-clean: rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
@@ -993,7 +993,7 @@ rosjava_catkin_package_a_generate_messages_java_gradle: rosjava_catkin_package_a
 rosjava_catkin_package_a_generate_messages_java_gradle/fast:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java_gradle.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_messages_java_gradle.dir/build
 .PHONY : rosjava_catkin_package_a_generate_messages_java_gradle/fast
-=======
+
 
 # Convenience name for target.
 gradle-clean: rosjava_catkin_package_a/CMakeFiles/gradle-clean.dir/rule
@@ -1019,7 +1019,7 @@ gradle-clean-rosjava_catkin_package_a: rosjava_catkin_package_a/CMakeFiles/gradl
 gradle-clean-rosjava_catkin_package_a/fast:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/build.make rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/build
 .PHONY : gradle-clean-rosjava_catkin_package_a/fast
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 
 # Help Target
 help:
@@ -1027,7 +1027,7 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-<<<<<<< HEAD
+
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... rosjava_catkin_package_a_generate_messages"
 	@echo "... rosjava_catkin_package_a_genlisp"
@@ -1074,10 +1074,10 @@ help:
 	@echo "... rosjava_catkin_package_a_gennodejs"
 	@echo "... rosjava_catkin_package_a_generate_messages_java_gradle"
 	@echo "... edit_cache"
-=======
+
 	@echo "... list_install_components"
 	@echo "... install"
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 	@echo "... rebuild_cache"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_eus"

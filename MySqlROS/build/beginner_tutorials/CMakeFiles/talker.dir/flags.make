@@ -6,9 +6,7 @@ CXX_FLAGS = -g
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"beginner_tutorials\"
 
-<<<<<<< HEAD
 CXX_INCLUDES = -I/home/viktor/Desktop/3_sempro/MySqlROS/devel/include -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
-=======
+
 CXX_INCLUDES = -I/opt/ros/kinetic/include -I/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp 
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 
