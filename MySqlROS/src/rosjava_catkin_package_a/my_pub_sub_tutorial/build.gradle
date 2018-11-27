@@ -40,8 +40,8 @@ dependencies {
   /*compile '/Downloads/mysql-connector-java-8.0.12/mysql-connector-java-8.0.12.jar'*/
   compile files('/usr/include/mysql-connector-java-8.0.12/mysql-connector-java-8.0.12.jar')
   /*compile files('libs.ojdbc8.jar')*/
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+ 
   /* Example of a local subproject dependency */
   /* compile project(':sibling_gradle_project') */
 }

@@ -5,11 +5,11 @@
       <Option title="gmock" />
       <Option makefile_is_custom="1" />
       <Option compiler="gcc" />
-<<<<<<< HEAD
+
       <Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\opt\;CMake Files\..\..\..\..\..\..\opt\ros\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\platform\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\test\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\tools\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\templates\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\em\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\cpp_common\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\cpp_common\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_runtime\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_runtime\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp_serialization\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp_serialization\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp_traits\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp_traits\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rostime\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rostime\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rosconsole\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rosconsole\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rosgraph_msgs\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rosgraph_msgs\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\xmlrpcpp\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\xmlrpcpp\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rospy\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rospy\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_generation\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_generation\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genlisp\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genlisp\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genpy\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genpy\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geometry_msgs\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geometry_msgs\cmake\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\src\;CMake Files\..\..\..\..\..\..\usr\src\gmock\;CMake Files\..\..\..\..\..\..\usr\src\gtest\;CMake Files\..\..\..\..\..\..\usr\src\gtest\cmake\;CMake Files\..\..\..\..\rosjava\;CMake Files\..\..\..\..\rosjava\devel\;CMake Files\..\..\..\..\rosjava\devel\share\;CMake Files\..\..\..\..\rosjava\devel\share\rosjava_build_tools\;CMake Files\..\..\..\..\rosjava\devel\share\rosjava_build_tools\cmake\;CMake Files\..\..\..\..\rosjava\devel\share\genjava\;CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\;CMake Files\..\build\;CMake Files\..\build\catkin\;CMake Files\..\build\catkin\catkin_generated\;CMake Files\..\build\catkin\catkin_generated\version\;CMake Files\..\build\catkin_generated\;CMake Files\..\build\catkin_generated\installspace\;CMake Files\..\build\rosjava_catkin_package_a\;CMake Files\..\build\rosjava_catkin_package_a\catkin_generated\;CMake Files\..\build\rosjava_catkin_package_a\cmake\;CMake Files\..\build\beginner_tutorials\;CMake Files\..\build\beginner_tutorials\catkin_generated\;CMake Files\..\build\beginner_tutorials\cmake\;CMake Files\..\devel\;CMake Files\..\devel\share\;CMake Files\..\devel\share\rosjava_catkin_package_a\;CMake Files\..\devel\share\rosjava_catkin_package_a\cmake\;CMake Files\..\devel\share\beginner_tutorials\;CMake Files\..\devel\share\beginner_tutorials\cmake\;CMake Files\rosjava_catkin_package_a\;CMake Files\beginner_tutorials\;CMake Files\myjava_message\;" />
-=======
+
       <Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\opt\;CMake Files\..\..\..\..\..\..\opt\ros\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\platform\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\test\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\tools\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\templates\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\em\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\cpp_common\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\cpp_common\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_runtime\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_runtime\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp_serialization\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp_serialization\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp_traits\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\roscpp_traits\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rostime\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rostime\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rosconsole\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rosconsole\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rosgraph_msgs\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rosgraph_msgs\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\xmlrpcpp\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\xmlrpcpp\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rospy\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\rospy\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_generation\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_generation\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genlisp\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genlisp\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\cmake\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genpy\;CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genpy\cmake\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\src\;CMake Files\..\..\..\..\..\..\usr\src\gmock\;CMake Files\..\..\..\..\..\..\usr\src\gtest\;CMake Files\..\..\..\..\..\..\usr\src\gtest\cmake\;CMake Files\..\..\..\..\rosjava\;CMake Files\..\..\..\..\rosjava\devel\;CMake Files\..\..\..\..\rosjava\devel\share\;CMake Files\..\..\..\..\rosjava\devel\share\rosjava_build_tools\;CMake Files\..\..\..\..\rosjava\devel\share\rosjava_build_tools\cmake\;CMake Files\..\..\..\..\rosjava\devel\share\genjava\;CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\;CMake Files\..\build\;CMake Files\..\build\catkin\;CMake Files\..\build\catkin\catkin_generated\;CMake Files\..\build\catkin\catkin_generated\version\;CMake Files\..\build\catkin_generated\;CMake Files\..\build\catkin_generated\installspace\;CMake Files\..\build\rosjava_catkin_package_a\;CMake Files\..\build\rosjava_catkin_package_a\catkin_generated\;CMake Files\..\build\beginner_tutorials\;CMake Files\..\build\beginner_tutorials\catkin_generated\;CMake Files\rosjava_catkin_package_a\;CMake Files\beginner_tutorials\;" />
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
       <Build>
       <Target title="all">
          <Option working_dir="/home/viktor/Desktop/3_sempro/MySqlROS/build/gtest" />
@@ -324,7 +324,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/catkin/cmake/catkinConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/catkin/cmake/catkinConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\" />
       </Unit>
@@ -349,8 +349,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/catkin/cmake/catkinConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/catkin/cmake/platform/lsb.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\catkin\cmake\platform\" />
       </Unit>
@@ -768,12 +767,12 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgsConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgs-msg-paths.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgsConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
@@ -789,12 +788,12 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgsConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgs-msg-paths.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgsConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
@@ -810,12 +809,12 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgsConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgs-msg-paths.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgsConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
@@ -831,12 +830,12 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgsConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/std_msgs/cmake/std_msgs-msg-paths.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\std_msgs\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/xmlrpcpp/cmake/xmlrpcppConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\xmlrpcpp\cmake\" />
       </Unit>
@@ -909,7 +908,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/message_generation/cmake/message_generationConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_generation\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/message_generation/cmake/message_generationConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_generation\cmake\" />
       </Unit>
@@ -922,8 +921,8 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/message_generation/cmake/message_generationConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\message_generation\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
       </Unit>
@@ -951,28 +950,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
       </Unit>
-<<<<<<< HEAD
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencpp-extras.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
-      </Unit>
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
       </Unit>
@@ -1009,11 +987,32 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
       </Unit>
-=======
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
+      </Unit>
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencpp-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
       </Unit>
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencppConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
+      </Unit>
+
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gencpp/cmake/gencpp-extras.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gencpp\cmake\" />
+      </Unit>
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
       </Unit>
@@ -1029,7 +1028,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-paths.cmake.develspace.in">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
       </Unit>
@@ -1048,8 +1047,8 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-genmsg.cmake.em">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
       </Unit>
@@ -1065,40 +1064,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
       </Unit>
-<<<<<<< HEAD
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-paths.cmake.develspace.in">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-paths.cmake.installspace.in">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-extras.cmake.in">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-extras.cmake.in">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-genmsg.context.in">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-genmsg.cmake.em">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsg-extras.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig-version.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
-      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig.cmake">
-          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
-      </Unit>
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-paths.cmake.develspace.in">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
       </Unit>
@@ -1150,6 +1116,39 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-genmsg.cmake.em">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
       </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsg-extras.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig-version.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/genmsgConfig.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-paths.cmake.develspace.in">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-paths.cmake.installspace.in">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-extras.cmake.in">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-msg-extras.cmake.in">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-genmsg.context.in">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
+      <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genmsg/cmake/pkg-genmsg.cmake.em">
+          <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genmsg\cmake\" />
+      </Unit>
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/geneus/cmake/geneusConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\" />
       </Unit>
@@ -1180,8 +1179,8 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/geneus/cmake/geneusConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/geneus/cmake/geneusConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\" />
       </Unit>
@@ -1197,7 +1196,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/geneus/cmake/geneusConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/geneus/cmake/geneusConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\" />
       </Unit>
@@ -1213,11 +1212,11 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/geneus/cmake/geneusConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\" />
       </Unit>
-=======
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/geneus/cmake/geneus-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geneus\cmake\" />
       </Unit>
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genlisp/cmake/genlispConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genlisp\cmake\" />
       </Unit>
@@ -1233,7 +1232,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genlisp/cmake/genlispConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genlisp\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genlisp/cmake/genlispConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genlisp\cmake\" />
       </Unit>
@@ -1309,11 +1308,11 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gennodejs/cmake/gennodejsConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\cmake\" />
       </Unit>
-=======
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genlisp/cmake/genlisp-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genlisp\cmake\" />
       </Unit>
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gennodejs/cmake/gennodejsConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\cmake\" />
       </Unit>
@@ -1329,7 +1328,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gennodejs/cmake/gennodejsConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gennodejs/cmake/gennodejsConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\cmake\" />
       </Unit>
@@ -1345,11 +1344,11 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gennodejs/cmake/gennodejsConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\cmake\" />
       </Unit>
-=======
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/gennodejs/cmake/gennodejs-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\gennodejs\cmake\" />
       </Unit>
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genpy/cmake/genpyConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genpy\cmake\" />
       </Unit>
@@ -1365,7 +1364,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genpy/cmake/genpyConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genpy\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genpy/cmake/genpyConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genpy\cmake\" />
       </Unit>
@@ -1459,11 +1458,11 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/geometry_msgs/cmake/geometry_msgs-msg-paths.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\geometry_msgs\cmake\" />
       </Unit>
-=======
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../opt/ros/kinetic/share/genpy/cmake/genpy-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\opt\ros\kinetic\share\genpy\cmake\" />
       </Unit>
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../../../usr/src/gmock/CMakeLists.txt">
           <Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\src\gmock\" />
       </Unit>
@@ -1506,7 +1505,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/rosjava_build_tools/cmake/rosjava.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\rosjava_build_tools\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/rosjava_build_tools/cmake/rosjava_build_toolsConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\rosjava_build_tools\cmake\" />
       </Unit>
@@ -1597,8 +1596,8 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjavaConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjavaConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
@@ -1617,7 +1616,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjavaConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjavaConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
@@ -1630,15 +1629,15 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjavaConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjava-extras.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjava-catkin-api.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjavaConfig-version.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
@@ -1657,8 +1656,8 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../../../../rosjava/devel/share/genjava/cmake/genjavaConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\rosjava\devel\share\genjava\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/catkin/catkin_generated/version/package.cmake">
           <Option virtualFolder="CMake Files\..\build\catkin\catkin_generated\version\" />
       </Unit>
@@ -1677,15 +1676,15 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/rosjava_catkin_package_a/catkin_generated/package.cmake">
           <Option virtualFolder="CMake Files\..\build\rosjava_catkin_package_a\catkin_generated\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/rosjava_catkin_package_a/catkin_generated/rosjava_catkin_package_a-msg-extras.cmake.develspace.in">
           <Option virtualFolder="CMake Files\..\build\rosjava_catkin_package_a\catkin_generated\" />
       </Unit>
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/rosjava_catkin_package_a/catkin_generated/rosjava_catkin_package_a-msg-extras.cmake.installspace.in">
           <Option virtualFolder="CMake Files\..\build\rosjava_catkin_package_a\catkin_generated\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/rosjava_catkin_package_a/catkin_generated/ordered_paths.cmake">
           <Option virtualFolder="CMake Files\..\build\rosjava_catkin_package_a\catkin_generated\" />
       </Unit>
@@ -1695,7 +1694,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/rosjava_catkin_package_a/catkin_generated/package.cmake">
           <Option virtualFolder="CMake Files\..\build\rosjava_catkin_package_a\catkin_generated\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/rosjava_catkin_package_a/catkin_generated/rosjava_catkin_package_a-msg-extras.cmake.develspace.in">
           <Option virtualFolder="CMake Files\..\build\rosjava_catkin_package_a\catkin_generated\" />
       </Unit>
@@ -1708,8 +1707,8 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/rosjava_catkin_package_a/cmake/rosjava_catkin_package_a-genmsg.cmake">
           <Option virtualFolder="CMake Files\..\build\rosjava_catkin_package_a\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/beginner_tutorials/catkin_generated/ordered_paths.cmake">
           <Option virtualFolder="CMake Files\..\build\beginner_tutorials\catkin_generated\" />
       </Unit>
@@ -1719,15 +1718,14 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/beginner_tutorials/catkin_generated/package.cmake">
           <Option virtualFolder="CMake Files\..\build\beginner_tutorials\catkin_generated\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/beginner_tutorials/catkin_generated/beginner_tutorials-msg-extras.cmake.develspace.in">
           <Option virtualFolder="CMake Files\..\build\beginner_tutorials\catkin_generated\" />
       </Unit>
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/beginner_tutorials/catkin_generated/beginner_tutorials-msg-extras.cmake.installspace.in">
           <Option virtualFolder="CMake Files\..\build\beginner_tutorials\catkin_generated\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/beginner_tutorials/catkin_generated/ordered_paths.cmake">
           <Option virtualFolder="CMake Files\..\build\beginner_tutorials\catkin_generated\" />
       </Unit>
@@ -1737,7 +1735,7 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/beginner_tutorials/catkin_generated/package.cmake">
           <Option virtualFolder="CMake Files\..\build\beginner_tutorials\catkin_generated\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../build/beginner_tutorials/catkin_generated/beginner_tutorials-msg-extras.cmake.develspace.in">
           <Option virtualFolder="CMake Files\..\build\beginner_tutorials\catkin_generated\" />
       </Unit>
@@ -1762,8 +1760,8 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/../devel/share/beginner_tutorials/cmake/beginner_tutorials-msg-paths.cmake">
           <Option virtualFolder="CMake Files\..\devel\share\beginner_tutorials\cmake\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/rosjava_catkin_package_a/CMakeLists.txt">
           <Option virtualFolder="CMake Files\rosjava_catkin_package_a\" />
       </Unit>
@@ -1788,14 +1786,14 @@
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/package.xml">
           <Option virtualFolder="CMake Files\beginner_tutorials\" />
       </Unit>
-<<<<<<< HEAD
+
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/myjava_message/CMakeLists.txt">
           <Option virtualFolder="CMake Files\myjava_message\" />
       </Unit>
       <Unit filename="/home/viktor/Desktop/3_sempro/MySqlROS/src/myjava_message/CMakeLists.txt">
           <Option virtualFolder="CMake Files\myjava_message\" />
       </Unit>
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
    </Project>
 </CodeBlocks_project_file>

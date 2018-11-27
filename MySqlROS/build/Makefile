@@ -283,7 +283,6 @@ gtest_main/fast:
 .PHONY : gtest_main/fast
 
 #=============================================================================
-<<<<<<< HEAD
 # Target rules for targets named std_msgs_generate_messages_py
 
 # Build rule for target.
@@ -651,7 +650,6 @@ roscpp_generate_messages_py/fast:
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
-<<<<<<< HEAD
 # Target rules for targets named rosjava_catkin_package_a_gencpp
 
 # Build rule for target.
@@ -676,7 +674,6 @@ rosjava_catkin_package_a_geneus: cmake_check_build_system
 rosjava_catkin_package_a_geneus/fast:
 	$(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_geneus.dir/build
 .PHONY : rosjava_catkin_package_a_geneus/fast
-=======
 # Target rules for targets named rosgraph_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -831,7 +828,6 @@ std_msgs_generate_messages_eus: cmake_check_build_system
 std_msgs_generate_messages_eus/fast:
 	$(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 
 #=============================================================================
 # Target rules for targets named std_msgs_generate_messages_lisp
@@ -845,7 +841,7 @@ std_msgs_generate_messages_lisp: cmake_check_build_system
 std_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
-<<<<<<< HEAD
+
 
 #=============================================================================
 # Target rules for targets named rosjava_catkin_package_a_genjava
@@ -859,8 +855,6 @@ rosjava_catkin_package_a_genjava: cmake_check_build_system
 rosjava_catkin_package_a_genjava/fast:
 	$(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_genjava.dir/build
 .PHONY : rosjava_catkin_package_a_genjava/fast
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 
 #=============================================================================
 # Target rules for targets named gradle-rosjava_catkin_package_a
@@ -876,7 +870,6 @@ gradle-rosjava_catkin_package_a/fast:
 .PHONY : gradle-rosjava_catkin_package_a/fast
 
 #=============================================================================
-<<<<<<< HEAD
 # Target rules for targets named geometry_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -927,7 +920,6 @@ rosjava_catkin_package_a_generate_artifacts: cmake_check_build_system
 rosjava_catkin_package_a_generate_artifacts/fast:
 	$(MAKE) -f rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/build.make rosjava_catkin_package_a/CMakeFiles/rosjava_catkin_package_a_generate_artifacts.dir/build
 .PHONY : rosjava_catkin_package_a_generate_artifacts/fast
-=======
 # Target rules for targets named std_msgs_generate_messages_py
 
 # Build rule for target.
@@ -939,7 +931,6 @@ std_msgs_generate_messages_py: cmake_check_build_system
 std_msgs_generate_messages_py/fast:
 	$(MAKE) -f rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/build.make rosjava_catkin_package_a/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 
 #=============================================================================
 # Target rules for targets named gradle-clean
@@ -955,7 +946,6 @@ gradle-clean/fast:
 .PHONY : gradle-clean/fast
 
 #=============================================================================
-<<<<<<< HEAD
 # Target rules for targets named rosjava_catkin_package_a_gennodejs
 
 # Build rule for target.
@@ -1162,7 +1152,6 @@ beginner_tutorials_genjava: cmake_check_build_system
 beginner_tutorials_genjava/fast:
 	$(MAKE) -f beginner_tutorials/CMakeFiles/beginner_tutorials_genjava.dir/build.make beginner_tutorials/CMakeFiles/beginner_tutorials_genjava.dir/build
 .PHONY : beginner_tutorials_genjava/fast
-=======
 # Target rules for targets named gradle-clean-rosjava_catkin_package_a
 
 # Build rule for target.
@@ -1174,7 +1163,6 @@ gradle-clean-rosjava_catkin_package_a: cmake_check_build_system
 gradle-clean-rosjava_catkin_package_a/fast:
 	$(MAKE) -f rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/build.make rosjava_catkin_package_a/CMakeFiles/gradle-clean-rosjava_catkin_package_a.dir/build
 .PHONY : gradle-clean-rosjava_catkin_package_a/fast
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 
 #=============================================================================
 # Target rules for targets named talker
@@ -1190,7 +1178,6 @@ talker/fast:
 .PHONY : talker/fast
 
 #=============================================================================
-<<<<<<< HEAD
 # Target rules for targets named beginner_tutorials_geneus
 
 # Build rule for target.
@@ -1244,9 +1231,7 @@ listener/fast:
 
 #=============================================================================
 # Target rules for targets named _catkin_empty_exported_target
-=======
 # Target rules for targets named listener
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 
 # Build rule for target.
 listener: cmake_check_build_system
@@ -1254,15 +1239,12 @@ listener: cmake_check_build_system
 .PHONY : listener
 
 # fast build rule for target.
-<<<<<<< HEAD
 _catkin_empty_exported_target/fast:
 	$(MAKE) -f myjava_message/CMakeFiles/_catkin_empty_exported_target.dir/build.make myjava_message/CMakeFiles/_catkin_empty_exported_target.dir/build
 .PHONY : _catkin_empty_exported_target/fast
-=======
 listener/fast:
 	$(MAKE) -f beginner_tutorials/CMakeFiles/listener.dir/build.make beginner_tutorials/CMakeFiles/listener.dir/build
 .PHONY : listener/fast
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 
 # Help Target
 help:
@@ -1285,8 +1267,7 @@ help:
 	@echo "... gmock"
 	@echo "... gmock_main"
 	@echo "... gtest"
-	@echo "... gtest_main"
-<<<<<<< HEAD
+        @echo "... gtest_main"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... rosjava_catkin_package_a_generate_messages"
 	@echo "... rosjava_catkin_package_a_genlisp"
@@ -1347,7 +1328,6 @@ help:
 	@echo "... urtalker"
 	@echo "... listener"
 	@echo "... _catkin_empty_exported_target"
-=======
 	@echo "... roscpp_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
@@ -1367,8 +1347,7 @@ help:
 	@echo "... gradle-clean"
 	@echo "... gradle-clean-rosjava_catkin_package_a"
 	@echo "... talker"
-	@echo "... listener"
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+        @echo "... listener"
 .PHONY : help
 
 

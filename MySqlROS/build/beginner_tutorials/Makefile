@@ -100,8 +100,8 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-<<<<<<< HEAD
-=======
+
+
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -113,7 +113,7 @@ test/fast: test
 
 .PHONY : test/fast
 
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -136,7 +136,7 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-<<<<<<< HEAD
+
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -148,8 +148,8 @@ test/fast: test
 
 .PHONY : test/fast
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 # The main all target
 all: cmake_check_build_system
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/viktor/Desktop/3_sempro/MySqlROS/build/CMakeFiles /home/viktor/Desktop/3_sempro/MySqlROS/build/beginner_tutorials/CMakeFiles/progress.marks
@@ -183,7 +183,7 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-<<<<<<< HEAD
+
 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_java_gradle.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_java_gradle.dir/rule
 .PHONY : beginner_tutorials/CMakeFiles/beginner_tutorials_generate_messages_java_gradle.dir/rule
@@ -394,8 +394,8 @@ beginner_tutorials_genjava/fast:
 .PHONY : beginner_tutorials_genjava/fast
 
 # Convenience name for target.
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 beginner_tutorials/CMakeFiles/talker.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/talker.dir/rule
 .PHONY : beginner_tutorials/CMakeFiles/talker.dir/rule
@@ -411,7 +411,7 @@ talker/fast:
 .PHONY : talker/fast
 
 # Convenience name for target.
-<<<<<<< HEAD
+
 beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/rule
 .PHONY : beginner_tutorials/CMakeFiles/beginner_tutorials_geneus.dir/rule
@@ -457,8 +457,8 @@ urtalker/fast:
 .PHONY : urtalker/fast
 
 # Convenience name for target.
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 beginner_tutorials/CMakeFiles/listener.dir/rule:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f CMakeFiles/Makefile2 beginner_tutorials/CMakeFiles/listener.dir/rule
 .PHONY : beginner_tutorials/CMakeFiles/listener.dir/rule
@@ -527,7 +527,7 @@ src/talker.cpp.s:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f beginner_tutorials/CMakeFiles/talker.dir/build.make beginner_tutorials/CMakeFiles/talker.dir/src/talker.cpp.s
 .PHONY : src/talker.cpp.s
 
-<<<<<<< HEAD
+
 src/urtalker.o: src/urtalker.cpp.o
 
 .PHONY : src/urtalker.o
@@ -555,8 +555,8 @@ src/urtalker.cpp.s:
 	cd /home/viktor/Desktop/3_sempro/MySqlROS/build && $(MAKE) -f beginner_tutorials/CMakeFiles/urtalker.dir/build.make beginner_tutorials/CMakeFiles/urtalker.dir/src/urtalker.cpp.s
 .PHONY : src/urtalker.cpp.s
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -566,7 +566,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... rebuild_cache"
-<<<<<<< HEAD
+
 	@echo "... beginner_tutorials_generate_messages_java_gradle"
 	@echo "... beginner_tutorials_generate_messages_eus"
 	@echo "... beginner_tutorials_generate_messages_lisp"
@@ -590,26 +590,26 @@ help:
 	@echo "... beginner_tutorials_gencpp"
 	@echo "... urtalker"
 	@echo "... listener"
-=======
+
 	@echo "... edit_cache"
 	@echo "... talker"
 	@echo "... test"
 	@echo "... listener"
 	@echo "... install/strip"
 	@echo "... install/local"
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 	@echo "... src/listener.o"
 	@echo "... src/listener.i"
 	@echo "... src/listener.s"
 	@echo "... src/talker.o"
 	@echo "... src/talker.i"
 	@echo "... src/talker.s"
-<<<<<<< HEAD
+
 	@echo "... src/urtalker.o"
 	@echo "... src/urtalker.i"
 	@echo "... src/urtalker.s"
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 .PHONY : help
 
 

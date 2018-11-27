@@ -10,13 +10,13 @@ project(beginner_tutorials)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-<<<<<<< HEAD
+
   message_generation
   std_msgs
   geometry_msgs
-=======
+
   std_msgs
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 )
 
 ## System dependencies are found with CMake's conventions
@@ -53,19 +53,19 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-<<<<<<< HEAD
+
  add_message_files(
      FILES
      cvmsger.msg
      urmsg.msg
 )
-=======
+
 # add_message_files(
 #   FILES
 #   Message1.msg
 #   Message2.msg
 # )
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -82,18 +82,18 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-<<<<<<< HEAD
+
  generate_messages(
    DEPENDENCIES
    std_msgs
    geometry_msgs
  )
-=======
+
 # generate_messages(
 #   DEPENDENCIES
 #   std_msgs
 # )
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -125,10 +125,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-<<<<<<< HEAD
+
     CATKIN_DEPENDS message_runtime
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
 #  INCLUDE_DIRS include
 #  LIBRARIES beginner_tutorials
 #  CATKIN_DEPENDS roscpp rospy std_msgs
@@ -228,13 +227,10 @@ add_executable(talker src/talker.cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
 add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 
-<<<<<<< HEAD
 add_executable(urtalker src/urtalker.cpp)
 target_link_libraries(urtalker ${catkin_LIBRARIES})
 add_dependencies(urtalker beginner_tutorials_generate_messages_cpp)
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener beginner_tutorials_generate_messages_cpp)

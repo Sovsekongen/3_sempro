@@ -14,6 +14,8 @@
 # EXTERNAL cache entries
 ########################
 
+:UNINITIALIZED=======
+
 //Build shared libraries (DLLs).
 BUILD_SHARED_LIBS:BOOL=ON
 
@@ -278,15 +280,12 @@ catkin_DIR:PATH=/opt/ros/kinetic/share/catkin/cmake
 //The directory containing a CMake configuration file for cpp_common.
 cpp_common_DIR:PATH=/opt/ros/kinetic/share/cpp_common/cmake
 
-<<<<<<< HEAD
 //Value Computed by CMake
 foo_msgs_BINARY_DIR:STATIC=/home/viktor/Desktop/3_sempro/MySqlROS/build/foo_msgs
 
 //Value Computed by CMake
 foo_msgs_SOURCE_DIR:STATIC=/home/viktor/Desktop/3_sempro/MySqlROS/src/foo_msgs
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 //The directory containing a CMake configuration file for gencpp.
 gencpp_DIR:PATH=/opt/ros/kinetic/share/gencpp/cmake
 
@@ -308,12 +307,9 @@ gennodejs_DIR:PATH=/opt/ros/kinetic/share/gennodejs/cmake
 //The directory containing a CMake configuration file for genpy.
 genpy_DIR:PATH=/opt/ros/kinetic/share/genpy/cmake
 
-<<<<<<< HEAD
 //The directory containing a CMake configuration file for geometry_msgs.
 geometry_msgs_DIR:PATH=/opt/ros/kinetic/share/geometry_msgs/cmake
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 //Value Computed by CMake
 gmock_BINARY_DIR:STATIC=/home/viktor/Desktop/3_sempro/MySqlROS/build/gtest
 
@@ -363,7 +359,6 @@ message_generation_DIR:PATH=/opt/ros/kinetic/share/message_generation/cmake
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/kinetic/share/message_runtime/cmake
 
-<<<<<<< HEAD
 //Value Computed by CMake
 myjava_message_BINARY_DIR:STATIC=/home/viktor/Desktop/3_sempro/MySqlROS/build/myjava_message
 
@@ -373,8 +368,6 @@ myjava_message_SOURCE_DIR:STATIC=/home/viktor/Desktop/3_sempro/MySqlROS/src/myja
 //Path to a file.
 myjava_message_gradle_BINARY:FILEPATH=/home/viktor/Desktop/3_sempro/MySqlROS/src/myjava_message/gradlew
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/kinetic/share/rosconsole/cmake
 
@@ -516,11 +509,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-<<<<<<< HEAD
 CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
-=======
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

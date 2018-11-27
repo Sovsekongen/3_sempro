@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-<<<<<<< HEAD
+
 /home/viktor/Desktop/3_sempro/MySqlROS/devel/include/beginner_tutorials/cvmsger.h
 string
 -
@@ -45,14 +45,14 @@ ros/message_operations.h
 std_msgs/Header.h
 -
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 /home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/src/listener.cpp
 ros/ros.h
 /home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/src/ros/ros.h
 std_msgs/String.h
 /home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/src/std_msgs/String.h
-<<<<<<< HEAD
+
 beginner_tutorials/cvmsger.h
 /home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/src/beginner_tutorials/cvmsger.h
 beginner_tutorials/urmsg.h
@@ -115,8 +115,8 @@ ros/builtin_message_traits.h
 -
 ros/message_operations.h
 -
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 
 /opt/ros/kinetic/include/ros/advertise_options.h
 ros/forwards.h
@@ -764,7 +764,7 @@ ros/forwards.h
 
 /opt/ros/kinetic/include/rosconsole/macros_generated.h
 
-<<<<<<< HEAD
+
 /opt/ros/kinetic/include/std_msgs/Header.h
 string
 -
@@ -781,8 +781,8 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
 /opt/ros/kinetic/include/std_msgs/String.h
 string
 -

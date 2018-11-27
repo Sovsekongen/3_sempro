@@ -33,7 +33,7 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-<<<<<<< HEAD
+
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/beginner_tutorials/msg" TYPE FILE FILES
     "/home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/msg/cvmsger.msg"
     "/home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/msg/urmsg.msg"
@@ -69,19 +69,19 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/viktor/Desktop/3_sempro/MySqlROS/build/beginner_tutorials/catkin_generated/installspace/beginner_tutorials.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-<<<<<<< HEAD
+
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/beginner_tutorials/cmake" TYPE FILE FILES "/home/viktor/Desktop/3_sempro/MySqlROS/build/beginner_tutorials/catkin_generated/installspace/beginner_tutorials-msg-extras.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-=======
->>>>>>> 26a60b4c68b3a2a261a9b928b81953632d92833b
+
+
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/beginner_tutorials/cmake" TYPE FILE FILES
     "/home/viktor/Desktop/3_sempro/MySqlROS/build/beginner_tutorials/catkin_generated/installspace/beginner_tutorialsConfig.cmake"
     "/home/viktor/Desktop/3_sempro/MySqlROS/build/beginner_tutorials/catkin_generated/installspace/beginner_tutorialsConfig-version.cmake"
