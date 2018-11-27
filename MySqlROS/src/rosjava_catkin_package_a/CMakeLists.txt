@@ -13,8 +13,15 @@ find_package(catkin REQUIRED COMPONENTS
 	rosjava_build_tools
 	roscpp
 	rospy
+
+        message_generation
+        std_msgs
+        geometry_msgs
+	genjava
+
 	std_msgs
 	message_generation
+
 )
 
 # Set the gradle targets you want catkin's make to run by default, e.g.
@@ -23,6 +30,36 @@ find_package(catkin REQUIRED COMPONENTS
 # add tasks to this for you when you create subprojects.
 catkin_rosjava_setup(installDist publish)
 
+
+add_message_files(
+        DIRECTORY
+        my_pub_sub_tutorial/msg
+        FILES
+        Cvmsg.msg
+        Urmsg.msg
+#        DIRECTORY
+#        beginner_tutorials/msg
+#        FILES
+#        cvmsger.msg
+)
+
+generate_messages(
+        DEPENDENCIES
+        std_msgs
+        geometry_msgs
+)
+
+generate_rosjava_messages(
+  PACKAGES
+    std_msgs
+    ros_comm_msgs            # ros/ros_comm_msgs
+    rosjava_test_msgs        # rosjava/rosjava_test_msgs
+    actionlib_msgs           # ros/common_msgs
+)
+
+catkin_package(
+        CATKIN_DEPENDS message_runtime
+        )
 #add_message_files(
 #	FILES
 #	Num.msg
@@ -33,9 +70,7 @@ catkin_rosjava_setup(installDist publish)
 #	std_msgs
 #)
 
-catkin_package(
-#	CATKIN_DEPENDS message_runtime
-)
+
 
 
 ##############################################################################

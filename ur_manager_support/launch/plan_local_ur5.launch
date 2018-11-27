@@ -1,6 +1,0 @@
-<launch>
-    <include file="$(find throw_cell_moveit_config)/launch/throw_cell_planning_execution.launch">
-        <arg name="sim" value="false"/>
-        <arg name="robot_ip" value="127.0.0.1"/>
-    </include>
-</launch>

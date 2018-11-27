@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "std_msgs"
+  "ros_comm_msgs"
+  "rosjava_test_msgs"
+  "actionlib_msgs"
   "CMakeFiles/gradle-clean-rosjava_catkin_package_a"
 )
 

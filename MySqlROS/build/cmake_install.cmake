@@ -120,6 +120,9 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/viktor/Desktop/3_sempro/MySqlROS/build/rosjava_catkin_package_a/cmake_install.cmake")
   include("/home/viktor/Desktop/3_sempro/MySqlROS/build/beginner_tutorials/cmake_install.cmake")
 
+  include("/home/viktor/Desktop/3_sempro/MySqlROS/build/myjava_message/cmake_install.cmake")
+
+
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

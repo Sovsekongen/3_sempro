@@ -1,0 +1,2 @@
+float32 pickup_time
+float32 throw_time

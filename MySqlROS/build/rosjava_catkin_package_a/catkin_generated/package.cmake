@@ -2,7 +2,11 @@ set(_CATKIN_CURRENT_PACKAGE "rosjava_catkin_package_a")
 set(rosjava_catkin_package_a_VERSION "0.1.0")
 set(rosjava_catkin_package_a_MAINTAINER "viktor <viktor@todo.todo>")
 set(rosjava_catkin_package_a_PACKAGE_FORMAT "2")
+ 
+set(rosjava_catkin_package_a_BUILD_DEPENDS "rosjava_build_tools" "genjava" "python-rosdistro" "roslib" "message_generation" "std_msgs" "ros_comm_msgs" "rosjava_test_msgs" "actionlib_msgs")
+
 set(rosjava_catkin_package_a_BUILD_DEPENDS "rosjava_build_tools" "message_generation")
+ 
 set(rosjava_catkin_package_a_BUILD_EXPORT_DEPENDS )
 set(rosjava_catkin_package_a_BUILDTOOL_DEPENDS "catkin")
 set(rosjava_catkin_package_a_BUILDTOOL_EXPORT_DEPENDS )
