@@ -186,4 +186,9 @@
     <disable_collisions link1="wsg_finger_right" link2="wsg_gripper_left" reason="Never" />
     <disable_collisions link1="wsg_finger_right" link2="wsg_gripper_right" reason="Adjacent" />
     <disable_collisions link1="wsg_gripper_left" link2="wsg_gripper_right" reason="Never" />
+    <!--Kaspers hardcoded no-colide-->
+    <disable_collisions link1="wsg_gripper_left" link2="dummy_grippers" reason="Never" />
+    <disable_collisions link1="wsg_gripper_right" link2="dummy_grippers" reason="Never" />
+    <disable_collisions link1="wsg_finger_left" link2="dummy_grippers" reason="Never" />
+    <disable_collisions link1="wsg_finger_right" link2="dummy_grippers" reason="Never" />
 </robot>
