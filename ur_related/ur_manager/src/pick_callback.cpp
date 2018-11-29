@@ -153,6 +153,8 @@ public:
                 //wait for release
                 usleep(250000); //500000 (slam dunk WORKS! //[400000, 350000] hits the backboard //250000 is a nice loop
                 wsg_release_cli.call(release_call);
+                end_time = std::chrono::duration_cast< std::chrono::milliseconds >(
+                            std::chrono::system_clock::now().time_since_epoch());
 
             }while(false); //kør én gang
 
@@ -164,8 +166,7 @@ public:
         }
 
         //end time
-        end_time = std::chrono::duration_cast< std::chrono::milliseconds >(
-                    std::chrono::system_clock::now().time_since_epoch());
+
 
         if (times_msg.throw_time != -1.0) //throw time
             times_msg.throw_time = end_time.count() - pickup_end_time.count();
