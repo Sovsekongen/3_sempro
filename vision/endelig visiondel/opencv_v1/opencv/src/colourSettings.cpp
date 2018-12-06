@@ -180,9 +180,9 @@ int main(int argc, char **argv)
 
                   //finder objekter
                   trackFilteredObject(x,y,threshold,cv_img);
-                  cv::resize(cv_img, cv_img, Size(500,500));
-                  cv::resize(hsv, hsv, Size(500,500));
-                  cv::resize(threshold, threshold, Size(500,500));
+                  cv::resize(cv_img, cv_img, Size(1000,750));
+                  cv::resize(hsv, hsv, Size(1000,750));
+                  cv::resize(threshold, threshold, Size(1000,750));
                   imshow("CV_Image",cv_img);
                   imshow("HSV", hsv);
                   imshow("thresh", threshold);

@@ -58,10 +58,10 @@ int main(int argc, char **argv)
       cv::cornerSubPix(grayPic, q[i], cv::Size(8,8), cv::Size(-1,-1), term);
 
       // Display
-      //cv::drawChessboardCorners(pic, patternSize, q[i], success);
+      cv::drawChessboardCorners(pic, patternSize, q[i], success);
       //std::cout << "image number " << j << std::endl;
-      //cv::imshow("chessboard detection", pic);
-      //cv::waitKey(0);
+      cv::imshow("chessboard detection", pic);
+      cv::waitKey(0);
 
       i++;
     }

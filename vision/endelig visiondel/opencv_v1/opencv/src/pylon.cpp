@@ -22,13 +22,14 @@
 #include <cstdio>
 #include <std_msgs/Empty.h>
 
+
 using namespace std;
 using namespace cv;
 using namespace Pylon;
 
 //number of images to be grapped
 static const uint32_t c_countOfImagesToGrab = 100;
-vector<Point> centerPoint(5);
+vector<Point> centerPoint(10);
 std::clock_t start;
 double duration;
 std::string shape;
@@ -45,13 +46,13 @@ bool isStationary(Point newCenter){
     bool succes = false;
     for(int i = 0; i < centerPoint.size(); ++i){
         //caster til en int, da koordinatterne aldrig helt stemmer overens og sammenligner med de sidste 5 frames
-       if((int)newCenter.x == (int)centerPoint[i].x && (int)newCenter.y == (int)centerPoint[i].y){
+       if((int)newCenter.x - (int)centerPoint[i].x <= 1 && (int)newCenter.y - (int)centerPoint[i].y <= 1){
             std::cout << (int)newCenter.x << " " << (int)newCenter.y << std::endl;
             ++count;
         }
 
     }
-    if(count == 5){
+    if(count == centerPoint.size()){
         succes = true;
     }
     shiftVector(newCenter);
@@ -308,6 +309,47 @@ void pubCallback(const std_msgs::Empty::ConstPtr& robotState){
         x = x - xOffset;
         y = y - yOffset;
 
+        std::cout << x << " " << y << std::endl;
+
+        // Sætter offset for kamera forvrængning DO NOT CHANGE VALUES!!!
+        // x-retning-positiv
+        if(x <= 100 && x >= 50){
+            x -= 5;
+        }else if (x <= 200 && x >= 110) {
+            x -= 35;
+        }else if (x <= 400 && x >= 210) {
+            x -= 20;
+        }
+        // x-retning-negativ
+        if(x <= -50 && x >= -100){
+            x += 5;
+        }else if (x >= -200 && x <= -101) {
+            x -= 5;
+            std::cout << "HERE" << std::endl;
+        }else if (x >= -400 && x <= -210) {
+            x += 20;
+        }
+        // y-retning-positiv
+        if(y <= 100 && y >= 50){
+            y -= 5;
+        }else if (y <= 200 && y >= 110) {
+            y -= 11;
+        }else if (y <= 400 && y >= 210) {
+            y -= 30;
+        }
+        // y-retning-negativ
+        if(y <= -50 && y >= -100){
+            y += 5;
+        }else if (y >= -200 && y <= -110) {
+            y += 0;
+        }else if (y >= -400 && y <= -210) {
+            y += 20;
+        }
+
+
+        std::cout <<"Efter: "<<  x << " " << y << std::endl;
+
+
         //gemmer center koordinatterne i en pose.
         pose.position.x = x/1000;
         pose.position.y = y/1000;
@@ -341,7 +383,7 @@ void pubCallback(const std_msgs::Empty::ConstPtr& robotState){
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "grab");
+  ros::init(argc, argv, "pylon");
   ros::NodeHandle nh;
   ar_pub = nh.advertise<opencv::ballPose>("/poses",1);
   ros::Subscriber sub = nh.subscribe("pickup_state", 1, pubCallback);
