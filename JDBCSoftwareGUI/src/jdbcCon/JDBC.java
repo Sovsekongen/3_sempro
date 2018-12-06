@@ -95,7 +95,7 @@ public class JDBC
             
             for(int i = 0; rs.next(); i++)
             {
-                date = rs.getString("dbTime");
+                date = rs.getString("time");
                 posX = rs.getInt("posX");
                 posY = rs.getInt("posY");
                 throwNr = rs.getInt("throwNr");
@@ -120,7 +120,7 @@ public class JDBC
         try
         {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM pickupobject;");
+            rs = stmt.executeQuery("SELECT * FROM PickUpObject;");
 
             int numOfRows = 0;
             
@@ -164,7 +164,7 @@ public class JDBC
         try
         {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM pickuppos;");
+            rs = stmt.executeQuery("SELECT * FROM PickUpPos;");
             
             int numOfRows = 0;
             
@@ -204,7 +204,7 @@ public class JDBC
         try
         {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM exetime;");
+            rs = stmt.executeQuery("SELECT * FROM ExeTime;");
 
             int numOfRows = 0;
             
@@ -301,14 +301,14 @@ public class JDBC
 
         String condition = " WHERE throwNr = " + num + ";";
         String select = "SELECT * FROM ";
-        String[] tables = {"exetime", "pickupobject", "pickuppos"};
+        String[] tables = {"ExeTime", "PickUpObject", "PickUpPos"};
         
         
         try
         {
             stmt = con.createStatement();
             
-            rs = stmt.executeQuery("SELECT * FROM pickuppos");
+            rs = stmt.executeQuery("SELECT * FROM PickUpPos");
             
             int numOfRows = 0;
             
@@ -343,7 +343,7 @@ public class JDBC
                         for(int i = 0; rs.next(); i++)
                         {
                             radius = rs.getInt("radius");
-                            colour = rs.getString("colour");
+                            colour = rs.getString("color");
                             shape = rs.getString("shape");
                             throwNr = rs.getInt("throwNr");
                             pic = rs.getString("pic");
@@ -357,7 +357,7 @@ public class JDBC
                     {
                         for(int i = 0; rs.next(); i++)
                         {
-                            date = rs.getString("dbTime");
+                            date = rs.getString("time");
                             posX = rs.getInt("posX");
                             posY = rs.getInt("posY");
                             throwNr = rs.getInt("throwNr");
@@ -388,13 +388,13 @@ public class JDBC
         ArrayList<ObjectVal> o = new ArrayList<>();
 
         String select = "SELECT * FROM ";
-        String[] tables = {"exetime;", "pickupobject;", "pickuppos;"};
+        String[] tables = {"ExeTime;", "PickUpObject;", "PickUpPos;"};
 
         try
         {
             stmt = con.createStatement();
             
-            rs = stmt.executeQuery("SELECT * FROM pickuppos");
+            rs = stmt.executeQuery("SELECT * FROM PickUpPos");
             
             int numOfRows = 0;
             
@@ -431,7 +431,7 @@ public class JDBC
                         for(int i = 0; rs.next(); i++)
                         {
                             radius = rs.getInt("radius");
-                            colour = rs.getString("colour");
+                            colour = rs.getString("color");
                             shape = rs.getString("shape");
                             throwNr = rs.getInt("throwNr");
                             pic = rs.getString("pic");
@@ -445,7 +445,7 @@ public class JDBC
                     {
                         for(int i = 0; rs.next(); i++)
                         {
-                            date = rs.getString("dbTime");
+                            date = rs.getString("time");
                             posX = rs.getInt("posX");
                             posY = rs.getInt("posY");
                             throwNr = rs.getInt("throwNr");
@@ -475,13 +475,13 @@ public class JDBC
         
         String condition = " WHERE throwNr BETWEEN " + num1 + " AND " + num2 + ";";
         String select = "SELECT * FROM ";
-        String[] tables = {"exetime", "pickupobject", "pickuppos"};
+        String[] tables = {"ExeTime", "PickUpObject", "PickUpPos"};
         
         try
         {
             stmt = con.createStatement();
             
-            rs = stmt.executeQuery("SELECT * FROM pickuppos WHERE throwNr BETWEEN " + num1 + " AND " + num2);
+            rs = stmt.executeQuery("SELECT * FROM PickUpPos WHERE throwNr BETWEEN " + num1 + " AND " + num2);
             
             int numOfRows = 0;
             
@@ -523,7 +523,7 @@ public class JDBC
                         for(int i = 0; rs.next(); i++)
                         {
                             radius = rs.getInt("radius");
-                            colour = rs.getString("colour");
+                            colour = rs.getString("color");
                             shape = rs.getString("shape");
                             throwNr = rs.getInt("throwNr");
                             pic = rs.getString("pic");
@@ -539,7 +539,7 @@ public class JDBC
                         
                         for(int i = 0; rs.next(); i++)
                         {
-                            date = rs.getString("dbTime");
+                            date = rs.getString("time");
                             posX = rs.getInt("posX");
                             posY = rs.getInt("posY");
                             throwNr = rs.getInt("throwNr");
@@ -570,7 +570,7 @@ public class JDBC
         try
         {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT hitTarget FROM pickupobject WHERE throwNr BETWEEN " + num1 + " AND " + num2 +";");
+            rs = stmt.executeQuery("SELECT hitTarget FROM PickUpObject WHERE throwNr BETWEEN " + num1 + " AND " + num2 +";");
             
             while(rs.next())
             {
@@ -590,7 +590,7 @@ public class JDBC
         try
         {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT pickTarget FROM pickupobject WHERE throwNr BETWEEN " + num1 + " AND " + num2 +";");
+            rs = stmt.executeQuery("SELECT pickTarget FROM PickUpObject WHERE throwNr BETWEEN " + num1 + " AND " + num2 +";");
             
             while(rs.next())
             {
