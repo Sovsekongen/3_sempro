@@ -52,7 +52,7 @@ public class JDBC
     public void deleteRow(int throwNr)
     {
         String deletePick = "DELETE FROM PickUpObject WHERE throwNr = " + throwNr;
-        String deletePos = "DELETE FROM PickUpPos WHERE throwNr = " + throwNr;
+        String deletePos = "DELETE FROM PickUpLoc WHERE throwNr = " + throwNr;
         String deleteTime = "DELETE FROM ExeTime WHERE throwNr = " + throwNr;
         
         String[] queries = {deletePick, deleteTime, deletePos};
@@ -164,7 +164,7 @@ public class JDBC
         try
         {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM PickUpPos;");
+            rs = stmt.executeQuery("SELECT * FROM PickUpLoc;");
             
             int numOfRows = 0;
             
@@ -301,14 +301,14 @@ public class JDBC
 
         String condition = " WHERE throwNr = " + num + ";";
         String select = "SELECT * FROM ";
-        String[] tables = {"ExeTime", "PickUpObject", "PickUpPos"};
+        String[] tables = {"ExeTime", "PickUpObject", "PickUpLoc"};
         
         
         try
         {
             stmt = con.createStatement();
             
-            rs = stmt.executeQuery("SELECT * FROM PickUpPos");
+            rs = stmt.executeQuery("SELECT * FROM PickUpLoc");
             
             int numOfRows = 0;
             
@@ -388,13 +388,13 @@ public class JDBC
         ArrayList<ObjectVal> o = new ArrayList<>();
 
         String select = "SELECT * FROM ";
-        String[] tables = {"ExeTime;", "PickUpObject;", "PickUpPos;"};
+        String[] tables = {"ExeTime;", "PickUpObject;", "PickUpLoc;"};
 
         try
         {
             stmt = con.createStatement();
             
-            rs = stmt.executeQuery("SELECT * FROM PickUpPos");
+            rs = stmt.executeQuery("SELECT * FROM PickUpLoc");
             
             int numOfRows = 0;
             
@@ -475,13 +475,13 @@ public class JDBC
         
         String condition = " WHERE throwNr BETWEEN " + num1 + " AND " + num2 + ";";
         String select = "SELECT * FROM ";
-        String[] tables = {"ExeTime", "PickUpObject", "PickUpPos"};
+        String[] tables = {"ExeTime", "PickUpObject", "PickUpLoc"};
         
         try
         {
             stmt = con.createStatement();
             
-            rs = stmt.executeQuery("SELECT * FROM PickUpPos WHERE throwNr BETWEEN " + num1 + " AND " + num2);
+            rs = stmt.executeQuery("SELECT * FROM PickUpLoc WHERE throwNr BETWEEN " + num1 + " AND " + num2);
             
             int numOfRows = 0;
             
