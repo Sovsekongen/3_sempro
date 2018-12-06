@@ -102,7 +102,7 @@ public class IndividualTabController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        con = new JDBC("root", "doyouloveit123");
+        con = new JDBC("root", "123");
         pickUpPer.setText("");
         hitPer.setText("");
         
