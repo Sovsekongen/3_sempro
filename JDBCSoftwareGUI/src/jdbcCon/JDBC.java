@@ -10,7 +10,7 @@ public class JDBC
     private ResultSet rs = null;
     private Connection con = null;
 
-    private String url = "jdbc:mysql://localhost:3306/sempro?useSSL=false&serverTimezone=EST";
+    private String url = "jdbc:mysql://localhost:3306/UR5?useSSL=false&serverTimezone=EST";
     private String usr;
     private String pwd;
     
