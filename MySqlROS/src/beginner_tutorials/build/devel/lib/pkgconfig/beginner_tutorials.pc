@@ -1,8 +1,0 @@
-prefix=/home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/build/devel
-
-Name: beginner_tutorials
-Description: Description of beginner_tutorials
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/viktor/Desktop/3_sempro/MySqlROS/src/beginner_tutorials/build/devel/lib 
-Requires: 
