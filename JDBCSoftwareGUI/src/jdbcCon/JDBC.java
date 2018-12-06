@@ -51,9 +51,9 @@ public class JDBC
     
     public void deleteRow(int throwNr)
     {
-        String deletePick = "DELETE FROM pickupobject WHERE throwNr = " + throwNr;
-        String deletePos = "DELETE FROM pickuppos WHERE throwNr = " + throwNr;
-        String deleteTime = "DELETE FROM exetime WHERE throwNr = " + throwNr;
+        String deletePick = "DELETE FROM PickUpObject WHERE throwNr = " + throwNr;
+        String deletePos = "DELETE FROM PickUpPos WHERE throwNr = " + throwNr;
+        String deleteTime = "DELETE FROM ExeTime WHERE throwNr = " + throwNr;
         
         String[] queries = {deletePick, deleteTime, deletePos};
         try
@@ -136,7 +136,7 @@ public class JDBC
             for(int i = 0; rs.next(); i++)
             {
                 radius = rs.getInt("radius");
-                colour = rs.getString("colour");
+                colour = rs.getString("color");
                 shape = rs.getString("shape");
                 throwNr = rs.getInt("throwNr");
                 pic = rs.getString("pic");
@@ -179,7 +179,7 @@ public class JDBC
             
             for(int i = 0; rs.next(); i++)
             {
-                date = rs.getString("dbTime");
+                date = rs.getString("time");
                 posX = rs.getInt("posX");
                 posY = rs.getInt("posY");
                 throwNr = rs.getInt("throwNr");
