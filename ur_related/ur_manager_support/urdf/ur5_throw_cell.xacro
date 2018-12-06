@@ -191,11 +191,18 @@
     </joint>
 
     <!-- ***JOINTS*** -->
-    <joint name="table_top_to_world" type="fixed">
+    <!--<joint name="table_top_to_world" type="fixed"> OLD ONE
         <origin xyz="0.625 0 0" rpy="0 0 0"/>
         <parent link="world"/>
         <child link="table_top"/>
+    </joint>-->
+
+    <joint name="table_top_to_world" type="fixed">
+        <origin xyz="0.4955 0.4685 0" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="table_top"/>
     </joint>
+
     <joint name="table_to_table_top" type="fixed">
         <origin xyz="0 0 -0.375" rpy="0 0 0" />
         <parent link="table_top"/>
@@ -223,12 +230,19 @@
         <child link="camera"/>
     </joint>
 
-    <!-- robot link to world -->
-    <joint name="robot_to_world" type="fixed">
+    <!-- robot link to world --> <!--OLD ONE-->
+    <!--<joint name="robot_to_world" type="fixed">
         <origin xyz="0.1295 -0.4685 0" rpy="0 0 ${pi}"/>
         <parent link="world"/>
         <child link="base_link"/>
+    </joint>-->
+
+    <joint name="robot_to_world" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+        <parent link="world"/>
+        <child link="base_link"/>
     </joint>
+
     <joint name="camera_frame_on_cam" type="fixed">
         <origin xyz="0 0 0.035" rpy="0 0 ${pi}"/>
         <parent link="camera"/>

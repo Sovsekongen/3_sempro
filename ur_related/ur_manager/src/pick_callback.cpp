@@ -8,6 +8,7 @@
 //#include "opencv/ballPose.h" // topic [TIL Peter]
 #include "ur_manager/ballPose.h" // [til Kasper]
 #include <chrono>
+#include <iostream>
 
 //services
 #include "ur_manager/move.h"
@@ -38,6 +39,7 @@
 #define GRIP_SRV "/wsg_50_driver/grasp"
 #define RELEASE_SRV "/wsg_50_driver/release"
 #define THROW_SRV "/ur_script_service_node/throw_v1"
+#define JOINT_STATE_SRV "joint_state_service"
 
 //DEBUG VAR
 #define DEBUG false
@@ -54,6 +56,7 @@ public:
         wsg_grip_cli = nh.serviceClient<wsg_50_common::Move>(GRIP_SRV);
         wsg_release_cli = nh.serviceClient<wsg_50_common::Move>(RELEASE_SRV);
         throw_cli = nh.serviceClient<std_srvs::Empty>(THROW_SRV);
+        state_cli = nh.serviceClient<std_srvs::Empty>(JOINT_STATE_SRV);
 
         //subscriber til TOPIC
 //        pose_sub = nh.subscribe<opencv::ballPose>(POSE_TOPIC, 1, &Picker::pickupCallback, this); //[til Peter]
@@ -105,7 +108,7 @@ public:
             ur_move_call.request.scalingFactor = 1.0;
             ROS_INFO_STREAM("PICKER: request to move_arm_srv: " << ur_move_call.request.pose);
             //execute ruitine
-            do{
+            do{                
                 //to to approach
                 ur_move_cli.call(ur_move_call); //call move
 
@@ -126,8 +129,12 @@ public:
                     break;
                 }
 
+                //for test!
+                continue_promt();
+
                 if (!wsg_grip_cli.call(grip_call)){ //grip
                     set_failed_times();
+                    ROS_ERROR("PICKER_CALLBACK: GRIPPER FAILED");
                     break;
                 }
 
@@ -151,8 +158,15 @@ public:
                     break;
 
                 //wait for release
-                usleep(250000); //500000 (slam dunk WORKS! //[400000, 350000] hits the backboard //250000 is a nice loop
+                usleep(260000); //500000 (slam dunk WORKS! //[400000, 350000] hits the backboard //250000 is a nice loop
+
+                /******************/
+                //Test service call
+                state_cli.call(emp_call);
+                /******************/
+
                 wsg_release_cli.call(release_call);
+
                 end_time = std::chrono::duration_cast< std::chrono::milliseconds >(
                             std::chrono::system_clock::now().time_since_epoch());
 
@@ -271,6 +285,11 @@ public:
         times_msg.pickup_time = -1.0;
         times_msg.throw_time = -1.0;
     }
+
+    void continue_promt(){
+        ROS_INFO("PICER_CALLBACK: PRESS ENTER TO CONTINUE!");
+        std::cin.ignore(1);
+    }
 private:
     tf::TransformListener listener;
     ros::Subscriber pose_sub;
@@ -291,6 +310,7 @@ private:
     ros::ServiceClient wsg_grip_cli;
     ros::ServiceClient wsg_release_cli;
     ros::ServiceClient throw_cli;
+    ros::ServiceClient state_cli;
 
     //service objects
     wsg_50_common::Move grip_call;
