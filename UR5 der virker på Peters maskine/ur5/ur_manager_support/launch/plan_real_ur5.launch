@@ -1,0 +1,16 @@
+<launch>
+    <!--UR driver + rviz-->
+    <include file="$(find throw_cell_moveit_config)/launch/throw_cell_planning_execution.launch">
+        <arg name="sim" value="false"/>
+        <arg name="robot_ip" value="192.168.1.10"/>
+    </include>
+
+    <!--Gripper driver-->
+    <node name="wsg_50_driver"  pkg="wsg_50_driver" type="wsg_50_ip">
+          <param name="ip" type="string" value="192.168.1.20"/>
+          <param name="port" type="int" value="1000"/>
+    </node>
+
+    <!--UR service & callback for vision-->
+    <include file="$(find ur_manager_support)/launch/launch_exu_nodes.launch"/>
+</launch>
