@@ -1,0 +1,8 @@
+"all_zero":
+    all joint values = 0
+
+"throw_prime":
+    leaned over table - ready to throw
+
+"standby":
+    pick-up standby
