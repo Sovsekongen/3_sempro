@@ -13,7 +13,7 @@ public class MinMaxMessage
     public MinMaxMessage(Series series)
     {
         this.series = series;
-        this.min = 10000;
+        this.min = 100000;
         this.max = 1;
         this.avg = 0;
         this.name = series.getName();
