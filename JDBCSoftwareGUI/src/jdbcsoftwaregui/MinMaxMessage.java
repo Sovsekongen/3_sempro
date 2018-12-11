@@ -26,7 +26,7 @@ public class MinMaxMessage
         
     public void calcMinMaxAvg()
     {
-        min = 10000;
+        min = 100000;
         double num = 0, sum = 0;
         ArrayList list = new ArrayList(series.getData());
         ArrayList<Double> listValues = new ArrayList<>();
