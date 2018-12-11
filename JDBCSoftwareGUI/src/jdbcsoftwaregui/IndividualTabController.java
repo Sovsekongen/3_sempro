@@ -92,7 +92,6 @@ public class IndividualTabController implements Initializable
     Series sBarAvg = new Series();
     
     private ArrayList<String> barCategories = new ArrayList<>();
-    private ArrayList<Series> seriesInGraph = new ArrayList<>();
         
     private JDBC con = null;
     private boolean addSeriesListener = false;
@@ -155,7 +154,7 @@ public class IndividualTabController implements Initializable
                 {
                     case "sPickTrue":
                     {
-                        String query = "UPDATE pickupobject SET pickTarget = TRUE WHERE throwNr = " + p.getThrowNum() + ";";
+                        String query = "UPDATE PickUpObject SET pickTarget = TRUE WHERE throwNr = " + p.getThrowNum() + ";";
                         con.updateObject(query);
                         AllVal[] updatedVal = con.getThrowNum(p.getThrowNum());
                         sTableView.getItems().set(index, updatedVal[0]);
@@ -163,7 +162,7 @@ public class IndividualTabController implements Initializable
                     }
                     case "sPickFalse":
                     {
-                        String query = "UPDATE pickupobject SET pickTarget = FALSE WHERE throwNr = " + p.getThrowNum() + ";";
+                        String query = "UPDATE PickUpObject SET pickTarget = FALSE WHERE throwNr = " + p.getThrowNum() + ";";
                         con.updateObject(query);
                         AllVal[] updatedVal = con.getThrowNum(p.getThrowNum());
                         sTableView.getItems().set(index, updatedVal[0]);
@@ -171,7 +170,7 @@ public class IndividualTabController implements Initializable
                     }
                     case "sTargetTrue":
                     {
-                        String query = "UPDATE pickupobject SET hitTarget = TRUE WHERE throwNr = " + p.getThrowNum() + ";";
+                        String query = "UPDATE PickUpObject SET hitTarget = TRUE WHERE throwNr = " + p.getThrowNum() + ";";
                         con.updateObject(query);
                         AllVal[] updatedVal = con.getThrowNum(p.getThrowNum());
                         sTableView.getItems().set(index, updatedVal[0]);
@@ -179,7 +178,7 @@ public class IndividualTabController implements Initializable
                     }
                     case "sTargetFalse":
                     {
-                        String query = "UPDATE pickupobject SET hitTarget = FALSE WHERE throwNr = " + p.getThrowNum() + ";";
+                        String query = "UPDATE PickUpObject SET hitTarget = FALSE WHERE throwNr = " + p.getThrowNum() + ";";
                         con.updateObject(query);
                         AllVal[] updatedVal = con.getThrowNum(p.getThrowNum());
                         sTableView.getItems().set(index, updatedVal[0]);

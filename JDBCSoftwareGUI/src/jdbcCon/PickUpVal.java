@@ -8,6 +8,9 @@ public class PickUpVal
     private int throwNum;
     private String timestamp;
     
+    /*
+     * Denne klasse opbevarer data fra PickUpVal tabellen.
+     */
     public PickUpVal(int throwNr, String timestamp, int posX, int posY)
     {
         //this.timestamp = new SimpleStringProperty(timestamp);

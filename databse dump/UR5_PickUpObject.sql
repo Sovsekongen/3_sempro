@@ -28,6 +28,8 @@ CREATE TABLE `PickUpObject` (
   `colour` varchar(20) DEFAULT NULL,
   `shape` varchar(20) DEFAULT NULL,
   `pic` varchar(100) DEFAULT NULL,
+  `hitTarget` tinyint(1) DEFAULT NULL,
+  `pickTarget` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`throwNr`),
   CONSTRAINT `PickUpObject_ibfk_1` FOREIGN KEY (`throwNr`) REFERENCES `PickUpLoc` (`ThrowNr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -17,6 +17,10 @@ public class AllVal
     private boolean hitTarget;
     private boolean pickTarget;
 
+    /*
+     * Dataklasse for opbevaring af alle værdierne der kan trækkes ud af databasen.
+     * Denne klasse bliver brugt til at opbevare bufferværdier der bliver hevet ud af databasen.
+     */
     public AllVal(double posX, double posY, int throwNum, String timestamp, int pickUpTime, int imagePTime, int throwTime, int totalTime, double radius, String colour, String shape, String pic, boolean hitTarget, boolean pickTarget)
     {
         this.posX = posX;

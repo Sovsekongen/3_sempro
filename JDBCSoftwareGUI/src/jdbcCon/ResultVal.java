@@ -1,5 +1,8 @@
 package jdbcCon;
 
+/*
+ * Ikke brugt, men opbevarer data fra den ikke implementerede funktion Result.
+ */
 public class ResultVal 
 {
     private int points;

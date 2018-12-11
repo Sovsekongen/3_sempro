@@ -2,6 +2,9 @@ package jdbcCon;
 
 import java.util.logging.Logger;
 
+/*
+ * Opbevarer data fra den sidste tabel, der håndterer de forskellige tider.
+ */
 public class TimeVal 
 {
 

@@ -34,6 +34,10 @@ import jdbcCon.TimeVal;
 
 public class SingleTabController implements Initializable
 {
+    /*
+     * Instansierer alle de brugte objekter i FXML-dokumentet. Herved er det muligt at tilgå
+     * objekter på GUI'en via deres FXID.
+     */
     @FXML private TableView pickUpTable;
     @FXML private TableColumn throwNumTab;
     @FXML private TableColumn posXTab;
@@ -75,6 +79,10 @@ public class SingleTabController implements Initializable
     @FXML private Button deleteButton3;
     @FXML private Button updateBut3;
     
+    /*
+     * Opretter de series der bliver tilføjet til de forskellige tidsgrafer på 
+     * tidstabben.
+     */
     Series seriesImageP = new Series();
     Series seriesPickUp = new Series();
     Series seriesThrow = new Series();
@@ -86,6 +94,11 @@ public class SingleTabController implements Initializable
     
     private JDBC con = null;
     
+    /*
+     * DEnne metode instantsiere Single Tab-fanen. De forskellige metoder
+     * der bliver kaldt i denne metode ligger stort set alle i klassen og bliver
+     * forklaret herunder.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -157,7 +170,10 @@ public class SingleTabController implements Initializable
     }    
     
     /*
-     * General update all tables.
+     * Denne funktion henter nye værdier fra databasen og tilføjer disse nye til
+     * tabellerne i databasen. Desuden tager den checkboxene på Time-fanen og 
+     * Unchecker dem. Den opdaterer desuden scatter-plottet på den første fane
+     * samt den date der bliver brugt for tids-grafen.
      */
     public void updateTables()
     {

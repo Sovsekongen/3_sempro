@@ -31,6 +31,10 @@ public class JDBC
     private boolean hitTarget;
     private boolean pickTarget;
 
+    /*
+     * Kontruktor der opretter con objektet givent et username og et password.
+     * Forbindelses URL'en er en konstant værdi sat øverst.
+     */
     public JDBC(String usr, String pwd)
     {
         this.usr = usr;
@@ -49,6 +53,11 @@ public class JDBC
         }
     }
     
+    /*
+     * Denne funktion bruges til at slætte en entry i databasen. Den starter med at 
+     * slette de tabeller, der ikke indenholder den overordnede primary key og sletter dem først.
+     * Herefter bliver det første tabel slettet.
+     */
     public void deleteRow(int throwNr)
     {
         String deletePick = "DELETE FROM PickUpObject WHERE throwNr = " + throwNr;
@@ -71,49 +80,12 @@ public class JDBC
         }
     }
 
-    public PickUpVal[] selectQuery(String query)
-    {
-        PickUpVal[] vals = null;
-        try
-        {
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(query);
-            
-            ResultSetMetaData rsmd = rs.getMetaData();
-
-            int columns = rsmd.getColumnCount();
-            int numOfRows = 0;
-            
-            while(rs.next())
-            {
-                numOfRows++;
-            }
-            
-            rs.beforeFirst();
-
-            vals = new PickUpVal[numOfRows];
-            
-            for(int i = 0; rs.next(); i++)
-            {
-                date = rs.getString("time");
-                posX = rs.getInt("posX");
-                posY = rs.getInt("posY");
-                throwNr = rs.getInt("throwNr");
-
-                vals[i] = new PickUpVal(throwNr, date, posX, posY);
-            }
-                
-        } 
-        catch (SQLException e)
-        {
-            System.out.println("SQLException: " + e.getMessage());
-            System.out.println("SQLState: " + e.getSQLState());
-            System.out.println("VendorError: " + e.getErrorCode());
-        }
-        
-        return vals.clone();
-    }
     
+    /*
+     * Henter et objekt af objekt value datatypen. Dette array bruges til at opbevare 
+     * al den information der skal sættes ind i GUI'ens interface. Der er herunder 3 funktioner
+     * mere der gør det samme for de forskellige dataklasser.
+     */
     public ObjectVal[] getObjectArray()
     {
         ObjectVal[] vals = null;
@@ -239,46 +211,6 @@ public class JDBC
         return vals.clone();
     }
     
-    public void insertPickupPos(String date, int posX, int posY)
-    {
-        try
-        {
-            stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-            ResultSet.CONCUR_UPDATABLE);
-            rs = stmt.executeQuery("SELECT * FROM UR5;");     
-            
-            rs.moveToInsertRow();
-            rs.updateString("tDate", date);
-            rs.updateInt("posX", posX);
-            rs.updateInt("posY", posY);
-            
-            rs.insertRow();
-            rs.beforeFirst();
-        }
-        catch(SQLException e)
-        {
-            System.out.println("SQLException: " + e.getMessage());
-            System.out.println("SQLState: " + e.getSQLState());
-            System.out.println("VendorError: " + e.getErrorCode());
-        }
-        finally
-        {
-            if(stmt != null) 
-            {
-                try
-                {
-                    stmt.close();
-                }
-                catch(SQLException e)
-                {
-                    System.out.println("SQLException: " + e.getMessage());
-                    System.out.println("SQLState: " + e.getSQLState());
-                    System.out.println("VendorError: " + e.getErrorCode());
-                } 
-            }
-        }
-    }
-    
     public void updateObject(String query)
     {
         try
@@ -292,6 +224,15 @@ public class JDBC
         }
     }
     
+    /*
+     * Denne metode henter alle værdier fra alle tabeller og ligger dem ind i det
+     * objekt der håndterer alle informationer. Herunder er den samme funktion igen uden et parameter
+     * og med to paramtere.
+     * Funktionen med parameteret håndterer hvis en enkelt værdi bliver valgt
+     * på individual tab, hvor funktionen uden parameter håndterer alle værdier.
+     * Den tredje og sidste funktion tager to paramtre, så det er muligt at hente værdierne
+     * mellem to throwNrs.
+     */
     public AllVal[] getThrowNum(int num)
     {
         AllVal[] vals = null;
@@ -302,7 +243,6 @@ public class JDBC
         String condition = " WHERE throwNr = " + num + ";";
         String select = "SELECT * FROM ";
         String[] tables = {"ExeTime", "PickUpObject", "PickUpLoc"};
-        
         
         try
         {
@@ -562,7 +502,9 @@ public class JDBC
         return vals;
     }
     
-    
+    /*
+     * Henter værdierne hitTarget og pickTarget så der kan laves statistik på det.
+     */
     public ArrayList<Boolean> getTrueFalseHit(int num1, int num2)
     {
         ArrayList<Boolean> bufList = new ArrayList<>();

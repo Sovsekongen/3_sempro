@@ -10,6 +10,9 @@ public class ObjectVal
     private boolean hitTarget;
     private boolean pickTarget;
 
+    /*
+     * Denne klasse opbevarer værdier hivet ud af PickUpObject tabellen.
+     */
     public ObjectVal(int throwNr, double radius, String colour, String shape, String pic, boolean hitTarget, boolean pickTarget)
     {
         this.throwNr = throwNr;
