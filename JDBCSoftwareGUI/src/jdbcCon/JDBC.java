@@ -467,8 +467,26 @@ public class JDBC
                             shape = rs.getString("shape");
                             throwNr = rs.getInt("throwNr");
                             pic = rs.getString("pic");
-                            hitTarget = rs.getBoolean("hitTarget");
-                            pickTarget = rs.getBoolean("pickTarget");
+                            int hitTargetBuf = rs.getInt("hitTarget");
+                            int pickTargetBuf = rs.getInt("pickTarget");
+                            
+                            if(hitTargetBuf == 1)
+                            {
+                                hitTarget = true;
+                            }
+                            else
+                            {
+                                hitTarget = false;
+                            }
+                            
+                            if(pickTargetBuf == 1)
+                            {
+                                pickTarget = true;
+                            }
+                            else
+                            {
+                                pickTarget = false;
+                            }
                             
                             o[i] = new ObjectVal(throwNr, radius, colour, shape, pic, hitTarget, pickTarget);
                         }
