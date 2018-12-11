@@ -694,8 +694,6 @@ public class IndividualTabController implements Initializable
             {
                 hitPerVal++;
             }
-            System.out.println(hitPerVal + " bufSize: " + buf.size());
-            
         }
         
         hitPerVal /= buf.size();
