@@ -293,7 +293,9 @@ public class IndividualTabController implements Initializable
         AllVal[] bufVals = con.getThrowNum();
                 
         sXAxis.setLabel("Throw Nr.");
+        sXAxis.setForceZeroInRange(false);
         sYAxis.setLabel("Difference (ms)");
+        sYAxis.setForceZeroInRange(false);
         
         for(AllVal t : allVals)
         {
@@ -338,7 +340,9 @@ public class IndividualTabController implements Initializable
         allVals = con.getThrowNum(num1, num2);
                 
         sXAxis.setLabel("Throw Nr.");
-        sYAxis.setLabel("Time (ms)");
+        sXAxis.setForceZeroInRange(false);
+        sYAxis.setLabel("Difference (ms)");
+        sYAxis.setForceZeroInRange(false);
         
         for(AllVal t : allVals)
         {
